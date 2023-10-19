@@ -20,6 +20,7 @@ public class VentanaInicioSesion extends JFrame{
 	private JLabel contrasenia;
 	private JButton botonInicioSesion;
 	private JButton botonRegistro;
+	private static final String nomFicheroAlumnos = "Alumnos.csv";
 	
 	public VentanaInicioSesion() {
 		
