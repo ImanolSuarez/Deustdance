@@ -11,6 +11,8 @@ public class Persona implements Comparable<Persona>{
 	private String nombre;
 	private String apellidos;
 	private int edad;
+	private String email;
+	private String contrasenia;
 	private String dni;
 	private Date fNac;
 	private SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
@@ -20,12 +22,14 @@ public class Persona implements Comparable<Persona>{
 	
 	/*CONSTRUCTOR DE LA CLASE*/
 	
-	public Persona(String nombre, String apellidos, int edad, String dni, Date fNac, String direccion,
+	public Persona(String nombre, String apellidos, int edad, String email,  String dni, String contrasenia, Date fNac, String direccion,
 			String codPostal, String telefono) {
 		super();
 		this.nombre = nombre;
 		this.apellidos = apellidos;
 		this.edad = edad;
+		this.email = email;
+		this.contrasenia = contrasenia;
 		this.dni = dni;
 		this.fNac = fNac;
 		this.direccion = direccion;
@@ -33,10 +37,12 @@ public class Persona implements Comparable<Persona>{
 		this.telefono = telefono;
 	}
 	
-	public Persona(String nombre, String apellidos, int edad, String dni, String fNac, String direccion,
+	public Persona(String nombre, String apellidos, int edad,  String email, String contrasenia,  String dni, String fNac, String direccion,
 			String codPostal, String telefono) {
 		super();
 		this.nombre = nombre;
+		this.email = email;
+		this.contrasenia = contrasenia;
 		this.apellidos = apellidos;
 		this.edad = edad;
 		this.dni = dni;
@@ -118,6 +124,22 @@ public class Persona implements Comparable<Persona>{
 
 	public void setTelefono(String telefono) {
 		this.telefono = telefono;
+	}
+	
+	public String getEmail() {
+		return email;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
+	}
+
+	public String getContrasenia() {
+		return contrasenia;
+	}
+
+	public void setContrasenia(String contrasenia) {
+		this.contrasenia = contrasenia;
 	}
 
 	@Override

@@ -9,20 +9,25 @@ public class Alumno extends Persona{
 	private Clase claseAsignada;
 	private double dinero;
 	
-	public Alumno(String nombre, String apellidos, int edad, String dni, Date fNac, String direccion, String codPostal,
-			String telefono, Baile baileAsignado, Profesor profesorAsignado, double dinero, Clase claseAsignada) {
-		super(nombre, apellidos, edad, dni, fNac, direccion, codPostal, telefono);
-		this.claseAsignada = claseAsignada;
+	public Alumno(String nombre, String apellidos, int edad, String email, String dni, String contrasenia, Date fNac,
+			String direccion, String codPostal, String telefono, Baile baileAsignado, Profesor profesorAsignado,
+			Clase claseAsignada, double dinero) {
+		super(nombre, apellidos, edad, email, dni, contrasenia, fNac, direccion, codPostal, telefono);
 		this.baileAsignado = baileAsignado;
 		this.profesorAsignado = profesorAsignado;
+		this.claseAsignada = claseAsignada;
 		this.dinero = dinero;
 	}
 
-	public Alumno(String nombre, String apellidos, int edad, String dni, Date fNac, String direccion, String codPostal,
-			String telefono) {
-		super(nombre, apellidos, edad, dni, fNac, direccion, codPostal, telefono);
+	
+	
+	public Alumno(String nombre, String apellidos, int edad, String email, String contrasenia, String dni, String fNac,
+			String direccion, String codPostal, String telefono) {
+		super(nombre, apellidos, edad, email, contrasenia, dni, fNac, direccion, codPostal, telefono);
 		
 	}
+
+
 
 	public Baile getBaileAsignado() {
 		return baileAsignado;

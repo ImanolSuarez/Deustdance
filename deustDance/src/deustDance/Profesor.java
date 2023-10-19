@@ -10,20 +10,26 @@ public class Profesor extends Persona{
 	private List<Baile> listaBailes;
 	private List<Clase> listaClases;
 	
-	public Profesor(String nombre, String apellidos, int edad, String dni, Date fNac, String direccion,
-			String codPostal, String telefono, List<Alumno> listaAlumnos, List<Baile> listaBailes,
+	
+
+	public Profesor(String nombre, String apellidos, int edad, String email, String dni, String contrasenia, Date fNac,
+			String direccion, String codPostal, String telefono, List<Alumno> listaAlumnos, List<Baile> listaBailes,
 			List<Clase> listaClases) {
-		super(nombre, apellidos, edad, dni, fNac, direccion, codPostal, telefono);
+		super(nombre, apellidos, edad, email, dni, contrasenia, fNac, direccion, codPostal, telefono);
 		this.listaAlumnos = listaAlumnos;
 		this.listaBailes = listaBailes;
 		this.listaClases = listaClases;
 	}
-
-	public Profesor(String nombre, String apellidos, int edad, String dni, Date fNac, String direccion,
-			String codPostal, String telefono) {
-		super(nombre, apellidos, edad, dni, fNac, direccion, codPostal, telefono);
 	
+	
+
+	public Profesor(String nombre, String apellidos, int edad, String email, String contrasenia, String dni,
+			String fNac, String direccion, String codPostal, String telefono) {
+		super(nombre, apellidos, edad, email, contrasenia, dni, fNac, direccion, codPostal, telefono);
+		
 	}
+
+
 
 	public List<Alumno> getListaAlumnos() {
 		return listaAlumnos;
