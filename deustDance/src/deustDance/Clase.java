@@ -1,17 +1,19 @@
 package deustDance;
 
-import java.util.ArrayList;
+
+import java.util.List;
 
 public class Clase {
 	
-	
+	private static int contador = 0;
 	private String nombre;
-	private ArrayList<Profesor> listaProfesores;
-	private ArrayList<Alumno> listaAlumnos;
+	private List<Profesor> listaProfesores;
+	private List<Alumno> listaAlumnos;
 	
-	public Clase( String nombre, ArrayList<Profesor> listaProfesores, ArrayList<Alumno> listaAlumnos) {
+	public Clase(String nombre, List<Profesor> listaProfesores, List<Alumno> listaAlumnos) {
 		super();
-		
+		this.contador = contador;
+		contador++;
 		this.nombre = nombre;
 		this.listaProfesores = listaProfesores;
 		this.listaAlumnos = listaAlumnos;
@@ -30,19 +32,19 @@ public class Clase {
 		this.nombre = nombre;
 	}
 
-	public ArrayList<Profesor> getListaProfesores() {
+	public List<Profesor> getListaProfesores() {
 		return listaProfesores;
 	}
 
-	public void setListaProfesores(ArrayList<Profesor> listaProfesores) {
+	public void setListaProfesores(List<Profesor> listaProfesores) {
 		this.listaProfesores = listaProfesores;
 	}
 
-	public ArrayList<Alumno> getListaAlumnos() {
+	public List<Alumno> getListaAlumnos() {
 		return listaAlumnos;
 	}
 
-	public void setListaAlumnos(ArrayList<Alumno> listaAlumnos) {
+	public void setListaAlumnos(List<Alumno> listaAlumnos) {
 		this.listaAlumnos = listaAlumnos;
 	}
 

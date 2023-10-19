@@ -1,17 +1,18 @@
 package deustDance;
 
-import java.util.ArrayList;
+
 import java.util.Date;
+import java.util.List;
 
 public class Profesor extends Persona{
 	
-	private ArrayList<Alumno> listaAlumnos;
-	private ArrayList<Baile> listaBailes;
-	private ArrayList<Clase> listaClases;
+	private List<Alumno> listaAlumnos;
+	private List<Baile> listaBailes;
+	private List<Clase> listaClases;
 	
 	public Profesor(String nombre, String apellidos, int edad, String dni, Date fNac, String direccion,
-			String codPostal, String telefono, ArrayList<Alumno> listaAlumnos, ArrayList<Baile> listaBailes,
-			ArrayList<Clase> listaClases) {
+			String codPostal, String telefono, List<Alumno> listaAlumnos, List<Baile> listaBailes,
+			List<Clase> listaClases) {
 		super(nombre, apellidos, edad, dni, fNac, direccion, codPostal, telefono);
 		this.listaAlumnos = listaAlumnos;
 		this.listaBailes = listaBailes;
@@ -24,27 +25,27 @@ public class Profesor extends Persona{
 	
 	}
 
-	public ArrayList<Alumno> getListaAlumnos() {
+	public List<Alumno> getListaAlumnos() {
 		return listaAlumnos;
 	}
 
-	public void setListaAlumnos(ArrayList<Alumno> listaAlumnos) {
+	public void setListaAlumnos(List<Alumno> listaAlumnos) {
 		this.listaAlumnos = listaAlumnos;
 	}
 
-	public ArrayList<Baile> getListaBailes() {
+	public List<Baile> getListaBailes() {
 		return listaBailes;
 	}
 
-	public void setListaBailes(ArrayList<Baile> listaBailes) {
+	public void setListaBailes(List<Baile> listaBailes) {
 		this.listaBailes = listaBailes;
 	}
 
-	public ArrayList<Clase> getListaClases() {
+	public List<Clase> getListaClases() {
 		return listaClases;
 	}
 
-	public void setListaClases(ArrayList<Clase> listaClases) {
+	public void setListaClases(List<Clase> listaClases) {
 		this.listaClases = listaClases;
 	}
 

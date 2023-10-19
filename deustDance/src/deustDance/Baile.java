@@ -1,6 +1,8 @@
 package deustDance;
 
-import java.util.ArrayList;
+
+
+import java.util.List;
 
 public class Baile {
 	
@@ -9,11 +11,11 @@ public class Baile {
 	private double precio;
 	private int horasDeClase;
 	private Profesor profesorAsignado;
-	private ArrayList<Alumno> listaAlumnos;
+	private List<Alumno> listaAlumnos;
 	private Clase claseAsignada;
 	
 	public Baile(String descripcion, Tipo tipoBaile, double precio, int horasDeClase, Profesor profesorAsignado,
-			ArrayList<Alumno> listaAlumnos, Clase claseAsignada) {
+			List<Alumno> listaAlumnos, Clase claseAsignada) {
 		super();
 		this.descripcion = descripcion;
 		this.tipoBaile = tipoBaile;
@@ -69,11 +71,11 @@ public class Baile {
 		this.profesorAsignado = profesorAsignado;
 	}
 
-	public ArrayList<Alumno> getListaAlumnos() {
+	public List<Alumno> getListaAlumnos() {
 		return listaAlumnos;
 	}
 
-	public void setListaAlumnos(ArrayList<Alumno> listaAlumnos) {
+	public void setListaAlumnos(List<Alumno> listaAlumnos) {
 		this.listaAlumnos = listaAlumnos;
 	}
 
