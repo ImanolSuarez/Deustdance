@@ -18,11 +18,12 @@ public class Academia {
 	private static List<Clase> listaClases = new ArrayList<>();
 	
 	
+	/*Metodos de la clase academia*/
 	
 	
 	
 	
-	
+	/*METODO CARGAR ALUMNOS*/
 	
 	public static void cargarAlumnosEnLista(String nomFichero) {
 		
@@ -35,14 +36,16 @@ public class Academia {
 				String nombre = datos[0];
 				String apellidos = datos[1];
 				int edad  = Integer.parseInt(datos[2]);
-				String dni = datos[3];
-				String fNac = datos[4];
-				String direccion = datos[5];
-				String codPostal =datos[6];
-				String telefono =datos[7];
+				String email = datos[3];
+				String con = datos[4];
+				String dni = datos[5];
+				String fNac = datos[6];
+				String direccion = datos[7];
+				String codPostal =datos[8];
+				String telefono =datos[9];
 				
-				//Alumno a = new Alumno(nombre, apellidos, edad, dni, fNac, direccion, codPostal, telefono);
-				//listaPersonas.add(a);
+				Alumno a = new Alumno(nombre, apellidos, edad, email, con, dni, fNac, direccion, codPostal, telefono);
+				listaAlumnos.add(a);
 				
 			}
 		} catch (FileNotFoundException e) {
@@ -50,6 +53,9 @@ public class Academia {
 		}
 		
 	}
+	
+	
+	/*METODO GUARDAR ALUMNO*/
 	
 	public static void guardarAlumnosEnFichero(String nomFicher){
 		
@@ -67,6 +73,24 @@ public class Academia {
 			e.printStackTrace();
 		}
 		
+	}
+	
+	/*METODO GUARDAR PROFESORES*/
+	
+	public static void guardarProfesorEnFichero(String nomFichero) {
+		
+		try {
+			PrintWriter pw = new PrintWriter(nomFichero);
+			for(Profesor p : listaProfesores) {
+				pw.println(p.getNombre()+";"+p.getApellidos()+";"+p.getEdad()+";"+p.getDni()+";"+p.getfNac()+p.getDireccion()+";"+p.getCodPostal()+";"+p.getTelefono());
+			}
+			pw.flush();
+			pw.close();
+			
+		} catch (FileNotFoundException e) {
+			
+		}
+	
 	}
 
 }
