@@ -10,7 +10,7 @@ public class Persona implements Comparable<Persona>{
 	
 	private String nombre;
 	private String apellidos;
-	private Sexo sexo;
+	private String sexo;
 	private int edad;
 	private String email;
 	private String contrasenia;
@@ -24,7 +24,7 @@ public class Persona implements Comparable<Persona>{
 	/*CONSTRUCTOR DE LA CLASE*/
 	
 	public Persona(String nombre, String apellidos, int edad, String email,  String dni, String contrasenia, Date fNac, String direccion,
-			String codPostal, String telefono, Sexo sexo) {
+			String codPostal, String telefono, String sexo) {
 		super();
 		this.sexo = sexo;
 		this.nombre = nombre;
@@ -40,7 +40,7 @@ public class Persona implements Comparable<Persona>{
 	}
 	
 	public Persona(String nombre, String apellidos, int edad,  String email, String contrasenia,  String dni, String fNac, String direccion,
-			String codPostal, String telefono, Sexo sexo) {
+			String codPostal, String telefono, String sexo) {
 		super();
 		this.sexo = sexo;
 		this.nombre = nombre;
@@ -68,11 +68,11 @@ public class Persona implements Comparable<Persona>{
 		return nombre;
 	}
 
-	public Sexo getSexo() {
+	public String getSexo() {
 		return sexo;
 	}
 
-	public void setSexo(Sexo sexo) {
+	public void setSexo(String sexo) {
 		this.sexo = sexo;
 	}
 

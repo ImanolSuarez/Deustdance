@@ -43,8 +43,9 @@ public class Academia {
 				String direccion = datos[7];
 				String codPostal =datos[8];
 				String telefono =datos[9];
+				String sexo = datos[10];
 				
-				Alumno a = new Alumno(nombre, apellidos, edad, email, con, dni, fNac, direccion, codPostal, telefono);
+				Alumno a = new Alumno(nombre, apellidos, edad, email, con, dni, fNac, direccion, codPostal, telefono, sexo);
 				listaAlumnos.add(a);
 				
 			}

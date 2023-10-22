@@ -11,7 +11,7 @@ public class Profesor extends Persona{
 	private List<Clase> listaClases;
 	
 	public Profesor(String nombre, String apellidos, int edad, String email, String dni, String contrasenia, Date fNac,
-			String direccion, String codPostal, String telefono, Sexo sexo, List<Alumno> listaAlumnos,
+			String direccion, String codPostal, String telefono, String sexo, List<Alumno> listaAlumnos,
 			List<Baile> listaBailes, List<Clase> listaClases) {
 		super(nombre, apellidos, edad, email, dni, contrasenia, fNac, direccion, codPostal, telefono, sexo);
 		this.listaAlumnos = listaAlumnos;
@@ -22,7 +22,7 @@ public class Profesor extends Persona{
 	
 
 	public Profesor(String nombre, String apellidos, int edad, String email, String contrasenia, String dni,
-			String fNac, String direccion, String codPostal, String telefono, Sexo sexo) {
+			String fNac, String direccion, String codPostal, String telefono, String sexo) {
 		super(nombre, apellidos, edad, email, contrasenia, dni, fNac, direccion, codPostal, telefono, sexo);
 		
 	}

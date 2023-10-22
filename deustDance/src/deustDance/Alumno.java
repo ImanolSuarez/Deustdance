@@ -13,7 +13,7 @@ public class Alumno extends Persona{
 
 
 	public Alumno(String nombre, String apellidos, int edad, String email, String dni, String contrasenia, Date fNac,
-			String direccion, String codPostal, String telefono, Sexo sexo, Baile baileAsignado,
+			String direccion, String codPostal, String telefono, String sexo, Baile baileAsignado,
 			Profesor profesorAsignado, Clase claseAsignada, double dinero) {
 		super(nombre, apellidos, edad, email, dni, contrasenia, fNac, direccion, codPostal, telefono, sexo);
 		this.baileAsignado = baileAsignado;
@@ -25,7 +25,7 @@ public class Alumno extends Persona{
 	
 
 	public Alumno(String nombre, String apellidos, int edad, String email, String contrasenia, String dni, String fNac,
-			String direccion, String codPostal, String telefono, Sexo sexo) {
+			String direccion, String codPostal, String telefono, String sexo) {
 		super(nombre, apellidos, edad, email, contrasenia, dni, fNac, direccion, codPostal, telefono, sexo);
 		
 	}
