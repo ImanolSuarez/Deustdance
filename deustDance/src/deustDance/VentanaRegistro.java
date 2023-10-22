@@ -7,6 +7,7 @@ import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
 import javax.swing.JSpinner;
@@ -26,11 +27,12 @@ public class VentanaRegistro extends JFrame{
 	private JButton botonGuardar, botonSalir;
 	private JComboBox<String> comboSexo;
 	private JSpinner spinnerEdad;
+	private static final String nomFichero = "Alumnos.csv";
 	
 	
 	public VentanaRegistro() {
 		
-		setDefaultCloseOperation(DISPOSE_ON_CLOSE);
+		setDefaultCloseOperation(DO_NOTHING_ON_CLOSE);
 		setSize(400, 500);
 		setTitle("Ventana registro");
 		
@@ -71,14 +73,63 @@ public class VentanaRegistro extends JFrame{
 		comboSexo.addItem("FEMENINO");
 		comboSexo.addItem("OTROS");
 		
-		SpinnerModel años = new SpinnerNumberModel(0, 0, 10, 1);
+		SpinnerModel años = new SpinnerNumberModel(0, 0, 100, 1);
 		spinnerEdad = new JSpinner(años);
 		
 		botonGuardar = new JButton("Guardar");
 		botonSalir = new JButton("Salir");
 		
+		/*CARGA DE LAS COLLECIONES*/
+		
+		Academia.cargarAlumnosEnLista(nomFichero);
 		
 		
+	
+		
+		
+		/*EVENTOS*/
+		
+		botonGuardar.addActionListener((e)->{
+			
+			String nombre = textNombre.getText();
+			String apellidos = textApellidos.getText();
+			String dni = textDni.getText();
+			String dir = textDir.getText();
+			String codPos = textCodPos.getText();
+			String tf = textTF.getText();
+			String email = textEmail.getText();
+			String contra = textContra.getText();
+			String fNac = textfNac.getText();
+			String sexo = (String) comboSexo.getSelectedItem();
+			int edad = (int) (spinnerEdad.getValue());
+			
+			Alumno alumno = new Alumno(nombre, apellidos,edad, email, contra, dni, fNac, dir, codPos, tf, sexo);
+			if(Academia.buscarAlumno(dni) != null) {
+				JOptionPane.showMessageDialog(null, "Ya existe un cliente con ese dni","ERROR",JOptionPane.ERROR_MESSAGE);
+			}else {
+				Academia.anyadirAlumno(alumno);
+				JOptionPane.showMessageDialog(null, "BIENVENIDO A DEUSTDANCE.","BIENVENIDO",JOptionPane.INFORMATION_MESSAGE);
+			}
+			
+			textNombre.setText("");
+			textApellidos.setText("");
+			textDni.setText("");
+			textDir.setText("");
+			textCodPos.setText("");
+			textTF.setText("");
+			textEmail.setText("");
+			textContra.setText("");
+			textfNac.setText("");
+			spinnerEdad.setValue(0);
+		});
+		
+		
+		botonSalir.addActionListener((e)->{
+			Academia.guardarAlumnosEnFichero(nomFichero);
+			new VentanaInicioSesion();
+			setVisible(false);
+			
+		});
 		/*AÑADIR COMPONENTES AL PANEL*/
 		
 		panelNorte.add(texto);
