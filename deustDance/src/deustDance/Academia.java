@@ -19,7 +19,7 @@ public class Academia {
 	private static List<Clase> listaClases = new ArrayList<>();
 	
 	
-	/*Metodos de la clase academia*/
+	/*METODOS DE LA CLASE ACADEMIA*/
 	
 	/*METODO PARA AÑADIR ALUMNOS*/
 	

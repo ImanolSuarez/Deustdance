@@ -6,6 +6,7 @@ import java.awt.GridLayout;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
@@ -13,10 +14,10 @@ import javax.swing.JTextField;
 public class VentanaInicioSesion extends JFrame{
 	
 	
-	private JTextField textUsuario;
+	private JTextField textDni;
 	private JPasswordField textContrasenia;
 	private JLabel textoBienvenida;
-	private JLabel usuario;
+	private JLabel dni;
 	private JLabel contrasenia;
 	private JButton botonInicioSesion;
 	private JButton botonRegistro;
@@ -38,9 +39,9 @@ public class VentanaInicioSesion extends JFrame{
 		
 		textoBienvenida = new JLabel("BIENVENIDO A DEUSTDANCE");
 		
-		usuario = new JLabel("Usuario");
+		dni = new JLabel("Dni: ");
 		contrasenia = new JLabel("Contraseña");
-		textUsuario = new JTextField(5);
+		textDni = new JTextField(5);
 		textContrasenia = new JPasswordField(5);
 		
 		botonInicioSesion = new JButton("Inicio sesion");
@@ -51,6 +52,21 @@ public class VentanaInicioSesion extends JFrame{
 		/*EVENTOS*/
 		
 		botonInicioSesion.addActionListener((e)->{
+			
+			String dni = textDni.getText();
+			String con = textContrasenia.getText();
+			Alumno a = Academia.buscarAlumno(dni);
+			if(a == null) {
+				JOptionPane.showMessageDialog(null, "Para poder iniciar sesión tienes que estar registrado","ERROR",JOptionPane.ERROR_MESSAGE);
+			}else {
+				if(a.getContrasenia().equals(con)) {
+					JOptionPane.showMessageDialog(null, "BIENVENIDO A DEUSTDANCE", "BIENVENIDO", JOptionPane.INFORMATION_MESSAGE);
+					new VentanaPrincipal();
+					setVisible(false);
+				}else {
+					JOptionPane.showMessageDialog(null, "ERROR. CONTRASEÑA INCORRECTA", "ERROR", JOptionPane.ERROR_MESSAGE);
+				}
+			}
 			
 		
 		});
@@ -67,8 +83,8 @@ public class VentanaInicioSesion extends JFrame{
 		
 		panelNorte.add(textoBienvenida);
 		
-		panelCentro.add(usuario);
-		panelCentro.add(textUsuario);
+		panelCentro.add(dni);
+		panelCentro.add(textDni);
 		panelCentro.add(contrasenia);
 		panelCentro.add(textContrasenia);
 		
