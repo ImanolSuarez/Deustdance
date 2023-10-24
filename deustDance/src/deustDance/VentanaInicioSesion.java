@@ -67,7 +67,7 @@ public class VentanaInicioSesion extends JFrame{
 					JOptionPane.showMessageDialog(null, "ERROR. CONTRASEÑA INCORRECTA", "ERROR", JOptionPane.ERROR_MESSAGE);
 				}
 			}
-			
+			new VentanaAlumno();
 		
 		});
 		

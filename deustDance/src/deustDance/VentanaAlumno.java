@@ -6,6 +6,8 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import java.awt.*;
 import java.awt.event.*;
+import java.io.File;
+
 import javax.swing.*;
 import javax.swing.border.*;
 
@@ -19,6 +21,7 @@ public class VentanaAlumno extends JFrame{
 	protected JButton botonDatosClase;
 	protected JButton botonMostrarCalendar;
 	protected JButton botonImprimirCalendar;
+	protected JButton botonCargarFoto;
 	
 	public VentanaAlumno() {
 		JPanel panelInformacionPersonal = new JPanel();
@@ -42,22 +45,54 @@ public class VentanaAlumno extends JFrame{
 		panelInformacionPersonal.add(textoNombre);
 		panelInformacionPersonal.add(new JLabel("Apellidos: "));
 		panelInformacionPersonal.add(textoApellidos);
-		panelInformacionPersonal.add(new JLabel("Correo electronico: "));
+		panelInformacionPersonal.add(new JLabel("Correo electrónico: "));
 		panelInformacionPersonal.add(textoEmail);
 		panelInformacionPersonal.add(new JLabel("Contraseña: "));
 		panelInformacionPersonal.add(textoContraseña);
 		
 		botonEditar = new JButton("Editar datos");
 		
+		//JFILECHOOSER PARA QUE EL ALUMNO ELIJA LA FOTO
+		
+		JLabel etiquetaFoto = new JLabel();
+		panelInformacionPersonal.add(etiquetaFoto);
+				
+		botonCargarFoto = new JButton("Cargar foto");
+				
+		botonCargarFoto.addActionListener(new ActionListener() {
+					
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				JFileChooser fileChooser = new JFileChooser();
+				int seleccionado = fileChooser.showOpenDialog(null);
+						
+				if (seleccionado == JFileChooser.APPROVE_OPTION) {
+					File file = fileChooser.getSelectedFile();
+					String rutaImagen = file.getAbsolutePath();
+							
+					ImageIcon imagenIcono = new ImageIcon(rutaImagen);
+				    Image imagen = imagenIcono.getImage().getScaledInstance(etiquetaFoto.getWidth(), etiquetaFoto.getHeight(), Image.SCALE_SMOOTH);
+				    ImageIcon imagenEscalada = new ImageIcon(imagen);
+				            
+				    etiquetaFoto.setIcon(imagenEscalada);
+							
+				}
+			}
+		});
+		
 		JPanel panelBotonPersonal = new JPanel();
 		panelInformacionPersonal.add(panelBotonPersonal, BorderLayout.SOUTH);
 		panelBotonPersonal.add(botonEditar);
+		panelBotonPersonal.add(botonCargarFoto);
 		
 		botonEditar.addActionListener(new ActionListener() {
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				// TODO Auto-generated method stub
+				
+				textoNombre.setEditable(false);
+				textoApellidos.setEditable(false);
+				
 				
 			}
 		});
@@ -105,6 +140,7 @@ public class VentanaAlumno extends JFrame{
 		
 		panelInformacionAcademica.add(comboClases, BorderLayout.NORTH);
 		panelInformacionAcademica.add(panelBotonesAcademico, BorderLayout.SOUTH);
+		
 		
 		
 		this.add(panelInformacionPersonal, BorderLayout.WEST);
