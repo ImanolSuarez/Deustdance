@@ -102,6 +102,7 @@ public class VentanaAlumno extends JFrame{
 		panelBotonesAcademico.add(botonMostrarCalendar);
 		panelBotonesAcademico.add(botonImprimirCalendar);
 		
+		
 		panelInformacionAcademica.add(comboClases, BorderLayout.NORTH);
 		panelInformacionAcademica.add(panelBotonesAcademico, BorderLayout.SOUTH);
 		
