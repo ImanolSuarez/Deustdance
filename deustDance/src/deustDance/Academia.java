@@ -63,7 +63,11 @@ public class Academia {
 			String linea;
 			while(sc.hasNext()) {
 				linea = sc.nextLine();
+				System.out.println(linea);
 				String[] datos = linea.split(";");
+				for(String d: datos) {
+					System.out.println(d);
+				}
 				String nombre = datos[0];
 				String apellidos = datos[1];
 				int edad  = Integer.parseInt(datos[2]);
@@ -80,9 +84,11 @@ public class Academia {
 				listaAlumnos.add(a);
 				
 			}
+			sc.close();
 		} catch (FileNotFoundException e) {
 			
 		}
+		
 		
 	}
 	
@@ -94,8 +100,8 @@ public class Academia {
 		try {
 			PrintWriter pw = new PrintWriter(nomFicher);
 			for(Alumno a : listaAlumnos) {
-				pw.println(a.getNombre()+";"+a.getApellidos()+";"+a.getEdad()+";"+a.getDni()+";"+a.getfNac()+";"+a.getDireccion()+";"+a.getCodPostal()+";"+a.getTelefono()+";"+a.getSexo());
-				
+				pw.println(a.getNombre()+";"+a.getApellidos()+";"+a.getEdad()+";"+a.getEmail()+";"+a.getContrasenia()+";"+a.getDni()+";"+a.getfNac()+";"+a.getDireccion()+";"+a.getCodPostal()+";"+a.getTelefono()+";"+a.getSexo());
+							
 			}
 			pw.flush();
 			pw.close();
@@ -108,7 +114,7 @@ public class Academia {
 	}
 	
 	/*METODO GUARDAR PROFESORES*/
-	
+	/*
 	public static void guardarProfesorEnFichero(String nomFichero) {
 		
 		try {
@@ -124,5 +130,6 @@ public class Academia {
 		}
 	
 	}
+	*/
 
 }
