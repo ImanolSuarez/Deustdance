@@ -94,7 +94,7 @@ public class Academia {
 		try {
 			PrintWriter pw = new PrintWriter(nomFicher);
 			for(Alumno a : listaAlumnos) {
-				pw.println(a.getNombre()+";"+a.getApellidos()+";"+a.getEdad()+";"+a.getDni()+";"+a.getfNac()+";"+a.getDireccion()+a.getCodPostal()+a.getTelefono()+";"+a.getSexo());
+				pw.println(a.getNombre()+";"+a.getApellidos()+";"+a.getEdad()+";"+a.getDni()+";"+a.getfNac()+";"+a.getDireccion()+";"+a.getCodPostal()+";"+a.getTelefono()+";"+a.getSexo());
 				
 			}
 			pw.flush();

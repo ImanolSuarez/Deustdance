@@ -108,7 +108,7 @@ public class VentanaRegistro extends JFrame{
 				JOptionPane.showMessageDialog(null, "Ya existe un cliente con ese dni","ERROR",JOptionPane.ERROR_MESSAGE);
 			}else {
 				Academia.anyadirAlumno(alumno);
-				JOptionPane.showMessageDialog(null, "BIENVENIDO A DEUSTDANCE.","BIENVENIDO",JOptionPane.INFORMATION_MESSAGE);
+				JOptionPane.showMessageDialog(null, "REGISTRADO CORRECTAMENTE","BIENVENIDO",JOptionPane.INFORMATION_MESSAGE);
 			}
 			
 			textNombre.setText("");
