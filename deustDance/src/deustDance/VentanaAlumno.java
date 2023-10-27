@@ -15,9 +15,6 @@ public class VentanaAlumno extends JFrame{
 	protected JTextField textoUsuario;
 	protected JTextField textoContraseña;
 	protected JTextField textoDomicilio;
-	protected JComboBox<Clase> comboClases;
-	protected JButton botonDatosClase;
-	protected JButton botonMostrarCalendar;
 	protected JButton botonImprimirCalendar;
 	protected JButton botonCargarFoto;
 	
@@ -102,14 +99,11 @@ public class VentanaAlumno extends JFrame{
 			}
 		});
 		
-		panelInformacionAcademica.add(new JLabel("Calendario clases: "), BorderLayout.CENTER);
+		panelInformacionAcademica.add(new JLabel("Horario: "), BorderLayout.CENTER);
 		JPanel panelBotonesAcademico = new JPanel();
-		panelBotonesAcademico.add(botonDatosClase);
-		panelBotonesAcademico.add(botonMostrarCalendar);
 		panelBotonesAcademico.add(botonImprimirCalendar);
 		
 		
-		panelInformacionAcademica.add(comboClases, BorderLayout.NORTH);
 		panelInformacionAcademica.add(panelBotonesAcademico, BorderLayout.SOUTH);
 		
 		
