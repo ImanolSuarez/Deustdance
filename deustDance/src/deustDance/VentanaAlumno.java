@@ -1,9 +1,5 @@
 package deustDance;
 
-import javax.swing.BorderFactory;
-import javax.swing.JButton;
-import javax.swing.JFrame;
-import javax.swing.JPanel;
 import java.awt.*;
 import java.awt.event.*;
 import java.io.File;
@@ -16,7 +12,9 @@ public class VentanaAlumno extends JFrame{
 	protected JTextField textoNombre;
 	protected JTextField textoApellidos;
 	protected JTextField textoEmail;
+	protected JTextField textoUsuario;
 	protected JTextField textoContraseña;
+	protected JTextField textoDomicilio;
 	protected JComboBox<Clase> comboClases;
 	protected JButton botonDatosClase;
 	protected JButton botonMostrarCalendar;
@@ -36,9 +34,13 @@ public class VentanaAlumno extends JFrame{
 		Border bordeInformacionAcademica = BorderFactory.createTitledBorder("Información académica");
 		panelInformacionAcademica.setBorder(bordeInformacionAcademica);
 		
+		panelInformacionPersonal.setLayout(new GridLayout(7,2));
+		
 		textoNombre = new JTextField(20);
 		textoApellidos = new JTextField(20);
 		textoEmail = new JTextField(20);
+		textoDomicilio = new JTextField(20);
+		textoUsuario = new JTextField(20);
 		textoContraseña = new JTextField(20);
 		
 		panelInformacionPersonal.add(new JLabel("Nombre: "));
@@ -47,10 +49,13 @@ public class VentanaAlumno extends JFrame{
 		panelInformacionPersonal.add(textoApellidos);
 		panelInformacionPersonal.add(new JLabel("Correo electrónico: "));
 		panelInformacionPersonal.add(textoEmail);
+		panelInformacionPersonal.add(new JLabel("Domicilio: "));
+		panelInformacionPersonal.add(textoDomicilio);
+		panelInformacionPersonal.add(new JLabel("Usuario: "));
+		panelInformacionPersonal.add(textoUsuario);
 		panelInformacionPersonal.add(new JLabel("Contraseña: "));
 		panelInformacionPersonal.add(textoContraseña);
 		
-		botonEditar = new JButton("Editar datos");
 		
 		//JFILECHOOSER PARA QUE EL ALUMNO ELIJA LA FOTO
 		
@@ -82,45 +87,11 @@ public class VentanaAlumno extends JFrame{
 		
 		JPanel panelBotonPersonal = new JPanel();
 		panelInformacionPersonal.add(panelBotonPersonal, BorderLayout.SOUTH);
-		panelBotonPersonal.add(botonEditar);
 		panelBotonPersonal.add(botonCargarFoto);
+	
 		
-		botonEditar.addActionListener(new ActionListener() {
-			
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				
-				textoNombre.setEditable(false);
-				textoApellidos.setEditable(false);
-				
-				
-			}
-		});
+		botonImprimirCalendar = new JButton("Imprimir horario");
 		
-		comboClases = new JComboBox<Clase>();
-		
-		
-		botonDatosClase = new JButton("Mostrar datos clase seleccionada");
-		botonMostrarCalendar = new JButton("Mostrar calendario");
-		botonImprimirCalendar = new JButton("Imprimir calendario");
-		
-		botonDatosClase.addActionListener(new ActionListener() {
-			
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				// TODO Auto-generated method stub
-				
-			}
-		});
-		
-		botonMostrarCalendar.addActionListener(new ActionListener() {
-			
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				// TODO Auto-generated method stub
-				
-			}
-		});
 		
 		botonImprimirCalendar.addActionListener(new ActionListener() {
 			
@@ -142,14 +113,13 @@ public class VentanaAlumno extends JFrame{
 		panelInformacionAcademica.add(panelBotonesAcademico, BorderLayout.SOUTH);
 		
 		
-		
 		this.add(panelInformacionPersonal, BorderLayout.WEST);
 		this.add(panelInformacionAcademica, BorderLayout.EAST);
 		
 		
 		this.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
 		this.setTitle("Ventana del alumno");
-		this.setSize(1000, 800);
+		this.setSize(600, 400);
 		this.setVisible(true);
 	}
 }
