@@ -74,8 +74,8 @@ public class VentanaInicioSesion extends JFrame{
 		
 		
 		botonRegistro.addActionListener((e)->{
-			new VentanaRegistro();
-			setVisible(false);
+			
+			
 		});
 		
 		
