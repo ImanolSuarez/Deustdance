@@ -57,11 +57,29 @@ public class VentanaSecretaria extends JFrame {
 		panelTexto.add(new JLabel("Contraseña: "));
 		panelTexto.add(txtContrasenya);
 		
+		botonAnyadir.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				String nombreyapellidos = txtNombre.getText();
+				int grupo = (int) spinnerGrupo.getValue();
+				String domicilio = txtDomicilio.getText(); 
+				String usuario = txtUsuario.getText();
+				String contrasenya = txtContrasenya.getText();
+				String telefono = txtTelefono.getText();
+				
+			}
+		});
+		
+		
+		
+		
 		JPanel panelBotones = new JPanel();
 		panelBotones.setLayout(new GridLayout(1,3));
 		panelBotones.add(botonAnyadir);
 		panelBotones.add(botonModificar);
 		panelBotones.add(botonEliminar);
+		
 		
 		JPanel panelDatos = new JPanel();
 		panelDatos.setLayout(new GridLayout(2,1));
