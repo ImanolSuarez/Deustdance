@@ -1,8 +1,10 @@
-package deustDance;
+package ventanas;
 
 import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
+
+import deustDance.Alumno;
 
 public class VentanaEditarAlumno extends JFrame{
 	protected Alumno alumno;
