@@ -27,6 +27,15 @@ public class VentanaSecretaria extends JFrame {
 	protected JButton botonAnyadir;
 	protected JButton botonModificar;
 	protected JButton botonEliminar;
+	protected JTextField txtNombreP;
+	protected JSpinner spinnerGrupoP;
+	protected JTextField txtDomicilioP;
+	protected JTextField txtUsuarioP;
+	protected JTextField txtContrasenyaP;
+	protected JTextField txtTelefonoP;
+	protected JButton botonAnyadirP;
+	protected JButton botonModificarP;
+	protected JButton botonEliminarP;
 	
 	public VentanaSecretaria() {
 		
@@ -78,6 +87,23 @@ public class VentanaSecretaria extends JFrame {
 			}
 		});
 		
+		botonModificar.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO
+				
+			}
+		});
+		
+		botonEliminar.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO
+				
+			}
+		});
 		
 		JPanel panelBotones = new JPanel();
 		panelBotones.setLayout(new GridLayout(1,3));
@@ -96,8 +122,83 @@ public class VentanaSecretaria extends JFrame {
         tabbedPane.addTab("Alumnos", panelAlumnos);
 
         // Pestaña Profesores
-        JPanel panelProfesores = new JPanel();
-        panelProfesores.add(new JLabel("Contenido de la Pestaña 2"));
+        txtNombreP = new JTextField();
+		spinnerGrupoP = new JSpinner();
+		txtDomicilioP = new JTextField();
+		txtUsuarioP = new JTextField();
+		txtContrasenyaP = new JTextField();
+		txtTelefonoP = new JTextField();
+		botonAnyadirP = new JButton("Añadir profesor");
+		botonModificarP = new JButton("Modificar profesor");
+		botonEliminarP = new JButton("Eliminar profesor");
+		
+		JPanel panelTextoP = new JPanel();
+		panelTextoP.setLayout(new GridLayout(6,2));
+        
+		panelTextoP.add(new JLabel("Nombre y Apellidos: "));
+		panelTextoP.add(txtNombreP);
+		panelTextoP.add(new JLabel("Grupo: "));
+		panelTextoP.add(spinnerGrupoP);
+		panelTextoP.add(new JLabel("Domicilio: "));
+		panelTextoP.add(txtDomicilioP);
+		panelTextoP.add(new JLabel("Usuario: "));
+		panelTextoP.add(txtUsuarioP);
+		panelTextoP.add(new JLabel("Contraseña: "));
+		panelTextoP.add(txtContrasenyaP);
+		
+		botonAnyadirP.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				String nombreyapellidos = txtNombreP.getText();
+				int grupo = (int) spinnerGrupoP.getValue();
+				String domicilio = txtDomicilioP.getText(); 
+				String usuario = txtUsuarioP.getText();
+				String contrasenya = txtContrasenyaP.getText();
+				String telefono = txtTelefonoP.getText();
+				// Profesor nuevo = new Profesor(nombreyapellidos,grupo,domicilio,usuario,contrasenya,telefono);
+				// Falta guardar los datos en la base de datos
+				txtNombreP.setText("");
+				spinnerGrupoP.setValue(0);
+				txtDomicilioP.setText("");
+				txtUsuarioP.setText("");
+				txtContrasenyaP.setText("");
+				txtTelefonoP.setText("");
+			}
+		});
+		
+		botonModificarP.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO
+				
+			}
+		});
+		
+		botonEliminarP.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO
+				
+			}
+		});
+		
+		JPanel panelBotonesP = new JPanel();
+		panelBotonesP.setLayout(new GridLayout(1,3));
+		panelBotonesP.add(botonAnyadirP);
+		panelBotonesP.add(botonModificarP);
+		panelBotonesP.add(botonEliminarP);
+		
+		
+		JPanel panelDatosP = new JPanel();
+		panelDatosP.setLayout(new GridLayout(2,1));
+		panelDatosP.add(panelTextoP);
+		panelDatosP.add(panelBotonesP);
+		
+		JPanel panelProfesores = new JPanel();
+		panelProfesores.add(panelDatosP, BorderLayout.EAST);
         tabbedPane.addTab("Profesores", panelProfesores);
 
         // Pestaña Horario
