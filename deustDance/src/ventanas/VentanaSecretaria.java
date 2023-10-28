@@ -117,8 +117,12 @@ public class VentanaSecretaria extends JFrame {
 		panelDatos.add(panelTexto);
 		panelDatos.add(panelBotones);
 		
+		JPanel panelListado = new JPanel();
+		panelListado.add(new JLabel("Listado de Alumnos:"), BorderLayout.NORTH);
+		
 		JPanel panelAlumnos = new JPanel();
         panelAlumnos.add(panelDatos, BorderLayout.EAST);
+        panelAlumnos.add(panelListado, BorderLayout.WEST);
         tabbedPane.addTab("Alumnos", panelAlumnos);
 
         // Pestaña Profesores
@@ -197,8 +201,12 @@ public class VentanaSecretaria extends JFrame {
 		panelDatosP.add(panelTextoP);
 		panelDatosP.add(panelBotonesP);
 		
+		JPanel panelListadoP = new JPanel();
+		panelListadoP.add(new JLabel("Listado de Profesores:"), BorderLayout.NORTH);
+		
 		JPanel panelProfesores = new JPanel();
 		panelProfesores.add(panelDatosP, BorderLayout.EAST);
+		panelProfesores.add(panelListadoP, BorderLayout.WEST);
         tabbedPane.addTab("Profesores", panelProfesores);
 
         // Pestaña Horario
