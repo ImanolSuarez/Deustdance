@@ -67,11 +67,16 @@ public class VentanaSecretaria extends JFrame {
 				String usuario = txtUsuario.getText();
 				String contrasenya = txtContrasenya.getText();
 				String telefono = txtTelefono.getText();
-				
+				// Alumno nuevo = new Alumno(nombreyapellidos,grupo,domicilio,usuario,contrasenya,telefono);
+				// Falta guardar los datos en la base de datos
+				txtNombre.setText("");
+				spinnerGrupo.setValue(0);
+				txtDomicilio.setText("");
+				txtUsuario.setText("");
+				txtContrasenya.setText("");
+				txtTelefono.setText("");
 			}
 		});
-		
-		
 		
 		
 		JPanel panelBotones = new JPanel();
