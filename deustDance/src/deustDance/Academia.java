@@ -29,30 +29,32 @@ public class Academia {
 	}
 	
 	
-	/*METODO PARA VER SI UN ALUMNO SE HA REGISTRADO DOS VECES*/
+	/*METODO PARA VER SI ES UN ALUMNO ESTA REGISTRADO Y PUEDE INICIAR SESION*/
 	
-	public static Alumno buscarAlumno(String dni) {
-		
-		boolean repetido = false;
+	public static Alumno buscarAlumno(String usuario) {
 		int pos = 0;
-		Alumno b = null;
-		
-		if(!repetido && pos < listaAlumnos.size()) {
-			b = listaAlumnos.get(pos);
-			if(b.getDni().equals(dni)) {
-				repetido = true;
+		boolean enc = false;
+		Alumno a = null;
+		while(!enc && pos < listaAlumnos.size()) {
+			a = listaAlumnos.get(pos);
+			if(a.getUsuario().equals(usuario)) {
+				enc = true;
+			}else {
+				pos++;
 			}
-			pos++;
 		}
-		if(repetido) {
-			return b;
+		
+		if(enc) {
+			return a;
 		}else {
 			return null;
 		}
 		
 		
-		
 	}
+	
+	
+	
 	
 	
 

@@ -2,6 +2,8 @@ package ventanas;
 
 import java.awt.BorderLayout;
 import java.awt.GridLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -12,6 +14,7 @@ import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 
 import deustDance.Academia;
+import deustDance.Alumno;
 
 public class VentanaInicioSesion extends JFrame{
 	
@@ -49,28 +52,33 @@ public class VentanaInicioSesion extends JFrame{
 		
 		/*EVENTOS*/
 		
-		/*
-		botonValidar.addActionListener((e)->{
+		
+		botonValidar.addActionListener(new ActionListener() {
 			
-			String usuario = textUsuario.getText();
-			String con = textContrasenia.getText();
-			Alumno a = Academia.buscarAlumno(usuario);
-			if(a == null) {
-				JOptionPane.showMessageDialog(null, "ERROR. VOLVER A INTENTAR","ERROR",JOptionPane.ERROR_MESSAGE);
-			}else {
-				if(a.getContrasenia().equals(con)) {
-					JOptionPane.showMessageDialog(null, "BIENVENIDO A DEUSTDANCE", "BIENVENIDO", JOptionPane.INFORMATION_MESSAGE);
-					new VentanaPrincipal();
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				
+				//VER SI EL ALUMNO ESTA REGISTRADO
+				String usuario = textUsuario.getText();
+				String cont = textContrasenia.getText();
+				Alumno a = Academia.buscarAlumno(usuario);
+				if(a == null) {
+					JOptionPane.showMessageDialog(null, "El usuario no está registrado","ERROR EN EL INICIO DE SESIÓN",JOptionPane.ERROR_MESSAGE);
+				}else if(a.getContrasenia().equals(cont)){
+					JOptionPane.showMessageDialog(null, "Bienvenido!!","INICIO DE SESIÓN",JOptionPane.INFORMATION_MESSAGE);
+					new VentanaAlumno();
 					setVisible(false);
 				}else {
-					JOptionPane.showMessageDialog(null, "ERROR. CONTRASEÑA INCORRECTA", "ERROR", JOptionPane.ERROR_MESSAGE);
+					JOptionPane.showMessageDialog(null, "La contraseña no es correcta","ERROR EN EL INICIO DE SESIÓN",JOptionPane.WARNING_MESSAGE);
 				}
+				
+				textUsuario.setText("");
+				textContrasenia.setText("");
+				
 			}
-			
-		
 		});
 		
-		*/
+		
 		
 		
 		
