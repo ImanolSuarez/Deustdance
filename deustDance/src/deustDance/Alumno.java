@@ -11,12 +11,9 @@ public class Alumno extends Persona{
 	private double calificacion;
 	
 	
-
-
-	public Alumno(String nombre, String apellidos, int edad, String email, String dni, String contrasenia, Date fNac,
-			String direccion, String codPostal, String telefono, String sexo, Baile baileAsignado,
+	public Alumno(String nombre, String apellidos, int grupo, String usuario, String contrasenia, Baile baileAsignado,
 			Profesor profesorAsignado, Clase claseAsignada, double dinero, double calificacion) {
-		super(nombre, apellidos, edad, email, dni, contrasenia, fNac, direccion, codPostal, telefono, sexo);
+		super(nombre, apellidos, grupo, usuario, contrasenia);
 		this.baileAsignado = baileAsignado;
 		this.profesorAsignado = profesorAsignado;
 		this.claseAsignada = claseAsignada;
@@ -26,9 +23,8 @@ public class Alumno extends Persona{
 	
 	
 
-	public Alumno(String nombre, String apellidos, int edad, String email, String contrasenia, String dni, String fNac,
-			String direccion, String codPostal, String telefono, String sexo) {
-		super(nombre, apellidos, edad, email, contrasenia, dni, fNac, direccion, codPostal, telefono, sexo);
+	public Alumno(String nombre, String apellidos, int grupo, String usuario, String contrasenia) {
+		super(nombre, apellidos, grupo, usuario, contrasenia);
 		
 	}
 
@@ -76,10 +72,11 @@ public class Alumno extends Persona{
 
 	@Override
 	public String toString() {
-		return "Nombre: " + getNombre() + ", Apellidos: " + getApellidos() + ", Edad: " + getEdad()
-				+ ", Dni: " + getDni() + ", Fecha de nacimiento" + getfNac() + ", baile asignado=" + baileAsignado
-				+ ", profesor asignado=" + profesorAsignado + ", clase asignada: " + claseAsignada + ", dinero=" + dinero;
+		return "Nombre del alumno: " + getNombre() + ", apellidos: " + getApellidos() + ", grupo asignado:"
+				+ getGrupo() + ", baile asignado: " + baileAsignado + ", profesor asignado: " + profesorAsignado
+				+ ", clase asignada: " + claseAsignada + ", dinero: " + dinero + ", calificacion: " + calificacion;
 	}
+	
 
 	
 	
