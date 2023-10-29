@@ -15,7 +15,7 @@ import javax.swing.JTextField;
 import javax.swing.table.AbstractTableModel;
 
 import deustDance.Alumno;
-import deustDance.Clase;
+
 
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;

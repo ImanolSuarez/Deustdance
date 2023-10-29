@@ -1,15 +1,7 @@
 package deustDance;
 
-import java.io.FileNotFoundException;
-import java.io.FileReader;
-import java.io.PrintWriter;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
-import java.util.Scanner;
-
-import javax.swing.JList;
-import javax.swing.JOptionPane;
 
 public class Academia {
 	

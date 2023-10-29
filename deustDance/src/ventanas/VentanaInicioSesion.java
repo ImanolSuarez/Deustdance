@@ -19,6 +19,10 @@ import deustDance.Alumno;
 public class VentanaInicioSesion extends JFrame{
 	
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private JTextField textUsuario;
 	private JPasswordField textContrasenia;
 	private JLabel usuario;
@@ -60,6 +64,7 @@ public class VentanaInicioSesion extends JFrame{
 				
 				//VER SI EL ALUMNO ESTA REGISTRADO
 				String usuario = textUsuario.getText();
+				@SuppressWarnings("deprecation")
 				String cont = textContrasenia.getText();
 				Alumno a = Academia.buscarAlumno(usuario);
 				if(a == null) {

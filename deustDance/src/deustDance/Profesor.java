@@ -1,7 +1,7 @@
 package deustDance;
 
 
-import java.util.Date;
+
 import java.util.List;
 
 public class Profesor extends Persona{

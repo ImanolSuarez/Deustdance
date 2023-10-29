@@ -1,6 +1,5 @@
 package deustDance;
 
-import java.util.Date;
 
 public class Alumno extends Persona{
 	

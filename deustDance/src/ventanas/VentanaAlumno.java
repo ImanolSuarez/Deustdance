@@ -9,6 +9,7 @@ import javax.swing.*;
 import javax.swing.border.*;
 
 public class VentanaAlumno extends JFrame{
+	private static final long serialVersionUID = 1L;
 	protected JButton botonEditar;
 	protected JTextField textoNombre;
 	protected JTextField textoApellidos;
