@@ -2,13 +2,14 @@ package deustDance;
 
 
 
-import ventanas.VentanaSecretaria;
+import ventanas.VentanaInicioSesion;
+
 
 public class Main {
 
 	public static void main(String[] args) {
 		
-		new VentanaSecretaria();
+		new VentanaInicioSesion();
 		
 		
 		

@@ -14,7 +14,8 @@ import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 
 import deustDance.Academia;
-import deustDance.Alumno;
+import deustDance.Persona;
+
 
 public class VentanaInicioSesion extends JFrame{
 	
@@ -62,23 +63,7 @@ public class VentanaInicioSesion extends JFrame{
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				
-				//VER SI EL ALUMNO ESTA REGISTRADO
-				String usuario = textUsuario.getText();
-				@SuppressWarnings("deprecation")
-				String cont = textContrasenia.getText();
-				Alumno a = Academia.buscarAlumno(usuario);
-				if(a == null) {
-					JOptionPane.showMessageDialog(null, "El usuario no está registrado","ERROR EN EL INICIO DE SESIÓN",JOptionPane.ERROR_MESSAGE);
-				}else if(a.getContrasenia().equals(cont)){
-					JOptionPane.showMessageDialog(null, "Bienvenido!!","INICIO DE SESIÓN",JOptionPane.INFORMATION_MESSAGE);
-					new VentanaAlumno();
-					setVisible(false);
-				}else {
-					JOptionPane.showMessageDialog(null, "La contraseña no es correcta","ERROR EN EL INICIO DE SESIÓN",JOptionPane.WARNING_MESSAGE);
-				}
 				
-				textUsuario.setText("");
-				textContrasenia.setText("");
 				
 			}
 		});
