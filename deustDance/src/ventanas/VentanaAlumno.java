@@ -42,6 +42,14 @@ public class VentanaAlumno extends JFrame{
 		textoUsuario = new JTextField(20);
 		textoContraseña = new JTextField(20);
 		
+		textoNombre.setEditable(false);
+		textoApellidos.setEditable(false);
+		textoEmail.setEditable(false);
+		textoDomicilio.setEditable(false);
+		textoUsuario.setEditable(false);
+		textoContraseña.setEditable(false);
+
+		
 		panelInformacionPersonal.add(new JLabel("Nombre: "));
 		panelInformacionPersonal.add(textoNombre);
 		panelInformacionPersonal.add(new JLabel("Apellidos: "));
@@ -118,4 +126,11 @@ public class VentanaAlumno extends JFrame{
 		this.setSize(600, 400);
 		this.setVisible(true);
 	}
+	
+	public static void main(String[] args) {
+		new VentanaAlumno();
+	}
+	
+	
+	
 }
