@@ -5,6 +5,7 @@ import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -35,19 +36,24 @@ public class VentanaInicioSesion extends JFrame{
 	public VentanaInicioSesion() {
 		
 		setDefaultCloseOperation(DISPOSE_ON_CLOSE);
-		setSize(400,600);
+		setSize(600,400);
 		setTitle("Ventana inicio sesion");
 		
 		/*CEACION CON PANELES Y COMPONENTES*/
 		
 		JPanel panelNorte = new JPanel();
-		JPanel panelCentro = new JPanel(new GridLayout(4,1));
+		JPanel panelCentro = new JPanel();
 		JPanel panelSur = new JPanel();
+		JPanel panelText = new JPanel(new GridLayout(4,1));
+		JPanel panelImagen = new JPanel();
 		
+		JLabel labelFoto = new JLabel();
 		JLabel textoBienvenida = new JLabel("BIENVENIDO A DEUSTDANCE");
 		
-		textUsuario = new JTextField();
-		textContrasenia = new JPasswordField();
+		labelFoto.setIcon(new ImageIcon(getClass().getResource("/imagenes/imagenBaile.png")));
+		
+		textUsuario = new JTextField(20);
+		textContrasenia = new JPasswordField(20);
 		
 		usuario = new JLabel("Usuario: ");
 		contrasenia = new JLabel("Contraseña");
@@ -76,19 +82,30 @@ public class VentanaInicioSesion extends JFrame{
 		/*AÑADIR LOS COMPONENTES AL PANEL Y A LA VENTA*/
 		
 		panelNorte.add(textoBienvenida);
-		panelCentro.add(usuario);
-		panelCentro.add(textUsuario);
-		panelCentro.add(contrasenia);
-		panelCentro.add(textContrasenia);
+		
+		panelText.add(usuario);
+		panelText.add(textUsuario);
+		panelText.add(contrasenia);
+		panelText.add(textContrasenia);
+		
+		panelCentro.add(panelText);
+		
+		panelImagen.add(labelFoto);
+		
 		panelSur.add(botonValidar);
 		
 		add(panelNorte, BorderLayout.NORTH);
 		add(panelCentro, BorderLayout.CENTER);
 		add(panelSur, BorderLayout.SOUTH);
+		add(panelImagen, BorderLayout.EAST);
 		
 		setVisible(true);
 		
 		
+	}
+	
+	public static void main(String[] args) {
+		new VentanaInicioSesion();
 	}
 
 }
