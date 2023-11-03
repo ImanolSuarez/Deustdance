@@ -9,6 +9,7 @@ public class Academia {
 	private static List<Alumno> listaAlumnos = new ArrayList<>();
 	private static List<Profesor> listaProfesores = new ArrayList<>();
 	private static List<Clase> listaClases = new ArrayList<>();
+	private static List<Secretaria> listaSecretaria = new ArrayList<>();
 	
 	
 	/*METODOS DE LA CLASE ACADEMIA*/

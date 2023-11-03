@@ -7,20 +7,34 @@ import java.util.List;
 public class Profesor extends Persona{
 	
 	private List<Alumno> listaAlumnos;
+	private int grupo;
 	private List<Baile> listaBailes;
 	private List<Clase> listaClases;
 	
-	public Profesor(String nombre, String apellidos, int grupo, String usuario, String contrasenia,
-			List<Alumno> listaAlumnos, List<Baile> listaBailes, List<Clase> listaClases) {
-		super(nombre, apellidos, grupo, usuario, contrasenia);
+	public Profesor(String nombre, String apellidos, String usuario, String contrasenia, List<Alumno> listaAlumnos,
+			int grupo, List<Baile> listaBailes, List<Clase> listaClases) {
+		super(nombre, apellidos, usuario, contrasenia);
 		this.listaAlumnos = listaAlumnos;
+		this.grupo = grupo;
 		this.listaBailes = listaBailes;
 		this.listaClases = listaClases;
 	}
+	
+	
 
-	public Profesor(String nombre, String apellidos, int grupo, String usuario, String contrasenia) {
-		super(nombre, apellidos, grupo, usuario, contrasenia);
+	public Profesor(String nombre, String apellidos, String usuario, String contrasenia) {
+		super(nombre, apellidos, usuario, contrasenia);
 		
+	}
+
+
+
+	public int getGrupo() {
+		return grupo;
+	}
+
+	public void setGrupo(int grupo) {
+		this.grupo = grupo;
 	}
 
 	public List<Alumno> getListaAlumnos() {
@@ -51,7 +65,7 @@ public class Profesor extends Persona{
 	public String toString() {
 		return "Nombre del profesor: " + getNombre() + ", apellidos: " + getApellidos() + ", grupo asignado: "
 				+ getGrupo() + ", lista alumnos=" + listaAlumnos + ", lista bailes=" + listaBailes + ", lista de clases="
-				+ listaClases;
+				+ listaClases + "grupo: " + getGrupo();
 	}
 	
 	

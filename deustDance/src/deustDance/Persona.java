@@ -9,17 +9,15 @@ public class Persona {
 	
 	private String nombre;
 	private String apellidos;
-	private int grupo;
 	private String usuario;
 	private String contrasenia;
 	
 	/*CONSTRUCTOR DE LA CLASE*/
 	
-	public Persona(String nombre, String apellidos, int grupo, String usuario, String contrasenia) {
+	public Persona(String nombre, String apellidos,  String usuario, String contrasenia) {
 		super();
 		this.nombre = nombre;
 		this.apellidos = apellidos;
-		this.grupo = grupo;
 		this.usuario = usuario;
 		this.contrasenia = contrasenia;
 	}
@@ -45,13 +43,7 @@ public class Persona {
 		this.apellidos = apellidos;
 	}
 
-	public int getGrupo() {
-		return grupo;
-	}
-
-	public void setGrupo(int grupo) {
-		this.grupo = grupo;
-	}
+	
 
 	public String getUsuario() {
 		return usuario;
@@ -71,7 +63,7 @@ public class Persona {
 
 	@Override
 	public String toString() {
-		return "Persona [nombre=" + nombre + ", apellidos=" + apellidos + ", grupo=" + grupo + ", usuario=" + usuario
+		return "Persona [nombre=" + nombre + ", apellidos=" + apellidos  + ", usuario=" + usuario
 				+ ", contrasenia=" + contrasenia + "]";
 	}
 	
