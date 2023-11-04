@@ -21,9 +21,72 @@ public class Academia {
 		
 	}
 	
+	/*METODOS PARA BUSCAR ALUMNOS REPETIDOS*/
+	
+	public static Alumno buscarAlumno(String usuario) {
+		
+		boolean enc = false;
+		Alumno a = null;
+		int pos = 0;
+		if(!enc && pos < listaAlumnos.size()) {
+			a = listaAlumnos.get(pos);
+			if(a.getUsuario().equals(usuario)) {
+				enc = true;
+			}else {
+				pos++;
+			}
+		}
+		if(enc) {
+			return a;
+		}else {
+			return null;
+		}
+	}
+	
+	/*METODOS PARA BUSCAR PROFESORES REPETIDOS*/
+	
+	public static Profesor buscarProfesor(String usuario) {
+		
+		boolean enc = false;
+		Profesor a = null;
+		int pos = 0;
+		if(!enc && pos < listaProfesores.size()) {
+			a = listaProfesores.get(pos);
+			if(a.getUsuario().equals(usuario)) {
+				enc = true;
+			}else {
+				pos++;
+			}
+		}
+		if(enc) {
+			return a;
+		}else {
+			return null;
+		}
+	}
 	
 	
+	/*METODOS PARA BUSCAR SECRETARIOS REPETIDOS*/
 	
+	public static Secretaria buscarSecretario(String usuario) {
+		
+		boolean enc = false;
+		Secretaria a = null;
+		int pos = 0;
+		if(!enc && pos < listaSecretaria.size()) {
+			a = listaSecretaria.get(pos);
+			if(a.getUsuario().equals(usuario)) {
+				enc = true;
+			}else {
+				pos++;
+			}
+		}
+		if(enc) {
+			return a;
+		}else {
+			return null;
+		}
+	}
 	
 	
 	
