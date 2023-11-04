@@ -84,7 +84,8 @@ public class Alumno extends Persona{
 	public String toString() {
 		return "Nombre del alumno: " + getNombre() + ", apellidos: " + getApellidos() + ", grupo asignado:"
 				+ getGrupo() + ", baile asignado: " + baileAsignado + ", profesor asignado: " + profesorAsignado
-				+ ", clase asignada: " + claseAsignada + ", dinero: " + dinero + "grupo: " + getGrupo() + ", calificacion: " + calificacion;
+				+ ", clase asignada: " + claseAsignada + ", dinero: " + dinero + "grupo: " + getGrupo() + ", calificacion: " + calificacion 
+				+ ", usuario: " + getUsuario() + ", contraseña: " + getContrasenia();
 	}
 	
 

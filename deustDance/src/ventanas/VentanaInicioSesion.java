@@ -15,7 +15,10 @@ import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 
 import deustDance.Academia;
+import deustDance.Alumno;
 import deustDance.Persona;
+import deustDance.Profesor;
+import deustDance.Secretaria;
 
 
 public class VentanaInicioSesion extends JFrame{
@@ -69,7 +72,52 @@ public class VentanaInicioSesion extends JFrame{
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				
+				String usu = textUsuario.getText();
+				@SuppressWarnings("deprecation")
+				String contra = textContrasenia.getText();
 				
+				
+				if(usu.length() == 0) {
+					JOptionPane.showMessageDialog(null, "RELLENA TODOS LOS CAMPOS", "ERROR", JOptionPane.ERROR_MESSAGE);
+				}else if(contra.length() == 0) {
+					JOptionPane.showMessageDialog(null, "RELLENA TODOS LOS CAMPOS", "ERROR", JOptionPane.ERROR_MESSAGE);
+				}else {
+					Alumno a = Academia.buscarAlumno(usu);
+					if(a == null) {
+						Profesor p = Academia.buscarProfesor(usu);
+						if(p == null) {
+							Secretaria s = Academia.buscarSecretario(usu);
+							if(s == null) {
+								JOptionPane.showMessageDialog(null, "USUARIO NO ENCONTRADO", "ERROR", JOptionPane.ERROR_MESSAGE);
+							}else if(s.getContrasenia().equals(contra)){
+								JOptionPane.showMessageDialog(null, "BIENVENIDO A DEUSTDANCE", "INICIO DE SESION", JOptionPane.INFORMATION_MESSAGE);
+								new VentanaSecretaria();
+								setVisible(false);
+							}else {
+								JOptionPane.showMessageDialog(null, "CONTRASEÑA ERRONEA", "ERROR", JOptionPane.ERROR_MESSAGE);
+							}
+						}else if(p.getContrasenia().equals(contra)){
+							JOptionPane.showMessageDialog(null, "BIENVENIDO A DEUSTDANCE", "INICIO DE SESION", JOptionPane.INFORMATION_MESSAGE);
+							new VentanaProfesor();
+							setVisible(false);
+						}else {
+							JOptionPane.showMessageDialog(null, "CONTRASEÑA ERRONEA", "ERROR", JOptionPane.ERROR_MESSAGE);
+						}
+					}else if(a.getContrasenia().equals(contra)){
+						JOptionPane.showMessageDialog(null, "BIENVENIDO A DEUSTDANCE", "INICIO DE SESION", JOptionPane.INFORMATION_MESSAGE);
+						new VentanaAlumno();
+						setVisible(false);
+					}else {
+						JOptionPane.showMessageDialog(null, "CONTRASEÑA ERRONEA", "ERROR", JOptionPane.ERROR_MESSAGE);
+					}
+				}
+				
+				
+				
+				
+				
+				textUsuario.setText("");
+				textContrasenia.setText("");
 				
 			}
 		});
