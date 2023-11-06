@@ -9,6 +9,7 @@ import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseMotionListener;
+import java.util.logging.Logger;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -38,6 +39,7 @@ public class VentanaInicioSesion extends JFrame{
 	private JLabel usuario;
 	private JLabel contrasenia;
 	private JButton botonValidar;
+	private Logger logger = Logger.getLogger(VentanaInicioSesion.class.getName());
 	
 	
 	
@@ -81,11 +83,13 @@ public class VentanaInicioSesion extends JFrame{
 				@SuppressWarnings("deprecation")
 				String contra = textContrasenia.getText();
 				
+				logger.info("Mirando si todos los campos estan rellenados");
 				if(usu.length() == 0) {
 					JOptionPane.showMessageDialog(null, "RELLENA TODOS LOS CAMPOS", "ERROR", JOptionPane.ERROR_MESSAGE);
 				}else if(contra.length() == 0) {
 					JOptionPane.showMessageDialog(null, "RELLENA TODOS LOS CAMPOS", "ERROR", JOptionPane.ERROR_MESSAGE);
 				}else {
+					logger.info("Mirando si es un alumno, profesor o secretario");
 					Alumno a = Academia.buscarAlumno(usu);
 					if(a == null) {
 						Profesor p = Academia.buscarProfesor(usu);
@@ -93,10 +97,12 @@ public class VentanaInicioSesion extends JFrame{
 							Secretaria s = Academia.buscarSecretario(usu);
 							if(s == null) {
 								JOptionPane.showMessageDialog(null, "USUARIO NO ENCONTRADO", "ERROR", JOptionPane.ERROR_MESSAGE);
+								
 							}else if(s.getContrasenia().equals(contra)){
 								JOptionPane.showMessageDialog(null, "BIENVENIDO A DEUSTDANCE", "INICIO DE SESION", JOptionPane.INFORMATION_MESSAGE);
 								new VentanaSecretaria();
 								setVisible(false);
+								logger.info("Abriendo la ventana secretario");
 							}else {
 								JOptionPane.showMessageDialog(null, "CONTRASEÑA ERRONEA", "ERROR", JOptionPane.ERROR_MESSAGE);
 							}
@@ -104,6 +110,7 @@ public class VentanaInicioSesion extends JFrame{
 							JOptionPane.showMessageDialog(null, "BIENVENIDO A DEUSTDANCE", "INICIO DE SESION", JOptionPane.INFORMATION_MESSAGE);
 							new VentanaProfesor();
 							setVisible(false);
+							logger.info("Abriendo la ventana profesor");
 						}else {
 							JOptionPane.showMessageDialog(null, "CONTRASEÑA ERRONEA", "ERROR", JOptionPane.ERROR_MESSAGE);
 						}
@@ -111,6 +118,7 @@ public class VentanaInicioSesion extends JFrame{
 						JOptionPane.showMessageDialog(null, "BIENVENIDO A DEUSTDANCE", "INICIO DE SESION", JOptionPane.INFORMATION_MESSAGE);
 						new VentanaAlumno();
 						setVisible(false);
+						logger.info("Abriendo la ventana alumno");
 					}else {
 						JOptionPane.showMessageDialog(null, "CONTRASEÑA ERRONEA", "ERROR", JOptionPane.ERROR_MESSAGE);
 					}
@@ -146,6 +154,8 @@ public class VentanaInicioSesion extends JFrame{
 		
 		panelSur.add(botonValidar);
 		
+		logger.info("Añadiendo los componentes a la ventana");
+		
 		add(panelNorte, BorderLayout.NORTH);
 		add(panelCentro, BorderLayout.CENTER);
 		add(panelSur, BorderLayout.SOUTH);
@@ -156,8 +166,6 @@ public class VentanaInicioSesion extends JFrame{
 		
 	}
 	
-	public static void main(String[] args) {
-		new VentanaInicioSesion();
-	}
+	
 
 }
