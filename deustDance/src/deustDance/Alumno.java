@@ -82,10 +82,9 @@ public class Alumno extends Persona{
 
 	@Override
 	public String toString() {
-		return "Nombre del alumno: " + getNombre() + ", apellidos: " + getApellidos() + ", grupo asignado:"
-				+ getGrupo() + ", baile asignado: " + baileAsignado + ", profesor asignado: " + profesorAsignado
-				+ ", clase asignada: " + claseAsignada + ", dinero: " + dinero + "grupo: " + getGrupo() + ", calificacion: " + calificacion 
-				+ ", usuario: " + getUsuario() + ", contraseña: " + getContrasenia();
+	    return "Nombre del alumno: " + getNombre() + ", apellidos: " + getApellidos() + ", baile asignado: " + baileAsignado + ", profesor asignado: " + profesorAsignado
+	            + ", clase asignada: " + claseAsignada + ", dinero: " + dinero + ", grupo: " + getGrupo() + ", calificacion: " + calificacion 
+	            + ", usuario: " + getUsuario() + ", contraseña: " + getContrasenia();
 	}
 	
 
