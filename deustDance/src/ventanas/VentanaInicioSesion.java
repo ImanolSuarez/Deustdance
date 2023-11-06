@@ -4,6 +4,11 @@ import java.awt.BorderLayout;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseMotionListener;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -75,7 +80,6 @@ public class VentanaInicioSesion extends JFrame{
 				String usu = textUsuario.getText();
 				@SuppressWarnings("deprecation")
 				String contra = textContrasenia.getText();
-				
 				
 				if(usu.length() == 0) {
 					JOptionPane.showMessageDialog(null, "RELLENA TODOS LOS CAMPOS", "ERROR", JOptionPane.ERROR_MESSAGE);

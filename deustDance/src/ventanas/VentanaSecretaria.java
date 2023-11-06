@@ -222,4 +222,8 @@ public class VentanaSecretaria extends JFrame {
 		this.setSize(600, 400);
 		this.setVisible(true);
 	}
+	
+	public static void main(String[] args) {
+		new VentanaSecretaria();
+	}
 }
