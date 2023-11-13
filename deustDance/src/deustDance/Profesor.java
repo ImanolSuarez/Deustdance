@@ -65,7 +65,7 @@ public class Profesor extends Persona{
 	public String toString() {
 		return "Nombre del profesor: " + getNombre() + ", apellidos: " + getApellidos() + ", grupo asignado: "
 				+ getGrupo() + ", lista alumnos=" + listaAlumnos + ", lista bailes=" + listaBailes + ", lista de clases="
-				+ listaClases + "grupo: " + getGrupo();
+				+ listaClases;
 	}
 	
 	

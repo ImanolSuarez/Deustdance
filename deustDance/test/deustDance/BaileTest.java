@@ -16,7 +16,7 @@ public class BaileTest {
 	
 	@Before
 	public void setUp() {
-		b = new Baile("descripcion", null, 500.00f, 2, null, new ArrayList<>(), null );
+		b = new Baile("descripcion", null, 500.00f, 2, null, null, null );
 	}
 	@Test
 	public void getDescripcion() {
@@ -63,16 +63,17 @@ public class BaileTest {
 		b.setProfesorAsignado(null);
 		assertNull(b.getProfesorAsignado());
 	}
-	/*
+	
 	@Test
 	public void getListaAlumnos() {
-		
+		assertNull(b.getListaAlumnos());
 	}
 	@Test
 	public void setListaAlumnos() {
-		
+		b.setListaAlumnos(null);
+		assertNull(b.getListaAlumnos());
 	}
-	 */
+	 
 	@Test
 	public void getClaseAsignada() {
 		assertNull(b.getClaseAsignada());
@@ -86,7 +87,7 @@ public class BaileTest {
 	public void BailetoString() {
 		assertEquals("Tipo de baile: "+ null + "descripcion: " + "descripcion" + ", precio: " + 500.00 + "€"
 				+ ", horas de clase: " + 2 + ", profesor asignado: " + null + ", lista de alumnos: "
-				+ new ArrayList<>() + ", clase asignada=" + null, b.toString());
+				+ null + ", clase asignada=" + null, b.toString());
 	}
 	
 
