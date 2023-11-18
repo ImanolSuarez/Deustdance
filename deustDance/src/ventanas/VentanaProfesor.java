@@ -1,6 +1,7 @@
 package ventanas;
 
 import java.awt.BorderLayout;
+import java.awt.GraphicsEnvironment;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -147,7 +148,11 @@ public class VentanaProfesor extends JFrame {
 		
 		this.add(pestañas);
 
-		this.setSize(600, 400);
+		int anchoP = GraphicsEnvironment.getLocalGraphicsEnvironment().getDefaultScreenDevice().getDisplayMode().getWidth();
+		int altoP = GraphicsEnvironment.getLocalGraphicsEnvironment().getDefaultScreenDevice().getDisplayMode().getHeight();
+		setSize(anchoP,altoP);
+		setExtendedState(MAXIMIZED_BOTH);
+		setResizable(false);
 		this.setTitle("VentanaProfesor");
 		this.setVisible(true);
 	}

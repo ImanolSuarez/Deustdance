@@ -1,6 +1,7 @@
 package ventanas;
 
 import java.awt.BorderLayout;
+import java.awt.GraphicsEnvironment;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -46,7 +47,11 @@ public class VentanaInicioSesion extends JFrame{
 	public VentanaInicioSesion() {
 		
 		setDefaultCloseOperation(DISPOSE_ON_CLOSE);
-		setSize(600,400);
+		int anchoP = GraphicsEnvironment.getLocalGraphicsEnvironment().getDefaultScreenDevice().getDisplayMode().getWidth();
+		int altoP = GraphicsEnvironment.getLocalGraphicsEnvironment().getDefaultScreenDevice().getDisplayMode().getHeight();
+		setSize(anchoP,altoP);
+		setExtendedState(MAXIMIZED_BOTH);
+		setResizable(false);
 		setTitle("Ventana inicio sesion");
 		
 		/*CEACION CON PANELES Y COMPONENTES*/
