@@ -15,6 +15,8 @@ import javax.swing.JTabbedPane;
 import javax.swing.JTextField;
 
 import deustDance.Alumno;
+import deustDance.Profesor;
+
 
 public class VentanaSecretaria extends JFrame {
 	/**
@@ -23,17 +25,23 @@ public class VentanaSecretaria extends JFrame {
 	private static final long serialVersionUID = 1L;
 	protected JTabbedPane pestañas;
 	protected JTextField txtNombre;
-	protected JSpinner spinnerDinero;
-	protected JSpinner spinnerCalificacion;
-	protected JSpinner spinnerGrupo;
-	protected JTextField txtDomicilio;
+	protected JTextField txtApellidos;	
 	protected JTextField txtUsuario;
 	protected JTextField txtContrasenya;
 	protected JTextField txtTelefono;
-	protected JTextField txtApellidos;
+	protected JTextField txtDomicilio;
+	protected JTextField txtBaileAsignado;
+	protected JTextField txtProfesorAsignado;
+	protected JTextField txtClaseAsignada;
+	protected JSpinner spinnerDinero;
+	protected JSpinner spinnerGrupo;
+	protected JSpinner spinnerCalificacion;	
+	
 	protected JButton botonAnyadir;
 	protected JButton botonModificar;
 	protected JButton botonEliminar;
+	
+	
 	protected JTextField txtNombreP;
 	protected JSpinner spinnerGrupoP;
 	protected JTextField txtDomicilioP;
@@ -49,15 +57,20 @@ public class VentanaSecretaria extends JFrame {
 		JTabbedPane tabbedPane = new JTabbedPane();
 		
 		// Pestaña Alumnos
-		txtNombre = new JTextField(); 
-		txtApellidos = new JTextField();
-		txtUsuario = new JTextField();
-		txtContrasenya = new JTextField();
-		spinnerGrupo = new JSpinner();
+		txtNombre = new JTextField(20);
+		txtApellidos = new JTextField(20);
+		txtUsuario = new JTextField(20);
+		txtContrasenya = new JTextField(20);
+		txtTelefono = new JTextField(20);
+		txtDomicilio = new JTextField(20);
+		txtBaileAsignado = new JTextField(20);
+		txtProfesorAsignado = new JTextField(20);
+		txtClaseAsignada = new JTextField(20);
+		
 		spinnerDinero = new JSpinner();
+		spinnerGrupo = new JSpinner();
 		spinnerCalificacion = new JSpinner();
-		txtDomicilio = new JTextField();
-		txtTelefono = new JTextField();
+
 		
 		botonAnyadir = new JButton("Añadir alumno");
 		botonModificar = new JButton("Modificar alumno");
@@ -65,40 +78,66 @@ public class VentanaSecretaria extends JFrame {
 		
 		
 		JPanel panelTexto = new JPanel();
-		panelTexto.setLayout(new GridLayout(6,2));
+		panelTexto.setLayout(new GridLayout(12,2));
         
+
 		panelTexto.add(new JLabel("Nombre: "));
 		panelTexto.add(txtNombre);
 		panelTexto.add(new JLabel("Apellidos: "));
 		panelTexto.add(txtApellidos);
-		panelTexto.add(new JLabel("Grupo: "));
-		panelTexto.add(spinnerGrupo);
-		panelTexto.add(new JLabel("Domicilio: "));
-		panelTexto.add(txtDomicilio);
 		panelTexto.add(new JLabel("Usuario: "));
 		panelTexto.add(txtUsuario);
 		panelTexto.add(new JLabel("Contraseña: "));
 		panelTexto.add(txtContrasenya);
+		panelTexto.add(new JLabel("Teléfono: "));
+		panelTexto.add(txtTelefono);
+		panelTexto.add(new JLabel("Domicilio: "));
+		panelTexto.add(txtDomicilio);
+		panelTexto.add(new JLabel("Baile Asignado: "));
+		panelTexto.add(txtBaileAsignado);
+		panelTexto.add(new JLabel("Profesor Asignado: "));
+		panelTexto.add(txtProfesorAsignado);
+		panelTexto.add(new JLabel("Clase Asignada: "));
+		panelTexto.add(txtClaseAsignada);
+		panelTexto.add(new JLabel("Dinero: "));
+		panelTexto.add(spinnerDinero);
+		panelTexto.add(new JLabel("Grupo: "));
+		panelTexto.add(spinnerGrupo);
+		panelTexto.add(new JLabel("Calificación: "));
+		panelTexto.add(spinnerCalificacion);
+
 		
 		botonAnyadir.addActionListener(new ActionListener() {
 			
+			@SuppressWarnings("static-access")
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				String nombre = txtNombre.getText();
 				String apellidos = txtApellidos.getText();
-				int grupo = (int) spinnerGrupo.getValue();
-				String domicilio = txtDomicilio.getText(); 
 				String usuario = txtUsuario.getText();
-				String contrasenya = txtContrasenya.getText();
+				String contrasenia = txtContrasenya.getText();
 				String telefono = txtTelefono.getText();
+				String domicilio = txtDomicilio.getText();
+				// Falta el baileasignado
+				//String profesorAsignado = txtProfesorAsignado.getText();
+				//String claseAsignada = txtClaseAsignada.getText();
+				double dinero = (double) spinnerDinero.getValue();
+				int grupo = (int) spinnerGrupo.getValue();
+				double calificacion = (double) spinnerCalificacion.getValue();
 				
 				Alumno nuevo = new Alumno();
 				nuevo.setNombre(nombre);
 				nuevo.setApellidos(apellidos);
+				nuevo.setUsuario(usuario);
+				nuevo.setContrasenia(contrasenia);
+				nuevo.setTelefono(Integer.parseInt(telefono));
+				nuevo.setDomicilio(domicilio);
+				nuevo.setDinero(dinero);
 				nuevo.setGrupo(grupo);
-				nuevo.set
+				nuevo.setCalificacion(calificacion);
+				
+				// El profesor debería ser seleccionado de una lista desplegable, asi como la clase, el grupo y el baile 
 				// Falta guardar los datos en la base de datos
-				txtNombre.setText("");
 				spinnerGrupo.setValue(0);
 				txtDomicilio.setText("");
 				txtUsuario.setText("");
@@ -180,7 +219,14 @@ public class VentanaSecretaria extends JFrame {
 				String usuario = txtUsuarioP.getText();
 				String contrasenya = txtContrasenyaP.getText();
 				String telefono = txtTelefonoP.getText();
-				// Profesor nuevo = new Profesor(nombreyapellidos,grupo,domicilio,usuario,contrasenya,telefono);
+				Profesor nuevo = new Profesor();
+				nuevo.setNombre(nombreyapellidos);
+				nuevo.setGrupo(grupo);
+				nuevo.setDomicilio(domicilio);
+				nuevo.setUsuario(usuario);
+				nuevo.setContrasenia(contrasenya);
+				nuevo.setTelefono(grupo);
+				
 				// Falta guardar los datos en la base de datos
 				txtNombreP.setText("");
 				spinnerGrupoP.setValue(0);
