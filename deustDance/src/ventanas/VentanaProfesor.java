@@ -5,6 +5,7 @@ import java.awt.GraphicsEnvironment;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.swing.JButton;
@@ -16,7 +17,7 @@ import javax.swing.JTextField;
 import javax.swing.table.AbstractTableModel;
 
 import deustDance.Alumno;
-
+import deustDance.Profesor;
 
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
@@ -90,7 +91,7 @@ public class VentanaProfesor extends JFrame {
 		
 	
 	
-	public VentanaProfesor() {
+	public VentanaProfesor(Profesor profesor) {
 		
 		pestañas = new JTabbedPane();
 		
@@ -101,6 +102,11 @@ public class VentanaProfesor extends JFrame {
 		textoDireccion = new JTextField(15);
 		textoUsuario = new JTextField(15);
 		textoContraseña = new JTextField(15);
+		
+		textoNombre.setText(profesor.getNombre());
+		textoApellidos.setText(profesor.getApellidos());
+		textoUsuario.setText(profesor.getUsuario());
+		textoContraseña.setText(profesor.getContrasenia());
 		
 		botonImprimirCalendario= new JButton("Imprimir Calendario");
 		botonImprimirCalendario.addActionListener(new ActionListener() {
@@ -128,6 +134,7 @@ public class VentanaProfesor extends JFrame {
 		panelInformacionPersonal.add(new JLabel("Contraseña: "));
 		panelInformacionPersonal.add(textoContraseña);
 		
+		
 		panelCalendario.add(new JLabel("Calendario: "));
 		panelCalendario.add(botonImprimirCalendario, BorderLayout.SOUTH);
 		panelInfoCalendario.add(panelInformacionPersonal, BorderLayout.WEST);
@@ -136,7 +143,10 @@ public class VentanaProfesor extends JFrame {
 		pestañas.addTab("Informacion Personal/horarios", panelInfoCalendario);
 		
 		//pestaña Lista de alumnos
-		//Datos de prueba		
+		//Datos de prueba	
+		ArrayList<Alumno> listaAlumnos = new ArrayList<Alumno>();
+		listaAlumnos.add(new Alumno("Alumno-1", "Apellido-1", "Usuario-1", "Contaseña-1", 5));
+		listaAlumnos.add(new Alumno("Alumno-2", "Apellido-2", "Usuario-2", "Contaseña-2", 5));
 		ModeloTablaAlumnos modelo = new ModeloTablaAlumnos(null); //Añadimos el modelo a la tabla
 		JTable JTableAlumnos = new JTable(modelo);
 		JScrollPane scrollPane = new JScrollPane(JTableAlumnos);
@@ -157,6 +167,8 @@ public class VentanaProfesor extends JFrame {
 		this.setVisible(true);
 	}
 	public static void main(String[] args) {
-		new VentanaProfesor();
+		//Ejemplos de prueba
+		Profesor p1 = new Profesor("Pepito", "Grillo", "PepitoElGrillo", "1234");
+		new VentanaProfesor(p1);
 	}
 }
