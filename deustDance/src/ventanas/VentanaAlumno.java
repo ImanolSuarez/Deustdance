@@ -123,7 +123,7 @@ public class VentanaAlumno extends JFrame{
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				
+				textoNombre.setCaret((Caret) ventanaSecretaria.txtNombre);
 				
 			}
 		});
@@ -132,7 +132,7 @@ public class VentanaAlumno extends JFrame{
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				// TODO Auto-generated method stub
+				textoApellidos.setCaret((Caret) ventanaSecretaria.txtApellidos);
 				
 			}
 		});
@@ -141,7 +141,6 @@ public class VentanaAlumno extends JFrame{
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				// TODO Auto-generated method stub
 				
 			}
 		});
@@ -150,7 +149,7 @@ public class VentanaAlumno extends JFrame{
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				// TODO Auto-generated method stub
+				textoDomicilio.setCaret((Caret) ventanaSecretaria.txtDomicilio);
 				
 			}
 		});
@@ -159,7 +158,7 @@ public class VentanaAlumno extends JFrame{
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				// TODO Auto-generated method stub
+				textoUsuario.setCaret((Caret) ventanaSecretaria.txtUsuario);
 				
 			}
 		});
@@ -168,7 +167,7 @@ public class VentanaAlumno extends JFrame{
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				// TODO Auto-generated method stub
+				textoUsuario.setCaret((Caret) ventanaSecretaria.txtContrasenya);
 				
 			}
 		});
