@@ -10,9 +10,11 @@ public class Alumno extends Persona{
 	private int grupo;
 	private double calificacion;
 	
-	public Alumno(String nombre, String apellidos, String usuario, String contrasenia, Baile baileAsignado,
-			Profesor profesorAsignado, Clase claseAsignada, double dinero, int grupo, double calificacion) {
-		super(nombre, apellidos, usuario, contrasenia);
+	
+	public Alumno(String nombre, String apellidos, String usuario, String contrasenia, int telefono, String domicilio,
+			Baile baileAsignado, Profesor profesorAsignado, Clase claseAsignada, double dinero, int grupo,
+			double calificacion) {
+		super(nombre, apellidos, usuario, contrasenia, telefono, domicilio);
 		this.baileAsignado = baileAsignado;
 		this.profesorAsignado = profesorAsignado;
 		this.claseAsignada = claseAsignada;
@@ -30,27 +32,6 @@ public class Alumno extends Persona{
 		this.grupo = 0;
 		this.calificacion = 0;
 	}
-	
-	public Alumno(String nombre, String apellidos, String usuario, String contrasenia, double calificacion) {
-		super(nombre, apellidos, usuario, contrasenia);
-		this.calificacion = calificacion;
-		
-	}
-
-
-
-
-	public int getGrupo() {
-		return grupo;
-	}
-
-
-
-	public void setGrupo(int grupo) {
-		this.grupo = grupo;
-	}
-
-
 
 	public Baile getBaileAsignado() {
 		return baileAsignado;
@@ -68,14 +49,6 @@ public class Alumno extends Persona{
 		this.profesorAsignado = profesorAsignado;
 	}
 
-	public double getDinero() {
-		return dinero;
-	}
-
-	public void setDinero(double dinero) {
-		this.dinero = dinero;
-	}
-	
 	public Clase getClaseAsignada() {
 		return claseAsignada;
 	}
@@ -83,7 +56,23 @@ public class Alumno extends Persona{
 	public void setClaseAsignada(Clase claseAsignada) {
 		this.claseAsignada = claseAsignada;
 	}
-	
+
+	public double getDinero() {
+		return dinero;
+	}
+
+	public void setDinero(double dinero) {
+		this.dinero = dinero;
+	}
+
+	public int getGrupo() {
+		return grupo;
+	}
+
+	public void setGrupo(int grupo) {
+		this.grupo = grupo;
+	}
+
 	public double getCalificacion() {
 		return calificacion;
 	}
@@ -94,28 +83,13 @@ public class Alumno extends Persona{
 
 	@Override
 	public String toString() {
-	    return "Nombre del alumno: " + getNombre() + ", apellidos: " + getApellidos() + ", baile asignado: " + baileAsignado + ", profesor asignado: " + profesorAsignado
-	            + ", clase asignada: " + claseAsignada + ", dinero: " + dinero + ", grupo: " + getGrupo() + ", calificacion: " + calificacion 
-	            + ", usuario: " + getUsuario() + ", contraseña: " + getContrasenia();
+		return "Alumno [baileAsignado=" + baileAsignado + ", profesorAsignado=" + profesorAsignado + ", claseAsignada="
+				+ claseAsignada + ", dinero=" + dinero + ", grupo=" + grupo + ", calificacion=" + calificacion
+				+ ", getNombre()=" + getNombre() + ", getApellidos()=" + getApellidos() + ", getUsuario()="
+				+ getUsuario() + ", getContrasenia()=" + getContrasenia() + ", getTelefono()=" + getTelefono()
+				+ ", getDomicilio()=" + getDomicilio() + ", toString()=" + super.toString() + ", getClass()="
+				+ getClass() + ", hashCode()=" + hashCode() + "]";
 	}
 	
-
 	
-	
-	
-
-	
-
-	
-
-
-	
-
-	
-	
-	
-	
-	
-	
-
 }

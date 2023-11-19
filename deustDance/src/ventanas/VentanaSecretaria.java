@@ -23,13 +23,14 @@ public class VentanaSecretaria extends JFrame {
 	private static final long serialVersionUID = 1L;
 	protected JTabbedPane pestañas;
 	protected JTextField txtNombre;
+	protected JSpinner spinnerDinero;
+	protected JSpinner spinnerCalificacion;
 	protected JSpinner spinnerGrupo;
 	protected JTextField txtDomicilio;
 	protected JTextField txtUsuario;
 	protected JTextField txtContrasenya;
 	protected JTextField txtTelefono;
 	protected JTextField txtApellidos;
-	protected JTextField txtEmail;
 	protected JButton botonAnyadir;
 	protected JButton botonModificar;
 	protected JButton botonEliminar;
@@ -49,16 +50,19 @@ public class VentanaSecretaria extends JFrame {
 		
 		// Pestaña Alumnos
 		txtNombre = new JTextField(); 
-		spinnerGrupo = new JSpinner();
-		txtDomicilio = new JTextField();
+		txtApellidos = new JTextField();
 		txtUsuario = new JTextField();
 		txtContrasenya = new JTextField();
+		spinnerGrupo = new JSpinner();
+		spinnerDinero = new JSpinner();
+		spinnerCalificacion = new JSpinner();
+		txtDomicilio = new JTextField();
 		txtTelefono = new JTextField();
+		
 		botonAnyadir = new JButton("Añadir alumno");
 		botonModificar = new JButton("Modificar alumno");
 		botonEliminar = new JButton("Eliminar alumno");
-		txtApellidos = new JTextField();
-		txtEmail = new JTextField();
+		
 		
 		JPanel panelTexto = new JPanel();
 		panelTexto.setLayout(new GridLayout(6,2));
@@ -69,8 +73,6 @@ public class VentanaSecretaria extends JFrame {
 		panelTexto.add(txtApellidos);
 		panelTexto.add(new JLabel("Grupo: "));
 		panelTexto.add(spinnerGrupo);
-		panelTexto.add(new JLabel("Email: "));
-		panelTexto.add(txtEmail);
 		panelTexto.add(new JLabel("Domicilio: "));
 		panelTexto.add(txtDomicilio);
 		panelTexto.add(new JLabel("Usuario: "));
@@ -85,13 +87,16 @@ public class VentanaSecretaria extends JFrame {
 				String nombre = txtNombre.getText();
 				String apellidos = txtApellidos.getText();
 				int grupo = (int) spinnerGrupo.getValue();
-				String email = txtEmail.getText();
 				String domicilio = txtDomicilio.getText(); 
 				String usuario = txtUsuario.getText();
 				String contrasenya = txtContrasenya.getText();
 				String telefono = txtTelefono.getText();
 				
 				Alumno nuevo = new Alumno();
+				nuevo.setNombre(nombre);
+				nuevo.setApellidos(apellidos);
+				nuevo.setGrupo(grupo);
+				nuevo.set
 				// Falta guardar los datos en la base de datos
 				txtNombre.setText("");
 				spinnerGrupo.setValue(0);
