@@ -21,12 +21,23 @@ public class Alumno extends Persona{
 		this.calificacion = calificacion;
 	}
 	
+	public Alumno() {
+		super();
+		this.baileAsignado = null;
+		this.profesorAsignado = null;
+		this.claseAsignada = null;
+		this.dinero = 0;
+		this.grupo = 0;
+		this.calificacion = 0;
+	}
 	
 	public Alumno(String nombre, String apellidos, String usuario, String contrasenia, double calificacion) {
 		super(nombre, apellidos, usuario, contrasenia);
 		this.calificacion = calificacion;
 		
 	}
+
+
 
 
 	public int getGrupo() {

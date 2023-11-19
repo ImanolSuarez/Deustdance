@@ -14,6 +14,8 @@ import javax.swing.JSpinner;
 import javax.swing.JTabbedPane;
 import javax.swing.JTextField;
 
+import deustDance.Alumno;
+
 public class VentanaSecretaria extends JFrame {
 	/**
 	 * 
@@ -89,7 +91,7 @@ public class VentanaSecretaria extends JFrame {
 				String contrasenya = txtContrasenya.getText();
 				String telefono = txtTelefono.getText();
 				
-				// Alumno nuevo = new Alumno(nombreyapellidos,grupo,domicilio,usuario,contrasenya,telefono);
+				Alumno nuevo = new Alumno();
 				// Falta guardar los datos en la base de datos
 				txtNombre.setText("");
 				spinnerGrupo.setValue(0);
