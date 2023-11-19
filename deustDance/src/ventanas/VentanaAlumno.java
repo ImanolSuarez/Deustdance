@@ -7,6 +7,7 @@ import java.io.File;
 
 import javax.swing.*;
 import javax.swing.border.*;
+import javax.swing.text.Caret;
 
 public class VentanaAlumno extends JFrame{
 	private static final long serialVersionUID = 1L;
@@ -19,10 +20,13 @@ public class VentanaAlumno extends JFrame{
 	protected JTextField textoDomicilio;
 	protected JButton botonImprimirCalendar;
 	protected JButton botonCargarFoto;
+	protected VentanaSecretaria ventanaSecretaria;
 	
 	public VentanaAlumno() {
+		
 		JPanel panelInformacionPersonal = new JPanel();
 		JPanel panelInformacionAcademica = new JPanel();
+		JPanel panelImagen = new JPanel();
 		
 		panelInformacionPersonal.setLayout(new BorderLayout());
 		panelInformacionAcademica.setLayout(new BorderLayout());
@@ -48,6 +52,8 @@ public class VentanaAlumno extends JFrame{
 		textoDomicilio.setEditable(false);
 		textoUsuario.setEditable(false);
 		textoContraseña.setEditable(false);
+		
+		
 
 		
 		panelInformacionPersonal.add(new JLabel("Nombre: "));
@@ -92,6 +98,9 @@ public class VentanaAlumno extends JFrame{
 			}
 		});
 		
+		JLabel labelFoto = new JLabel();
+		labelFoto.setIcon(new ImageIcon(getClass().getResource("")));
+		
 		JPanel panelBotonPersonal = new JPanel();
 		panelInformacionPersonal.add(panelBotonPersonal, BorderLayout.SOUTH);
 		panelBotonPersonal.add(botonCargarFoto);
@@ -101,6 +110,61 @@ public class VentanaAlumno extends JFrame{
 		
 		
 		botonImprimirCalendar.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				
+				
+			}
+		});
+		
+		// actionlistener de JTextFields
+		textoNombre.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				
+				
+			}
+		});
+		
+		textoApellidos.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+		});
+		
+		textoEmail.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+		});
+		
+		textoDomicilio.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+		});
+		
+		textoUsuario.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+		});
+		
+		textoContraseña.addActionListener(new ActionListener() {
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
@@ -116,9 +180,10 @@ public class VentanaAlumno extends JFrame{
 		
 		panelInformacionAcademica.add(panelBotonesAcademico, BorderLayout.SOUTH);
 		
-		
+		panelImagen.add(panelInformacionPersonal, BorderLayout.WEST);
 		this.add(panelInformacionPersonal, BorderLayout.WEST);
 		this.add(panelInformacionAcademica, BorderLayout.EAST);
+		
 		
 		
 		this.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
