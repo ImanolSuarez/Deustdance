@@ -21,11 +21,15 @@ public class Persona {
 		this.usuario = usuario;
 		this.contrasenia = contrasenia;
 	}
-
+	
 	public Persona() {
 		super();
-		
+		this.nombre = "";
+		this.apellidos = "";
+		this.usuario = "";
+		this.contrasenia = "";
 	}
+
 
 	public String getNombre() {
 		return nombre;
