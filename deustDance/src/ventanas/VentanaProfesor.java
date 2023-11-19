@@ -104,7 +104,7 @@ public class VentanaProfesor extends JFrame {
 		textoContraseña = new JTextField(15);
 		
 		textoNombre.setText(profesor.getNombre());
-		textoApellidos.setText(getName());
+		textoApellidos.setText(profesor.getApellidos());
 		textoUsuario.setText(profesor.getUsuario());
 		textoContraseña.setText(profesor.getContrasenia());
 		
