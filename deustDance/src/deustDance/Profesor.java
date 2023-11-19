@@ -11,30 +11,21 @@ public class Profesor extends Persona{
 	private List<Baile> listaBailes;
 	private List<Clase> listaClases;
 	
-	public Profesor(String nombre, String apellidos, String usuario, String contrasenia, List<Alumno> listaAlumnos,
-			int grupo, List<Baile> listaBailes, List<Clase> listaClases) {
-		super(nombre, apellidos, usuario, contrasenia);
+	public Profesor(String nombre, String apellidos, String usuario, String contrasenia, int telefono, String domicilio,
+			List<Alumno> listaAlumnos, int grupo, List<Baile> listaBailes, List<Clase> listaClases) {
+		super(nombre, apellidos, usuario, contrasenia, telefono, domicilio);
 		this.listaAlumnos = listaAlumnos;
 		this.grupo = grupo;
 		this.listaBailes = listaBailes;
 		this.listaClases = listaClases;
 	}
 	
-	
-
-	public Profesor(String nombre, String apellidos, String usuario, String contrasenia) {
-		super(nombre, apellidos, usuario, contrasenia);
-		
-	}
-
-
-
-	public int getGrupo() {
-		return grupo;
-	}
-
-	public void setGrupo(int grupo) {
-		this.grupo = grupo;
+	public Profesor() {
+		super();
+		this.listaAlumnos = null;
+		this.grupo = 0;
+		this.listaBailes = null;
+		this.listaClases = null;
 	}
 
 	public List<Alumno> getListaAlumnos() {
@@ -43,6 +34,14 @@ public class Profesor extends Persona{
 
 	public void setListaAlumnos(List<Alumno> listaAlumnos) {
 		this.listaAlumnos = listaAlumnos;
+	}
+
+	public int getGrupo() {
+		return grupo;
+	}
+
+	public void setGrupo(int grupo) {
+		this.grupo = grupo;
 	}
 
 	public List<Baile> getListaBailes() {
@@ -63,16 +62,12 @@ public class Profesor extends Persona{
 
 	@Override
 	public String toString() {
-		return "Nombre del profesor: " + getNombre() + ", apellidos: " + getApellidos() + ", grupo asignado: "
-				+ getGrupo() + ", lista alumnos=" + listaAlumnos + ", lista bailes=" + listaBailes + ", lista de clases="
-				+ listaClases;
+		return "Profesor [listaAlumnos=" + listaAlumnos + ", grupo=" + grupo + ", listaBailes=" + listaBailes
+				+ ", listaClases=" + listaClases + ", getNombre()=" + getNombre() + ", getApellidos()=" + getApellidos()
+				+ ", getUsuario()=" + getUsuario() + ", getContrasenia()=" + getContrasenia() + ", getTelefono()="
+				+ getTelefono() + ", getDomicilio()=" + getDomicilio() + ", toString()=" + super.toString()
+				+ ", getClass()=" + getClass() + ", hashCode()=" + hashCode() + "]";
 	}
-	
-	
-	
-	
-	
-	
-	
-	
+		
+
 }
