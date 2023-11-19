@@ -26,6 +26,8 @@ public class VentanaSecretaria extends JFrame {
 	protected JTextField txtUsuario;
 	protected JTextField txtContrasenya;
 	protected JTextField txtTelefono;
+	protected JTextField txtApellidos;
+	protected JTextField txtEmail;
 	protected JButton botonAnyadir;
 	protected JButton botonModificar;
 	protected JButton botonEliminar;
@@ -57,10 +59,14 @@ public class VentanaSecretaria extends JFrame {
 		JPanel panelTexto = new JPanel();
 		panelTexto.setLayout(new GridLayout(6,2));
         
-		panelTexto.add(new JLabel("Nombre y Apellidos: "));
+		panelTexto.add(new JLabel("Nombre: "));
 		panelTexto.add(txtNombre);
+		panelTexto.add(new JLabel("Apellidos: "));
+		panelTexto.add(txtApellidos);
 		panelTexto.add(new JLabel("Grupo: "));
 		panelTexto.add(spinnerGrupo);
+		panelTexto.add(new JLabel("Email: "));
+		panelTexto.add(txtEmail);
 		panelTexto.add(new JLabel("Domicilio: "));
 		panelTexto.add(txtDomicilio);
 		panelTexto.add(new JLabel("Usuario: "));
@@ -72,12 +78,15 @@ public class VentanaSecretaria extends JFrame {
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				String nombreyapellidos = txtNombre.getText();
+				String nombre = txtNombre.getText();
+				String apellidos = txtApellidos.getText();
 				int grupo = (int) spinnerGrupo.getValue();
+				String email = txtEmail.getText();
 				String domicilio = txtDomicilio.getText(); 
 				String usuario = txtUsuario.getText();
 				String contrasenya = txtContrasenya.getText();
 				String telefono = txtTelefono.getText();
+				
 				// Alumno nuevo = new Alumno(nombreyapellidos,grupo,domicilio,usuario,contrasenya,telefono);
 				// Falta guardar los datos en la base de datos
 				txtNombre.setText("");
