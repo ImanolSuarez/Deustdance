@@ -55,6 +55,8 @@ public class VentanaSecretaria extends JFrame {
 		botonAnyadir = new JButton("Añadir alumno");
 		botonModificar = new JButton("Modificar alumno");
 		botonEliminar = new JButton("Eliminar alumno");
+		txtApellidos = new JTextField();
+		txtEmail = new JTextField();
 		
 		JPanel panelTexto = new JPanel();
 		panelTexto.setLayout(new GridLayout(6,2));
