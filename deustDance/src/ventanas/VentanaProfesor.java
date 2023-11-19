@@ -32,9 +32,11 @@ public class VentanaProfesor extends JFrame {
 	protected JButton botonImprimirCalendario;
 	protected JTextField textoNombre;
 	protected JTextField textoApellidos;
-	protected JTextField textoDireccion;
 	protected JTextField textoUsuario;
 	protected JTextField textoContraseña;
+	protected JTextField textoTelefono;
+	protected JTextField textoDomicilio;
+	protected JTextField textoGrupo;
 	
 	//Modelo para la tabla de la pestaña Lista de alumnos
 	class ModeloTablaAlumnos extends AbstractTableModel{
@@ -128,16 +130,29 @@ public class VentanaProfesor extends JFrame {
 		
 		//Pestaña Informacion Personal y calendario
 		
-		textoNombre = new JTextField(15);
-		textoApellidos = new JTextField(15);
-		textoDireccion = new JTextField(15);
-		textoUsuario = new JTextField(15);
-		textoContraseña = new JTextField(15);
+		textoNombre = new JTextField(20);
+		textoApellidos = new JTextField(20);
+		textoUsuario = new JTextField(20);
+		textoContraseña = new JTextField(20);
+		textoTelefono = new JTextField(20);
+		textoDomicilio = new JTextField(20);
+		textoGrupo = new JTextField(20);
+		
+		textoNombre.setEditable(false);
+		textoApellidos.setEditable(false);
+		textoUsuario.setEditable(false);
+		textoContraseña.setEditable(false);
+		textoTelefono.setEditable(false);
+		textoDomicilio.setEnabled(false);
+		textoGrupo.setEditable(false);
 		
 		textoNombre.setText(profesor.getNombre());
 		textoApellidos.setText(profesor.getApellidos());
 		textoUsuario.setText(profesor.getUsuario());
 		textoContraseña.setText(profesor.getContrasenia());
+		textoTelefono.setText(String.valueOf(profesor.getTelefono()));
+		textoDomicilio.setText(profesor.getDomicilio());
+		textoGrupo.setText(String.valueOf(profesor.getGrupo()));
 		
 		botonImprimirCalendario= new JButton("Imprimir Calendario");
 		botonImprimirCalendario.addActionListener(new ActionListener() {
@@ -153,17 +168,21 @@ public class VentanaProfesor extends JFrame {
 		JPanel panelCalendario = new JPanel();
 		JPanel panelInfoCalendario = new JPanel();
 		
-		panelInformacionPersonal.setLayout(new GridLayout(10, 1));
+		panelInformacionPersonal.setLayout(new GridLayout(8, 1));
 		panelInformacionPersonal.add(new JLabel("Nombre: "));
 		panelInformacionPersonal.add(textoNombre);
 		panelInformacionPersonal.add(new JLabel("Apellidos: "));
 		panelInformacionPersonal.add(textoApellidos);
-		panelInformacionPersonal.add(new JLabel("direccion: "));
-		panelInformacionPersonal.add(textoDireccion);
 		panelInformacionPersonal.add(new JLabel("Usuario: "));
 		panelInformacionPersonal.add(textoUsuario);
 		panelInformacionPersonal.add(new JLabel("Contraseña: "));
 		panelInformacionPersonal.add(textoContraseña);
+		panelInformacionPersonal.add(new JLabel("Teléfono: "));
+		panelInformacionPersonal.add(textoTelefono);
+		panelInformacionPersonal.add(new JLabel("Domicilio: "));
+		panelInformacionPersonal.add(textoDomicilio);
+		panelInformacionPersonal.add(new JLabel("Grupo: "));
+		panelInformacionPersonal.add(textoGrupo);
 		
 		
 		panelCalendario.add(new JLabel("Calendario: "));
