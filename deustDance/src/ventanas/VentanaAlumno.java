@@ -123,7 +123,7 @@ public class VentanaAlumno extends JFrame{
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				textoNombre.setCaret((Caret) ventanaSecretaria.txtNombre);
+				
 				
 			}
 		});
