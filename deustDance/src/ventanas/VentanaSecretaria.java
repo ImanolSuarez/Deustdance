@@ -46,7 +46,7 @@ public class VentanaSecretaria extends JFrame {
 		JTabbedPane tabbedPane = new JTabbedPane();
 		
 		// Pestaña Alumnos
-		txtNombre = new JTextField();
+		txtNombre = new JTextField(); 
 		spinnerGrupo = new JSpinner();
 		txtDomicilio = new JTextField();
 		txtUsuario = new JTextField();
