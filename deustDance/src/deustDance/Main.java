@@ -32,8 +32,8 @@ public class Main {
 		}
 		
 		
-		Alumno a1 = new Alumno("Xabier", "Hernaez", "rebixa", "navaleno07");
-		Alumno a2 = new Alumno("Xabier", "Hernaez", "rr", "ddd");
+		Alumno a1 = new Alumno("Xabier", "Hernaez", "rebixa", "navaleno07", 3);
+		Alumno a2 = new Alumno("Xabier", "Hernaez", "rr", "ddd", 5);
 		
 		Profesor p1 = new Profesor("a", "h", "ander", "aa");
 		Profesor p2 = new Profesor("a", "h", "andrea", "bb");

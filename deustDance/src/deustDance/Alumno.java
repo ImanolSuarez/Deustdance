@@ -22,8 +22,9 @@ public class Alumno extends Persona{
 	}
 	
 	
-	public Alumno(String nombre, String apellidos, String usuario, String contrasenia) {
+	public Alumno(String nombre, String apellidos, String usuario, String contrasenia, int calificacion) {
 		super(nombre, apellidos, usuario, contrasenia);
+		this.calificacion = calificacion;
 		
 	}
 
