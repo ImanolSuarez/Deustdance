@@ -45,8 +45,37 @@ public class VentanaProfesor extends JFrame {
 		private String[]cabecera= {"Grupo", "Nombre", "Apellidos", "Calificación"};
 		List<Alumno> datos;
 		public ModeloTablaAlumnos(List<Alumno> datos ) {
-			this.datos = null; //Cambiar a datos cuando este la BD
+			this.datos = datos; 
 			
+		}
+
+		@Override
+		public Class<?> getColumnClass(int column) {
+			switch(column) {
+				case 0:  
+				case 1: return String.class;
+				case 2: return String.class;
+				case 3: return double.class;
+				default: return null;
+			}
+		}
+
+		@Override
+		public void setValueAt(Object value, int row, int column) {
+			// TODO Auto-generated method stub
+			Alumno a = datos.get(row); 
+			switch (column) {
+			case 1:
+				a.setNombre((String)value);
+				break;
+			case 2:
+				a.setApellidos((String)value);
+				break;
+			case 3:
+				a.setCalificacion((double)value);
+				break;
+			default: break;
+			}
 		}
 
 		@Override
@@ -59,8 +88,8 @@ public class VentanaProfesor extends JFrame {
 		@Override
 		public int getRowCount() {
 			// TODO Auto-generated method stub
-//			return datos.size(); FALTA HACER QUE COJA EL VALOR DE DATOS DESDE LA BD
-			return 2;
+			return datos.size(); 
+			
 		}
 
 		@Override
@@ -77,16 +106,18 @@ public class VentanaProfesor extends JFrame {
 		@Override
 		public Object getValueAt(int row, int column) {
 			//FALTA HACER QUE COJA EL VALOR DE DATOS DESDE LA BD
-//			Alumno a = datos.get(row);
-//			switch (column) {
-//			case 0: return a.getClaseAsignada().getNombre();
-//			case 1: return a.getNombre();
-//			case 2: return a.getApellidos();
-//			case 3: return a.getCalificacion();
-//			default: return null;
-			return null;
+			Alumno a = datos.get(row);
+			switch (column) {
+		//	case 0: return a.getClaseAsignada().getNombre();
+			case 1: return a.getNombre();
+			case 2: return a.getApellidos();
+			case 3: return a.getCalificacion();
+			default: return null;
 			}
+			}
+		
 		}
+	
 		
 		
 	
@@ -145,9 +176,12 @@ public class VentanaProfesor extends JFrame {
 		//pestaña Lista de alumnos
 		//Datos de prueba	
 		ArrayList<Alumno> listaAlumnos = new ArrayList<Alumno>();
-		listaAlumnos.add(new Alumno("Alumno-1", "Apellido-1", "Usuario-1", "Contaseña-1", 5));
-		listaAlumnos.add(new Alumno("Alumno-2", "Apellido-2", "Usuario-2", "Contaseña-2", 5));
-		ModeloTablaAlumnos modelo = new ModeloTablaAlumnos(null); //Añadimos el modelo a la tabla
+		listaAlumnos.add(new Alumno("Alumno-1", "Apellido-1", "Usuario-1", "Contraseña-1", 5));
+		listaAlumnos.add(new Alumno("Alumno-2", "Apellido-2", "Usuario-2", "Contraseña-2", 5));
+		listaAlumnos.add(new Alumno("Alumno-3", "Apellido-3", "Usuario-3", "Contraseña-3", 5));
+		listaAlumnos.add(new Alumno("Alumno-4", "Apellido-4", "Usuario-4", "Contraseña-4", 5));
+		listaAlumnos.add(new Alumno("Alumno-5", "Apellido-5", "Usuario-5", "Contraseña-5", 5));
+		ModeloTablaAlumnos modelo = new ModeloTablaAlumnos(listaAlumnos); //Añadimos el modelo a la tabla
 		JTable JTableAlumnos = new JTable(modelo);
 		JScrollPane scrollPane = new JScrollPane(JTableAlumnos);
 		JPanel panelTablaAlumnos = new JPanel();
