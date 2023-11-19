@@ -22,7 +22,7 @@ public class Alumno extends Persona{
 	}
 	
 	
-	public Alumno(String nombre, String apellidos, String usuario, String contrasenia, int calificacion) {
+	public Alumno(String nombre, String apellidos, String usuario, String contrasenia, double calificacion) {
 		super(nombre, apellidos, usuario, contrasenia);
 		this.calificacion = calificacion;
 		

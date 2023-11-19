@@ -20,7 +20,9 @@ public class Academia {
 	/*METODO PARA AÑADIR ALUMNOS*/
 	
 	
-
+	public void cargarAlumnoDeseBD() {
+		
+	}
 	
 
 	public static void anyadirAlumno(Alumno a) {
