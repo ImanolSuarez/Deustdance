@@ -35,8 +35,8 @@ public class Academia {
 		
 	}
 	
-	public static void anyadirSecretario(Persona p) {
-		listaSecretaria.add((Secretaria) p);
+	public static void anyadirSecretario(Secretaria p) {
+		listaSecretaria.add(p);
 		
 	}
 	

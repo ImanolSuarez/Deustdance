@@ -7,17 +7,21 @@ import java.io.File;
 
 import javax.swing.*;
 import javax.swing.border.*;
-import javax.swing.text.Caret;
+
 
 public class VentanaAlumno extends JFrame{
 	private static final long serialVersionUID = 1L;
 	protected JButton botonEditar;
 	protected JTextField textoNombre;
 	protected JTextField textoApellidos;
-	protected JTextField textoEmail;
 	protected JTextField textoUsuario;
 	protected JTextField textoContraseña;
 	protected JTextField textoDomicilio;
+	protected JTextField textoprofesorAsignado;
+	protected JTextField textoclaseAsignada;
+	protected JTextField textodinero;
+	protected JTextField textogrupo;
+	protected JTextField textocalificacion;
 	protected JButton botonImprimirCalendar;
 	protected JButton botonCargarFoto;
 	protected VentanaSecretaria ventanaSecretaria;
@@ -41,33 +45,47 @@ public class VentanaAlumno extends JFrame{
 		
 		textoNombre = new JTextField(20);
 		textoApellidos = new JTextField(20);
-		textoEmail = new JTextField(20);
-		textoDomicilio = new JTextField(20);
 		textoUsuario = new JTextField(20);
 		textoContraseña = new JTextField(20);
+		textoDomicilio = new JTextField(20);
+		textoprofesorAsignado = new JTextField(20);
+		textoclaseAsignada = new JTextField(20);
+		textodinero = new JTextField(20);
+		textogrupo = new JTextField(20);
+		textocalificacion = new JTextField(20);
+		
 		
 		textoNombre.setEditable(false);
 		textoApellidos.setEditable(false);
-		textoEmail.setEditable(false);
-		textoDomicilio.setEditable(false);
 		textoUsuario.setEditable(false);
 		textoContraseña.setEditable(false);
-		
-		
-
+		textoDomicilio.setEditable(false);
+		textoprofesorAsignado.setEditable(false);
+		textoclaseAsignada.setEditable(false);
+		textodinero.setEditable(false);
+		textogrupo.setEditable(false);
+		textocalificacion.setEditable(false);
 		
 		panelInformacionPersonal.add(new JLabel("Nombre: "));
 		panelInformacionPersonal.add(textoNombre);
 		panelInformacionPersonal.add(new JLabel("Apellidos: "));
 		panelInformacionPersonal.add(textoApellidos);
-		panelInformacionPersonal.add(new JLabel("Correo electrónico: "));
-		panelInformacionPersonal.add(textoEmail);
-		panelInformacionPersonal.add(new JLabel("Domicilio: "));
-		panelInformacionPersonal.add(textoDomicilio);
 		panelInformacionPersonal.add(new JLabel("Usuario: "));
 		panelInformacionPersonal.add(textoUsuario);
 		panelInformacionPersonal.add(new JLabel("Contraseña: "));
 		panelInformacionPersonal.add(textoContraseña);
+		panelInformacionPersonal.add(new JLabel("Domicilio: "));
+		panelInformacionPersonal.add(textoDomicilio);
+		panelInformacionPersonal.add(new JLabel("Profesor Asignado: "));
+		panelInformacionPersonal.add(textoprofesorAsignado);
+		panelInformacionPersonal.add(new JLabel("Clase Asignada: "));
+		panelInformacionPersonal.add(textoclaseAsignada);
+		panelInformacionPersonal.add(new JLabel("Dinero: "));
+		panelInformacionPersonal.add(textodinero);
+		panelInformacionPersonal.add(new JLabel("Grupo: "));
+		panelInformacionPersonal.add(textogrupo);
+		panelInformacionPersonal.add(new JLabel("Calificación: "));
+		panelInformacionPersonal.add(textocalificacion);
 		
 		
 		//JFILECHOOSER PARA QUE EL ALUMNO ELIJA LA FOTO
@@ -118,59 +136,6 @@ public class VentanaAlumno extends JFrame{
 			}
 		});
 		
-		// actionlistener de JTextFields
-		textoNombre.addActionListener(new ActionListener() {
-			
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				textoNombre.setCaret((Caret) ventanaSecretaria.txtNombre);
-				
-			}
-		});
-		
-		textoApellidos.addActionListener(new ActionListener() {
-			
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				textoApellidos.setCaret((Caret) ventanaSecretaria.txtApellidos);
-				
-			}
-		});
-		
-		textoEmail.addActionListener(new ActionListener() {
-			
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				textoEmail.setCaret((Caret) ventanaSecretaria.txtEmail);
-			}
-		});
-		
-		textoDomicilio.addActionListener(new ActionListener() {
-			
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				textoDomicilio.setCaret((Caret) ventanaSecretaria.txtDomicilio);
-				
-			}
-		});
-		
-		textoUsuario.addActionListener(new ActionListener() {
-			
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				textoUsuario.setCaret((Caret) ventanaSecretaria.txtUsuario);
-				
-			}
-		});
-		
-		textoContraseña.addActionListener(new ActionListener() {
-			
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				textoContraseña.setCaret((Caret) ventanaSecretaria.txtContrasenya);
-				
-			}
-		});
 		
 		panelInformacionAcademica.add(new JLabel("Horario: "), BorderLayout.CENTER);
 		JPanel panelBotonesAcademico = new JPanel();
