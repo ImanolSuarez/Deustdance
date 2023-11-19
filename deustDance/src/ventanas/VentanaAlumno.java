@@ -123,7 +123,7 @@ public class VentanaAlumno extends JFrame{
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				
+				textoNombre.setCaret((Caret) ventanaSecretaria.txtNombre);
 				
 			}
 		});
@@ -132,7 +132,7 @@ public class VentanaAlumno extends JFrame{
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				
+				textoApellidos.setCaret((Caret) ventanaSecretaria.txtApellidos);
 				
 			}
 		});
@@ -141,7 +141,7 @@ public class VentanaAlumno extends JFrame{
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				
+				textoEmail.setCaret((Caret) ventanaSecretaria.txtEmail);
 			}
 		});
 		
@@ -149,7 +149,7 @@ public class VentanaAlumno extends JFrame{
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				
+				textoDomicilio.setCaret((Caret) ventanaSecretaria.txtDomicilio);
 				
 			}
 		});
@@ -158,7 +158,7 @@ public class VentanaAlumno extends JFrame{
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				
+				textoUsuario.setCaret((Caret) ventanaSecretaria.txtUsuario);
 				
 			}
 		});
@@ -167,7 +167,7 @@ public class VentanaAlumno extends JFrame{
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				
+				textoContraseña.setCaret((Caret) ventanaSecretaria.txtContrasenya);
 				
 			}
 		});
