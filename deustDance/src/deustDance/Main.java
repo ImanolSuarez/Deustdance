@@ -10,6 +10,7 @@ import java.util.logging.Logger;
 
 
 import ventanas.VentanaInicioSesion;
+import ventanas.VentanaProfesor;
 import ventanas.VentanaSecretaria;
 
 
@@ -52,7 +53,7 @@ public class Main {
 		Academia.anyadirSecretario(s2);
 		
 		
-		new VentanaSecretaria();	
+		new VentanaProfesor();	
 		
 	}
 
