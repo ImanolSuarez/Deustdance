@@ -1,5 +1,6 @@
 package deustDance;
 
+import java.sql.Connection;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -20,8 +21,8 @@ public class Academia {
 	/*METODO PARA AÑADIR ALUMNOS*/
 	
 	
-	public void cargarAlumnoDeseBD() {
-		
+	public static void cargarAlumnoDesdeBD(Connection conn) {
+		listaAlumnos = BaseDatos.volcadoAlumnosaLista(conn);
 	}
 	
 

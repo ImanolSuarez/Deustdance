@@ -26,6 +26,7 @@ public class BaseDatos {
 	}
 	
 	/*METODO QUE REALIZA EL CRIERRE DE LA BASE DE DATOS*/
+	
 	public static void closeBD(Connection con) {
 		if(con!=null) {
 			try {
@@ -36,9 +37,23 @@ public class BaseDatos {
 		}
 	}
 	
+	/*CEACION DE TABLAS TABLAS*/
+	
+	/*Añadir alumnos*/
+	public static void crearTabla(Connection con) {
+		String sql = "CREATE TABLE IF NOT EXIST Alumno(nombre String, apellido String, usuario String, contraseña String, telefono int, domicilio String, baile String, profesor String, clase int, dinero double, grupo int, calificacion double)";
+		try {
+			Statement st = con.createStatement();
+			st.executeUpdate(sql);
+			st.close();
+		}catch (SQLException e) {
+			// TODO: handle exception
+		}
+	}
+	
 	/*VOLCADO DE ALUMNOS DESDE LA BASE DE DATOS A LA LISTA*/
 	
-	public static void volcadoAlumnosaLista(Connection conn) {
+	public static List<Alumno> volcadoAlumnosaLista(Connection conn) {
 		List<Alumno> listaAlumnos = new ArrayList<>();
 		String sql = "SELECT * FROM alumno";
 		try {
@@ -49,14 +64,23 @@ public class BaseDatos {
 				String apellido = rs.getString("apellido");
 				String usuario = rs.getString("usuario");
 				String contrasenia = rs.getString("contraseña");
+				int telefono = rs.getInt("telefono");
+				String domicilio = rs.getString("domicilio");
+				String baile = rs.getString("baile");
+				String profesor = rs.getString("profesor");
+				String clase = rs.getString("clase");
+				double dinero = rs.getDouble("dinero");
+				int grupo = rs.getInt("grupo");
 				double calificacion = rs.getDouble("calificacion");
-				Alumno a = new Alumno(nombre, apellido, usuario, contrasenia, calificacion);
+				Alumno a = new Alumno(nombre, apellido, usuario, contrasenia, telefono, domicilio, null, null, null, dinero, grupo, calificacion);
 				listaAlumnos.add(a);
 			}
 			rs.close();
+			st.close();
 		}catch (SQLException e) {
 			e.printStackTrace();
 		}
+		return listaAlumnos;
 		
 	}
 	
