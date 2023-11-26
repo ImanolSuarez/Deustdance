@@ -14,7 +14,7 @@ public class ProfesorTest {
 	
 	@Before
 	public void setUp() {
-		p = new Profesor("Profesor", "Apellido", "usuario", "contraseña", null, 2, null, null);
+		p = new Profesor("Profesor", "Apellido", "usuario", "contraseña",677787767,"domicilio", null, 2, null, null);
 	}
 	
 	@Test
@@ -53,10 +53,14 @@ public class ProfesorTest {
 		p.setListaClases(null);
 		assertNull(p.getListaClases());
 	}
+	
 	@Test
 	public void ProfesorToString() {
-		assertEquals("Nombre del profesor: " + "Profesor" + ", apellidos: " + "Apellido" + ", grupo asignado: "
-				+ 2 + ", lista alumnos=" + null + ", lista bailes=" + null + ", lista de clases="
-				+ null, p.toString());
+		//		p = new Profesor("Profesor", "Apellido", "usuario", "contraseña",677787767,"domicilio", null, 2, null, null);
+
+		assertEquals("Profesor [listaAlumnos=" + null + ", grupo=" + 2 + ", listaBailes=" + null
+				+ ", listaClases=" + null + ", getNombre()=" + "Profesor" + ", getApellidos()=" + "Apellido"
+				+ ", getUsuario()=" + "usuario" + ", getContrasenia()=" + "contraseña" + ", getTelefono()="
+				+ 677787767 + ", getDomicilio()=" + "domicilio"+ "]", p.toString());
 	}
 }

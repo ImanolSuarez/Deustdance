@@ -65,8 +65,7 @@ public class Profesor extends Persona{
 		return "Profesor [listaAlumnos=" + listaAlumnos + ", grupo=" + grupo + ", listaBailes=" + listaBailes
 				+ ", listaClases=" + listaClases + ", getNombre()=" + getNombre() + ", getApellidos()=" + getApellidos()
 				+ ", getUsuario()=" + getUsuario() + ", getContrasenia()=" + getContrasenia() + ", getTelefono()="
-				+ getTelefono() + ", getDomicilio()=" + getDomicilio() + ", toString()=" + super.toString()
-				+ ", getClass()=" + getClass() + ", hashCode()=" + hashCode() + "]";
+				+ getTelefono() + ", getDomicilio()=" + getDomicilio()+ "]";
 	}
 		
 
