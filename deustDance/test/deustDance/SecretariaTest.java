@@ -15,14 +15,14 @@ public class SecretariaTest {
 	
 	@Before
 	public void setUp() {
-		s = new Secretaria("Secretaria", "Apellido", "usuario", "contraseña");
+		s = new Secretaria("Secretaria", "Apellido", "usuario", "contraseña", 677787765, "domicilio");
 	}
 	
 	
 	@Test
-	public void SecretariaToString() {
+	public void testToString() {
 		assertEquals("Nombre de la secretaria: " + "Secretaria" + ", apellidos: " + "Apellido" + ", usuario: "
-				+ "usuario" + ", contraseña " + "contraseña", s.toString());
+				+ "usuario" + ", contraseña: " + "contraseña" +  ", telefono: " + 677787765 + ", domicilio: " + "domicilio", s.toString());
 	}
 
 }

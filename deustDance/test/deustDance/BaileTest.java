@@ -1,10 +1,10 @@
 package deustDance;
 
-import static org.junit.Assert.assertArrayEquals;
+
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNull;
 
-import java.util.ArrayList;
+
 
 import org.junit.Before;
 import org.junit.Test;

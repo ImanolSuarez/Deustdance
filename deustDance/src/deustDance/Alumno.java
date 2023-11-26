@@ -87,8 +87,7 @@ public class Alumno extends Persona{
 				+ claseAsignada + ", dinero=" + dinero + ", grupo=" + grupo + ", calificacion=" + calificacion
 				+ ", getNombre()=" + getNombre() + ", getApellidos()=" + getApellidos() + ", getUsuario()="
 				+ getUsuario() + ", getContrasenia()=" + getContrasenia() + ", getTelefono()=" + getTelefono()
-				+ ", getDomicilio()=" + getDomicilio() + ", toString()=" + super.toString() + ", getClass()="
-				+ getClass() + ", hashCode()=" + hashCode() + "]";
+				+ ", getDomicilio()=" + getDomicilio() + "]";
 	}
 	
 	
