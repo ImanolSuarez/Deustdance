@@ -1,8 +1,11 @@
 package deustDance;
 
+import java.io.FileNotFoundException;
+import java.io.FileReader;
 import java.sql.Connection;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Scanner;
 
 public class Academia {
 	
@@ -108,7 +111,39 @@ public class Academia {
 		}
 	}
 	
+	/*Metodo para cargar los datos de prueba de Alumnos en la BD*/
 	
+	public static void cargarDatosAlumno(Connection con,String nomFich) {
+		
+		try {
+			Scanner sc = new Scanner(new FileReader(nomFich));
+			String titulos = sc.nextLine();
+			String linea;
+			while(sc.hasNext()) {
+				linea = sc.nextLine();
+				String[] datos = linea.split(";");
+				String nombre = datos[0];
+				String apellido = datos[1];
+				String usuario = datos[2];
+				String contra = datos[3];
+				int tel = Integer.parseInt(datos[4]);
+				String domicilio = datos[5];
+				//Baile baile = datos[6];
+				//Profesor profesor = datos[7];
+				//Clase clase = datos[8];
+				Double dinero = Double.parseDouble(datos[9]);
+				int grupo = Integer.parseInt(datos[10]);
+				double calificacion = Double.parseDouble(datos[11]);
+				Alumno a = new Alumno(nombre, apellido, usuario, contra, tel, domicilio, null, null, null, tel, grupo, calificacion);
+				BaseDatos.insertarPersonaBD(con, a);
+			}
+			sc.close();
+		} catch (FileNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+	}
 	
 	
 	
