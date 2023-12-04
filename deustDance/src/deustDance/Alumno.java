@@ -3,21 +3,21 @@ package deustDance;
 
 public class Alumno extends Persona{
 	
-	private Baile baileAsignado;
-	private Profesor profesorAsignado;
-	private Clase claseAsignada;
+	private String baileAsignado;
+	private int id_profesorAsignado;
+	private int id_claseAsignada;
 	private double dinero;
 	private int grupo;
 	private double calificacion;
 	
 	
 	public Alumno(String nombre, String apellidos, String usuario, String contrasenia, int telefono, String domicilio,
-			Baile baileAsignado, Profesor profesorAsignado, Clase claseAsignada, double dinero, int grupo,
+			String baileAsignado, int id_profesorAsignado, int id_claseAsignada, double dinero, int grupo,
 			double calificacion) {
 		super(nombre, apellidos, usuario, contrasenia, telefono, domicilio);
 		this.baileAsignado = baileAsignado;
-		this.profesorAsignado = profesorAsignado;
-		this.claseAsignada = claseAsignada;
+		this.id_profesorAsignado = id_profesorAsignado;
+		this.id_claseAsignada = id_claseAsignada;
 		this.dinero = dinero;
 		this.grupo = grupo;
 		this.calificacion = calificacion;
@@ -25,36 +25,36 @@ public class Alumno extends Persona{
 	
 	public Alumno() {
 		super();
-		this.baileAsignado = null;
-		this.profesorAsignado = null;
-		this.claseAsignada = null;
+		this.baileAsignado = "";
+		this.id_profesorAsignado = 1;
+		this.id_claseAsignada = 1;
 		this.dinero = 0;
 		this.grupo = 0;
 		this.calificacion = 0;
 	}
 
-	public Baile getBaileAsignado() {
+	public String getBaileAsignado() {
 		return baileAsignado;
 	}
 
-	public void setBaileAsignado(Baile baileAsignado) {
+	public void setBaileAsignado(String baileAsignado) {
 		this.baileAsignado = baileAsignado;
 	}
 
-	public Profesor getProfesorAsignado() {
-		return profesorAsignado;
+	public int getProfesorAsignado() {
+		return id_profesorAsignado;
 	}
 
-	public void setProfesorAsignado(Profesor profesorAsignado) {
-		this.profesorAsignado = profesorAsignado;
+	public void setProfesorAsignado(int id_profesorAsignado) {
+		this.id_profesorAsignado = id_profesorAsignado;
 	}
 
-	public Clase getClaseAsignada() {
-		return claseAsignada;
+	public int getClaseAsignada() {
+		return id_claseAsignada;
 	}
 
-	public void setClaseAsignada(Clase claseAsignada) {
-		this.claseAsignada = claseAsignada;
+	public void setClaseAsignada(int id_claseAsignada) {
+		this.id_claseAsignada = id_claseAsignada;
 	}
 
 	public double getDinero() {
@@ -83,8 +83,8 @@ public class Alumno extends Persona{
 
 	@Override
 	public String toString() {
-		return "Alumno [baileAsignado=" + baileAsignado + ", profesorAsignado=" + profesorAsignado + ", claseAsignada="
-				+ claseAsignada + ", dinero=" + dinero + ", grupo=" + grupo + ", calificacion=" + calificacion
+		return "Alumno [baileAsignado=" + baileAsignado + ", profesorAsignado=" + id_profesorAsignado + ", claseAsignada="
+				+ id_claseAsignada + ", dinero=" + dinero + ", grupo=" + grupo + ", calificacion=" + calificacion
 				+ ", getNombre()=" + getNombre() + ", getApellidos()=" + getApellidos() + ", getUsuario()="
 				+ getUsuario() + ", getContrasenia()=" + getContrasenia() + ", getTelefono()=" + getTelefono()
 				+ ", getDomicilio()=" + getDomicilio() + "]";

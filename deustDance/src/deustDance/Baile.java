@@ -1,35 +1,51 @@
 package deustDance;
 
-
-
-import java.util.List;
-
 public class Baile {
 	
+	private int idBaile;
 	private String descripcion;
 	private Tipo tipoBaile;
 	private double precio;
 	private int horasDeClase;
-	private Profesor profesorAsignado;
-	private List<Alumno> listaAlumnos;
-	private Clase claseAsignada;
 	
-	public Baile(String descripcion, Tipo tipoBaile, double precio, int horasDeClase, Profesor profesorAsignado,
-			List<Alumno> listaAlumnos, Clase claseAsignada) {
+	
+	public Baile(int idBaile, String descripcion, Tipo tipoBaile, double precio, int horasDeClase) {
 		super();
+		this.idBaile = idBaile;
 		this.descripcion = descripcion;
 		this.tipoBaile = tipoBaile;
 		this.precio = precio;
 		this.horasDeClase = horasDeClase;
-		this.profesorAsignado = profesorAsignado;
-		this.listaAlumnos = listaAlumnos;
-		this.claseAsignada = claseAsignada;
+		
 	}
+	
+
+	public Baile(int idBaile, String descripcion, String tipoBaile, double precio, int horasDeClase) {
+		super();
+		this.idBaile = idBaile;
+		this.descripcion = descripcion;
+		setTipoBaile(tipoBaile);
+		this.precio = precio;
+		this.horasDeClase = horasDeClase;
+	}
+
 
 	public Baile() {
 		super();
 		
 	}
+
+	
+	
+	public int getIdBaile() {
+		return idBaile;
+	}
+
+
+	public void setIdBaile(int idBaile) {
+		this.idBaile = idBaile;
+	}
+
 
 	public String getDescripcion() {
 		return descripcion;
@@ -42,9 +58,17 @@ public class Baile {
 	public Tipo getTipoBaile() {
 		return tipoBaile;
 	}
+	
+	public String getTipoBaileStr() {
+		return tipoBaile.toString();
+	}
 
 	public void setTipoBaile(Tipo tipoBaile) {
 		this.tipoBaile = tipoBaile;
+	}
+	
+	public void setTipoBaile(String tipo) {
+		this.tipoBaile = Tipo.valueOf(tipo);
 	}
 
 	public double getPrecio() {
@@ -63,35 +87,11 @@ public class Baile {
 		this.horasDeClase = horasDeClase;
 	}
 
-	public Profesor getProfesorAsignado() {
-		return profesorAsignado;
-	}
-
-	public void setProfesorAsignado(Profesor profesorAsignado) {
-		this.profesorAsignado = profesorAsignado;
-	}
-
-	public List<Alumno> getListaAlumnos() {
-		return listaAlumnos;
-	}
-
-	public void setListaAlumnos(List<Alumno> listaAlumnos) {
-		this.listaAlumnos = listaAlumnos;
-	}
-
-	public Clase getClaseAsignada() {
-		return claseAsignada;
-	}
-
-	public void setClaseAsignada(Clase claseAsignada) {
-		this.claseAsignada = claseAsignada;
-	}
 
 	@Override
 	public String toString() {
 		return "Tipo de baile: "+ tipoBaile + "descripcion: " + descripcion + ", precio: " + precio + "€"
-				+ ", horas de clase: " + horasDeClase + ", profesor asignado: " + profesorAsignado + ", lista de alumnos: "
-				+ listaAlumnos + ", clase asignada=" + claseAsignada;
+				+ ", horas de clase: " + horasDeClase ;
 	}
 
 	

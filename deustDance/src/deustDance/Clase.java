@@ -5,14 +5,15 @@ import java.util.List;
 
 public class Clase {
 	
-	private static int contador = 0;
+	private static int contador = 1;
+	private int num;
 	private String nombre;
 	private List<Profesor> listaProfesores;
 	private List<Alumno> listaAlumnos;
 	
 	public Clase(String nombre, List<Profesor> listaProfesores, List<Alumno> listaAlumnos) {
 		super();
-		this.contador = contador;
+		num = contador;
 		contador++;
 		this.nombre = nombre;
 		this.listaProfesores = listaProfesores;

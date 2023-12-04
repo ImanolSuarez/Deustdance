@@ -12,7 +12,7 @@ public class AlumnoTest {
 	private Alumno a;
 	@Before
 	public void setUp() {
-		a = new Alumno("Alumno", "Apellido", "usuario", "contraseña", 677877643, "domicilio", null,null,null,200, 2, 5.0);
+		//a = new Alumno("Alumno", "Apellido", "usuario", "contraseña", 677877643, "domicilio", null,null,null,200, 2, 5.0);
 	}
 	@Test
 	public void getBaileAsignado() {
@@ -27,18 +27,11 @@ public class AlumnoTest {
 	public void getProfesorAsignado() {
 		assertNull(a.getProfesorAsignado());
 	}
-	@Test
-	public void setProfesorAsignado() {
-		a.setProfesorAsignado(null);
-		assertNull(a.getProfesorAsignado());
-	}
+	
 	public void getClaseAsignada() {
 		assertNull(a.getClaseAsignada());
 	}
-	public void setClaseAsignada() {
-		a.setClaseAsignada(null);
-		assertNull(a.getClaseAsignada());
-	}
+	
 	@Test
 	public void getDinero() {
 		assertEquals(200, a.getDinero(), 0);

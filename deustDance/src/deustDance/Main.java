@@ -33,11 +33,13 @@ public class Main {
 		}
 		
 		
-		Alumno a1 = new Alumno("Xabier", "Hernaez", "rebixa", "navaleno07",644544502, null, null, null, null, 150, 3, 7);
-		Alumno a2 = new Alumno("Xabier", "Hernaez", "rr", "ddd",699577345, null, null, null,null, 300,4 ,5);
 		
+		/*
 		Profesor p1 = new Profesor("a", "h", "ander", "aa", 638562098, null, null, 0, null, null);
 		Profesor p2 = new Profesor("a", "h", "andrea", "bb", 630264985, null, null, 2, null, null);
+		
+		Alumno a1 = new Alumno("Xabier", "Hernaez", "rebixa", "navaleno07",644544502, null, null, null, null, 150, 3, 7);
+		Alumno a2 = new Alumno("Xabier", "Hernaez", "rr", "ddd",699577345, null, null, null,null, 300,4 ,5);
 		
 		Secretaria s1 = new Secretaria("a", "h", "marta", "cc", 630845294, null);
 		Secretaria s2 = new Secretaria("a", "h", "juan", "hh", 634821943, null);
@@ -49,7 +51,7 @@ public class Main {
 		Academia.anyadirProfesor(p2);
 		Academia.anyadirSecretario(s1);
 		Academia.anyadirSecretario(s2);
-		
+		*/
 		
 		new VentanaInicioSesion();	
 		

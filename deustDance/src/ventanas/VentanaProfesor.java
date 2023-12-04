@@ -195,11 +195,11 @@ public class VentanaProfesor extends JFrame {
 		//pestaña Lista de alumnos
 		//Datos de prueba	
 		ArrayList<Alumno> listaAlumnos = new ArrayList<Alumno>();
-		listaAlumnos.add(new Alumno("Nombre1", "Apellido1", "usuario1", "contrasenia1", 123456789, "Dirección1",  null, null, null, 100.0, 1, 85.0));
-		listaAlumnos.add(new Alumno ("Nombre2", "Apellido2", "usuario2", "contrasenia2", 987654321, "Dirección2",null, null, null, 150.0, 2, 90.0));
-		listaAlumnos.add(new Alumno("Nombre3", "Apellido3", "usuario3", "contrasenia3", 111222333, "Dirección3", null, null, null, 200.0, 1, 78.0));
-		listaAlumnos.add(new Alumno("Nombre4", "Apellido4", "usuario4", "contrasenia4", 444555666, "Dirección4", null, null, null, 120.0, 2, 95.0));
-		listaAlumnos.add(new Alumno("Nombre5", "Apellido5", "usuario5", "contrasenia5", 555666777, "Dirección5", null, null, null, 80.0, 1, 75.0));
+		//listaAlumnos.add(new Alumno("Nombre1", "Apellido1", "usuario1", "contrasenia1", 123456789, "Dirección1",  null, null, null, 100.0, 1, 85.0));
+		//listaAlumnos.add(new Alumno ("Nombre2", "Apellido2", "usuario2", "contrasenia2", 987654321, "Dirección2",null, null, null, 150.0, 2, 90.0));
+		//listaAlumnos.add(new Alumno("Nombre3", "Apellido3", "usuario3", "contrasenia3", 111222333, "Dirección3", null, null, null, 200.0, 1, 78.0));
+		//listaAlumnos.add(new Alumno("Nombre4", "Apellido4", "usuario4", "contrasenia4", 444555666, "Dirección4", null, null, null, 120.0, 2, 95.0));
+		//listaAlumnos.add(new Alumno("Nombre5", "Apellido5", "usuario5", "contrasenia5", 555666777, "Dirección5", null, null, null, 80.0, 1, 75.0));
 		ModeloTablaAlumnos modelo = new ModeloTablaAlumnos(listaAlumnos); //Añadimos el modelo a la tabla
 		JTable JTableAlumnos = new JTable(modelo);
 		JScrollPane scrollPane = new JScrollPane(JTableAlumnos);
