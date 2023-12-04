@@ -6,14 +6,16 @@ import java.util.List;
 
 public class Profesor extends Persona{
 	
+	private int id;
 	private List<Alumno> listaAlumnos;
 	private int grupo;
 	private List<Baile> listaBailes;
 	private List<Clase> listaClases;
 	
-	public Profesor(String nombre, String apellidos, String usuario, String contrasenia, int telefono, String domicilio,
+	public Profesor(int id,String nombre, String apellidos, String usuario, String contrasenia, int telefono, String domicilio,
 			List<Alumno> listaAlumnos, int grupo, List<Baile> listaBailes, List<Clase> listaClases) {
 		super(nombre, apellidos, usuario, contrasenia, telefono, domicilio);
+		this.id = id;
 		this.listaAlumnos = listaAlumnos;
 		this.grupo = grupo;
 		this.listaBailes = listaBailes;
@@ -22,10 +24,21 @@ public class Profesor extends Persona{
 	
 	public Profesor() {
 		super();
+		this.id = 1;
 		this.listaAlumnos = null;
 		this.grupo = 0;
 		this.listaBailes = null;
 		this.listaClases = null;
+	}
+	
+	
+
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
 	}
 
 	public List<Alumno> getListaAlumnos() {

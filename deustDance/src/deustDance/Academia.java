@@ -122,20 +122,21 @@ public class Academia {
 			while(sc.hasNext()) {
 				linea = sc.nextLine();
 				String[] datos = linea.split(";");
-				String nombre = datos[0];
-				String apellido = datos[1];
-				String usuario = datos[2];
-				String contra = datos[3];
-				int tel = Integer.parseInt(datos[4]);
-				String domicilio = datos[5];
-				//Baile baile = datos[6];
-				//Profesor profesor = datos[7];
-				//Clase clase = datos[8];
-				Double dinero = Double.parseDouble(datos[9]);
-				int grupo = Integer.parseInt(datos[10]);
-				double calificacion = Double.parseDouble(datos[11]);
-				Alumno a = new Alumno(nombre, apellido, usuario, contra, tel, domicilio, null, null, null, tel, grupo, calificacion);
-				BaseDatos.insertarPersonaBD(con, a);
+				int id = Integer.parseInt(datos[0]);
+				String nombre = datos[1];
+				String apellido = datos[2];
+				String usuario = datos[3];
+				String contra = datos[4];
+				int tel = Integer.parseInt(datos[5]);
+				String domicilio = datos[6];
+				String baile = datos[7];
+				int profesor = Integer.parseInt(datos[8]);
+				int clase = Integer.parseInt(datos[9]);
+				Double dinero = Double.parseDouble(datos[10]);
+				int grupo = Integer.parseInt(datos[11]);
+				double calificacion = Double.parseDouble(datos[12]);
+				Alumno a = new Alumno(id, nombre, apellido, usuario, contra, tel, domicilio, baile, profesor, clase, dinero, grupo, calificacion);
+				BaseDatos.insertarAlumnoBD(con, a);
 			}
 			sc.close();
 		} catch (FileNotFoundException e) {
@@ -143,6 +144,36 @@ public class Academia {
 			e.printStackTrace();
 		}
 		
+	}
+	
+	public static void cargarDatosProfesor(Connection con, String file) {
+		
+		List<Alumno> listaAlumnos = new ArrayList<>();
+		List<Baile> listaBaile = new ArrayList<>();
+		try {
+			Scanner sc = new Scanner(new FileReader(file));
+			String titulos = sc.nextLine();
+			String linea;
+			while(sc.hasNext()) {
+				linea = sc.nextLine();
+				String datos[] = linea.split(";");
+				int id = Integer.parseInt(datos[0]);
+				String nombre = datos[1];
+				String apellido =  datos[2];
+				String usuario = datos[3];
+				String contra = datos[4];
+				int tf = Integer.parseInt(datos[5]);
+				String domicilio = datos[6];
+				int grupo = Integer.parseInt(datos[7]);
+				
+				listaAlumnos = BaseDatos.obtenerAlumnosProfesor(con, id);
+				listaBaile = BaseDatos.obtenerBaileProfesor(con, id);
+				
+			}
+		} catch (FileNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 	
 	
