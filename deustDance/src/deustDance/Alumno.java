@@ -4,7 +4,7 @@ package deustDance;
 public class Alumno extends Persona{
 	
 	private int id;
-	private String baileAsignado;
+	private int baileAsignado;
 	private int id_profesorAsignado;
 	private int id_claseAsignada;
 	private double dinero;
@@ -13,7 +13,7 @@ public class Alumno extends Persona{
 	
 	
 	public Alumno(int id,String nombre, String apellidos, String usuario, String contrasenia, int telefono, String domicilio,
-			String baileAsignado, int id_profesorAsignado, int id_claseAsignada, double dinero, int grupo,
+			int baileAsignado, int id_profesorAsignado, int id_claseAsignada, double dinero, int grupo,
 			double calificacion) {
 		super(nombre, apellidos, usuario, contrasenia, telefono, domicilio);
 		this.id = id;
@@ -28,7 +28,7 @@ public class Alumno extends Persona{
 	public Alumno() {
 		super();
 		this.id = 1;
-		this.baileAsignado = "";
+		this.baileAsignado = 0;
 		this.id_profesorAsignado = 1;
 		this.id_claseAsignada = 1;
 		this.dinero = 0;
@@ -61,11 +61,11 @@ public class Alumno extends Persona{
 		this.id_claseAsignada = id_claseAsignada;
 	}
 
-	public String getBaileAsignado() {
+	public int getBaileAsignado() {
 		return baileAsignado;
 	}
 
-	public void setBaileAsignado(String baileAsignado) {
+	public void setBaileAsignado(int baileAsignado) {
 		this.baileAsignado = baileAsignado;
 	}
 

@@ -8,16 +8,17 @@ public class Clase {
 	private static int contador = 1;
 	private int num;
 	private String nombre;
-	private List<Profesor> listaProfesores;
-	private List<Alumno> listaAlumnos;
+	private int idProfesor;
 	
-	public Clase(String nombre, List<Profesor> listaProfesores, List<Alumno> listaAlumnos) {
+	
+	public Clase(int num, String nombre, int idProfesor) {
 		super();
 		num = contador;
 		contador++;
+		this.num = num;
 		this.nombre = nombre;
-		this.listaProfesores = listaProfesores;
-		this.listaAlumnos = listaAlumnos;
+		this.idProfesor = idProfesor;
+		
 	}
 
 	public Clase() {
@@ -32,26 +33,18 @@ public class Clase {
 	public void setNombre(String nombre) {
 		this.nombre = nombre;
 	}
-
-	public List<Profesor> getListaProfesores() {
-		return listaProfesores;
+	
+	public int getIdProfesor() {
+		return idProfesor;
 	}
 
-	public void setListaProfesores(List<Profesor> listaProfesores) {
-		this.listaProfesores = listaProfesores;
-	}
-
-	public List<Alumno> getListaAlumnos() {
-		return listaAlumnos;
-	}
-
-	public void setListaAlumnos(List<Alumno> listaAlumnos) {
-		this.listaAlumnos = listaAlumnos;
+	public void setIdProfesor(int idProfesor) {
+		this.idProfesor = idProfesor;
 	}
 
 	@Override
 	public String toString() {
-		return "Nombre de la clase: " + nombre + ", lista de profesores: " + listaProfesores + ", lista de alumnos=" + listaAlumnos;
+		return "Nombre de la clase: " + nombre + "-" + num + ", id profesor: " + idProfesor;
 	}
 	
 	

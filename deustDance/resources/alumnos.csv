@@ -1,12 +1,12 @@
 Alumnos de prueba para la base de datos
-1;Xabier;Hernaez;rebi;con2332;688823371;basurto;1;null;null;5678;1;0.00
-2;Imanol;Suarez;ima2993;imacon;688823372;indautxu;1;null;null;6578;2;0.00
-3;Paula;Jimenez;paulaa09;paulacon;688823373;galdakano;1;null;null;1678;13;0.00
-4;Daniel;Bravo;dani987;danielcon;688823374;basurto;null;null;null;567;1;0.00
-5;Ander;Garcia;ander290;andercon;688823375;basurto;null;null;null;58;1;0.00
-6;Paco;Gonzalez;paco22;pacocon;688823376;miribilla;null;null;null;54578;2;0.00
-7;Ana;Sacristan;ana890;anacon;688823377;cruces;null;null;null;5643;5;0.00
-8;Izaskun;Fernandez;izas988;izascon;688823378;san andrian;null;null;null;56732;5;0.00
-9;Margarita;Hernandez;margarita998;margaritacon;688823379;basurto;null;null;null;5678333;3;0.00
-10;Laura;Gonzalez;laura646;lauracon;688823316;basurto;null;null;null;5;4;0.00
-11;Javi;Palacios;javierpalacios;javicon;688823326;basurto;null;null;null;5673338;3;0.00
+1;Xabier;Hernaez;rebi;con2332;688823371;basurto;1;1;2;5678;1;0.00
+2;Imanol;Suarez;ima2993;imacon;688823372;indautxu;1;2;3;6578;2;0.00
+3;Paula;Jimenez;paulaa09;paulacon;688823373;galdakano;1;1;2;1678;13;0.00
+4;Daniel;Bravo;dani987;danielcon;688823374;basurto;2;2;2;567;1;0.00
+5;Ander;Garcia;ander290;andercon;688823375;basurto;3;1;1;58;1;0.00
+6;Paco;Gonzalez;paco22;pacocon;688823376;miribilla;1;4;1;54578;2;0.00
+7;Ana;Sacristan;ana890;anacon;688823377;cruces;2;2;2;5643;5;0.00
+8;Izaskun;Fernandez;izas988;izascon;688823378;san andrian;4;2;2;56732;5;0.00
+9;Margarita;Hernandez;margarita998;margaritacon;688823379;basurto;5;2;1;5678333;3;0.00
+10;Laura;Gonzalez;laura646;lauracon;688823316;basurto;2;2;1;5;4;0.00
+11;Javi;Palacios;javierpalacios;javicon;688823326;basurto;3;2;3;5673338;3;0.00

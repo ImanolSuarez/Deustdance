@@ -25,7 +25,7 @@ public class Academia {
 	
 	
 	public static void cargarAlumnoDesdeBD(Connection conn) {
-		listaAlumnos = BaseDatos.volcadoAlumnosaLista(conn);
+		//listaAlumnos = BaseDatos.volcadoAlumnosaLista(conn);
 	}
 	
 
@@ -129,7 +129,7 @@ public class Academia {
 				String contra = datos[4];
 				int tel = Integer.parseInt(datos[5]);
 				String domicilio = datos[6];
-				String baile = datos[7];
+				int baile = Integer.parseInt(datos[7]);
 				int profesor = Integer.parseInt(datos[8]);
 				int clase = Integer.parseInt(datos[9]);
 				Double dinero = Double.parseDouble(datos[10]);
@@ -150,6 +150,7 @@ public class Academia {
 		
 		List<Alumno> listaAlumnos = new ArrayList<>();
 		List<Baile> listaBaile = new ArrayList<>();
+		List<Clase> listaClase = new ArrayList<>();
 		try {
 			Scanner sc = new Scanner(new FileReader(file));
 			String titulos = sc.nextLine();
@@ -168,7 +169,9 @@ public class Academia {
 				
 				listaAlumnos = BaseDatos.obtenerAlumnosProfesor(con, id);
 				listaBaile = BaseDatos.obtenerBaileProfesor(con, id);
-				
+				listaClase = BaseDatos.obtenerClaseProfesor(con, id);
+				Profesor p = new Profesor(id, nombre, apellido, usuario, contra, tf, domicilio, listaAlumnos, grupo, listaBaile, listaClase);
+				BaseDatos.insertarProfesorBD(con, p);
 			}
 		} catch (FileNotFoundException e) {
 			// TODO Auto-generated catch block
