@@ -41,18 +41,19 @@ public class BaseDatos {
 	
 	/*Añadir alumnos*/
 	public static void crearTabla(Connection con) {
-		String drop = "DROP TABLE Alumno";
+		String drop = "DROP TABLE IF EXISTS Alumno";
 		String sql = "CREATE TABLE IF NOT EXISTS Alumno(id Integer, nombre String, apellido String, usuario String, contraseña String, telefono int, domicilio String, idBaile Integer, idProfesorAlumno Integer, idClase Integer, dinero double, grupo int, calificacion double)";
-		String drop4 = "DROP TABLE Profesor";
+		String drop4 = "DROP TABLE IF EXISTS Profesor";
 		String sq2 = "CREATE TABLE IF NOT EXISTS Profesor(id Integer, nombre String, apellido String, usuario String, contraseña String, telefono int, domicilio String, grupo Integer)";
-		String drop2 = "DROP TABLE Baile";
+		String drop2 = "DROP TABLE IF EXISTS Baile";
 		String sq3 = "CREATE TABLE IF NOT EXISTS Baile(id Integer, idProfesorBaile Integer, descripcion String, tipo String, precio Double, horas int)";
 		String sq4 = "CREATE TABLE IF NOT EXISTS BaileProfesor(idProfesor Integer, idBaile Integer)";
 		String sq5 = "CREATE TABLE IF NOT EXISTS AlumnoProfesor(idProfesor Integer, idAlumno Integer)";
-		String drop3 = "DROP TABLE Clase";
+		String drop3 = "DROP TABLE IF EXISTS Clase";
 		String sq6 = "CREATE TABLE IF NOT EXISTS Clase(id Integer, nombre String, idProfesorClase Integer)";
 		String sq7 = "CREATE TABLE IF NOT EXISTS ClaseProfesor(idProfesor Integer, idClase Integer)";
-		
+		String drop5 = "DROP TABLE IF EXISTS Secretaria";
+		String sq8 = "CREATE TABLE IF NOT EXISTS Secretaria(nombre String, apellido String, usuario String, contraseña String, telefono int, domicilio String)";
 		try {
 			Statement st = con.createStatement();
 			st.executeUpdate(drop);
@@ -66,6 +67,8 @@ public class BaseDatos {
 			st.executeUpdate(drop3);
 			st.executeUpdate(sq6);
 			st.executeUpdate(sq7);
+			st.executeUpdate(drop5);
+			st.executeUpdate(sq8);
 			st.close();
 		}catch (SQLException e) {
 			e.printStackTrace();	
@@ -176,8 +179,20 @@ public class BaseDatos {
 		
 	}
 	
+	/*Insertar una secretaria nueva*/
+	public static void insertarSecretariaBD(Connection con, Secretaria s) {
+		String sql = String.format("INSERT INTO SECRETARIA VALUES('%s','%s','%s','%s','%d','%s')", s.getNombre(), s.getApellidos(), s.getUsuario(), s.getContrasenia(), s.getTelefono(), s.getDomicilio());
+		try {
+			Statement st = con.createStatement();
+			st.executeUpdate(sql);
+			st.close();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+	
 	/*VOLCADO DE ALUMNOS DESDE LA BASE DE DATOS A LA LISTA*/
-	/*
 	public static List<Alumno> volcadoAlumnosaLista(Connection conn) {
 		List<Alumno> listaAlumnos = new ArrayList<>();
 		String sql = "SELECT * FROM alumno";
@@ -185,21 +200,21 @@ public class BaseDatos {
 			Statement st = conn.createStatement();
 			ResultSet rs = st.executeQuery(sql);
 			while(rs.next()) {
+				int id = rs.getInt("id");
 				String nombre = rs.getString("nombre");
 				String apellido = rs.getString("apellido");
 				String usuario = rs.getString("usuario");
-				String contrasenia = rs.getString("contraseña");
-				int telefono = rs.getInt("telefono");
+				String con = rs.getString("contraseña");
+				int tel = rs.getInt("telefono");
 				String domicilio = rs.getString("domicilio");
-				String baile = rs.getString("baile");
-				String profesor = rs.getString("profesor");
-				String clase = rs.getString("clase");
+				int idBaile = rs.getInt("idBaile");
+				int idProfesor = rs.getInt("idProfesorAlumno");
+				int idClase = rs.getInt("idClase");
 				double dinero = rs.getDouble("dinero");
 				int grupo = rs.getInt("grupo");
-				double calificacion = rs.getDouble("calificacion");
-				//Alumno a = new Alumno(nombre, apellido, usuario, contrasenia, telefono, domicilio, null, null, null, dinero, grupo, calificacion);
-				//listaAlumnos.add(a);
-				
+				double calificacaion = rs.getDouble("calificacion");
+				Alumno a = new Alumno(id, nombre, apellido, usuario, con, tel, domicilio, idBaile, idProfesor, idClase, dinero, grupo, calificacaion);
+				listaAlumnos.add(a);
 			}
 			rs.close();
 			st.close();
@@ -207,9 +222,65 @@ public class BaseDatos {
 			e.printStackTrace();
 		}
 		return listaAlumnos;
-		
 	}
-	*/
+	
+	/*VOLCADO DE PROFESORES DESDE LA BASE DE DATOS A LA LISTA*/
+		public static List<Profesor> volcadoProfesorsaLista(Connection con){
+			List<Profesor> l = new ArrayList<>();
+			List<Alumno> listaAlumnos = new ArrayList<>();
+			List<Baile> listaBaile = new ArrayList<>();
+			List<Clase> listaClase = new ArrayList<>();
+			String sql = "SELECT * FROM PROFESOR";
+			try {
+				Statement st = con.createStatement();
+				ResultSet rs = st.executeQuery(sql);
+				while(rs.next()) {
+					int id = rs.getInt("id");
+					String nombre = rs.getString("nombre");
+					String apellido = rs.getString("apellido");
+					String usuario = rs.getString("usuario");
+					String contra = rs.getString("contraseña");
+					int tel = rs.getInt("telefono");
+					String domicilio = rs.getString("domicilio");
+					int grupo = rs.getInt("grupo");
+					listaAlumnos = BaseDatos.obtenerAlumnosProfesor(con, id);
+					listaBaile = BaseDatos.obtenerBaileProfesor(con, id);
+					listaClase = BaseDatos.obtenerClaseProfesor(con, id);
+					Profesor p = new Profesor(id, nombre, apellido, usuario, contra, tel, domicilio, listaAlumnos, grupo, listaBaile, listaClase);
+					l.add(p);
+				}
+				rs.close();
+				st.close();
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			return l;
+		}
+
+		/*VOLCADO DE SECRETARIOS DESDE LA BASE DE DATOS A LA LISTA*/
+		public static List<Secretaria> volcadoSecretariosaLista(Connection con){
+			List<Secretaria> l = new ArrayList<>();
+			String sql = "SELECT * FROM Secretaria";
+			try {
+				Statement st = con.createStatement();
+				ResultSet rs = st.executeQuery(sql);
+				while(rs.next()) {
+					String nombre = rs.getString("nombre");
+					String apellido = rs.getString("apellido");
+					String usuario = rs.getString("usuario");
+					String contra = rs.getString("contraseña");
+					int tel = rs.getInt("telefono");
+					String domicilio = rs.getString("domicilio");
+					Secretaria s = new Secretaria(nombre, apellido, usuario, contra, tel, domicilio);
+					l.add(s);
+				}
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			return l;
+		}
 	
 	
 }

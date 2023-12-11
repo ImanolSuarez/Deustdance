@@ -25,18 +25,23 @@ public class Academia {
 	
 	
 	public static void cargarAlumnoDesdeBD(Connection conn) {
-		//listaAlumnos = BaseDatos.volcadoAlumnosaLista(conn);
+		listaAlumnos = BaseDatos.volcadoAlumnosaLista(conn);
 	}
 	
-
+	public static void cargarProfesoresDesdeBD(Connection conn) {
+		listaProfesores = BaseDatos.volcadoProfesorsaLista(conn);
+	}
+	
+	public static void cargarSecretariaDesdeBD(Connection conn) {
+		listaSecretaria = BaseDatos.volcadoSecretariosaLista(conn);
+	}
+	
 	public static void anyadirAlumno(Alumno a) {
 		listaAlumnos.add(a);
-		
 	}
 	
 	public static void anyadirProfesor(Profesor p) {
 		listaProfesores.add(p);
-		
 	}
 	
 	public static void anyadirSecretario(Secretaria p) {
@@ -172,6 +177,29 @@ public class Academia {
 				listaClase = BaseDatos.obtenerClaseProfesor(con, id);
 				Profesor p = new Profesor(id, nombre, apellido, usuario, contra, tf, domicilio, listaAlumnos, grupo, listaBaile, listaClase);
 				BaseDatos.insertarProfesorBD(con, p);
+			}
+		} catch (FileNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+	
+	public static void cargarDatosSecretaria(Connection con, String file) {
+		
+		try {
+			Scanner sc = new Scanner(new FileReader(file));
+			String titulo = sc.nextLine();
+			while(sc.hasNext()) {
+				String linea = sc.nextLine();
+				String[] datos = linea.split(";");
+				String nombre = datos[0];
+				String apellido =  datos[1];
+				String usuario = datos[2];
+				String contra = datos[3];
+				int tf = Integer.parseInt(datos[4]);
+				String domicilio = datos[5];
+				Secretaria s = new Secretaria(nombre, apellido, usuario, contra, tf, domicilio);
+				BaseDatos.insertarSecretariaBD(con, s);
 			}
 		} catch (FileNotFoundException e) {
 			// TODO Auto-generated catch block

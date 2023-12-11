@@ -37,9 +37,15 @@ public class Main {
 		BaseDatos.crearTabla(con);
 		Academia.cargarDatosAlumno(con, "resources/alumnos.csv");	
 		Academia.cargarDatosProfesor(con, "resources/profesores.csv");
+		Academia.cargarDatosSecretaria(con, "resources/secretarias.csv");
+		Academia.cargarAlumnoDesdeBD(con);
+		Academia.cargarProfesoresDesdeBD(con);
+		Academia.cargarSecretariaDesdeBD(con);
 		BaseDatos.closeBD(con);
 		
 		
+		
+		VentanaInicioSesion v = new VentanaInicioSesion();
 		
 			
 		

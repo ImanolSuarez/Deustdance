@@ -109,7 +109,7 @@ public class VentanaInicioSesion extends JFrame{
 							}
 						}else if(p.getContrasenia().equals(contra)){
 							JOptionPane.showMessageDialog(null, "BIENVENIDO A DEUSTDANCE", "INICIO DE SESION", JOptionPane.INFORMATION_MESSAGE);
-							//new VentanaProfesor(new Profesor("Pepito", "Grillo", "PepitoElGrillo", "1234", 683625194, "", null, 0, null, null));//Ejemplo de prueba
+							new VentanaProfesor(p);
 							setVisible(false);
 							logger.info("Abriendo la ventana profesor");
 						}else {
