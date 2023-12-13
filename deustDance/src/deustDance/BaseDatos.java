@@ -82,7 +82,6 @@ public class BaseDatos {
 			Statement st = con.createStatement();
 			ResultSet rs = st.executeQuery(sql);
 			while(rs.next()) {
-				int id = rs.getInt("id");
 				String nombre = rs.getString("nombre");
 				String apellido = rs.getString("apellido");
 				String usuario = rs.getString("usuario");
@@ -95,7 +94,7 @@ public class BaseDatos {
 				double dinero = rs.getDouble("dinero");
 				int grupo = rs.getInt("grupo");
 				double calificacion = rs.getDouble("calificacion");
-				Alumno a = new Alumno(id, nombre, apellido, usuario, contra, tf, domicilio, idBaile, id_Profesor, idClase, dinero, grupo, calificacion);
+				Alumno a = new Alumno(nombre, apellido, usuario, contra, tf, domicilio, idBaile, id_Profesor, idClase, dinero, grupo, calificacion);
 				l.add(a);
 			}
 			rs.close();
@@ -200,7 +199,6 @@ public class BaseDatos {
 			Statement st = conn.createStatement();
 			ResultSet rs = st.executeQuery(sql);
 			while(rs.next()) {
-				int id = rs.getInt("id");
 				String nombre = rs.getString("nombre");
 				String apellido = rs.getString("apellido");
 				String usuario = rs.getString("usuario");
@@ -213,7 +211,7 @@ public class BaseDatos {
 				double dinero = rs.getDouble("dinero");
 				int grupo = rs.getInt("grupo");
 				double calificacaion = rs.getDouble("calificacion");
-				Alumno a = new Alumno(id, nombre, apellido, usuario, con, tel, domicilio, idBaile, idProfesor, idClase, dinero, grupo, calificacaion);
+				Alumno a = new Alumno(nombre, apellido, usuario, con, tel, domicilio, idBaile, idProfesor, idClase, dinero, grupo, calificacaion);
 				listaAlumnos.add(a);
 			}
 			rs.close();

@@ -3,6 +3,7 @@ package deustDance;
 
 public class Alumno extends Persona{
 	
+	private static int contador = 1;
 	private int id;
 	private int baileAsignado;
 	private int id_profesorAsignado;
@@ -12,11 +13,12 @@ public class Alumno extends Persona{
 	private double calificacion;
 	
 	
-	public Alumno(int id,String nombre, String apellidos, String usuario, String contrasenia, int telefono, String domicilio,
+	public Alumno(String nombre, String apellidos, String usuario, String contrasenia, int telefono, String domicilio,
 			int baileAsignado, int id_profesorAsignado, int id_claseAsignada, double dinero, int grupo,
 			double calificacion) {
 		super(nombre, apellidos, usuario, contrasenia, telefono, domicilio);
-		this.id = id;
+		this.id = contador;
+		contador++;
 		this.baileAsignado = baileAsignado;
 		this.id_profesorAsignado = id_profesorAsignado;
 		this.id_claseAsignada = id_claseAsignada;
@@ -111,11 +113,11 @@ public class Alumno extends Persona{
 
 	@Override
 	public String toString() {
-		return "Alumno [baileAsignado=" + baileAsignado + ", profesorAsignado=" + id_profesorAsignado + ", claseAsignada="
+		return "Alumno id: " + id + ", baileAsignado=" + baileAsignado + ", profesorAsignado=" + id_profesorAsignado + ", claseAsignada="
 				+ id_claseAsignada + ", dinero=" + dinero + ", grupo=" + grupo + ", calificacion=" + calificacion
 				+ ", getNombre()=" + getNombre() + ", getApellidos()=" + getApellidos() + ", getUsuario()="
 				+ getUsuario() + ", getContrasenia()=" + getContrasenia() + ", getTelefono()=" + getTelefono()
-				+ ", getDomicilio()=" + getDomicilio() + "]";
+				+ ", getDomicilio()=" + getDomicilio();
 	}
 	
 	

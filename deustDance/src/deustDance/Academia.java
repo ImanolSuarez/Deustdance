@@ -28,6 +28,12 @@ public class Academia {
 		listaAlumnos = BaseDatos.volcadoAlumnosaLista(conn);
 	}
 	
+	public static void ver() {
+		for(Alumno a : listaAlumnos) {
+			System.out.println(a);
+		}
+	}
+	
 	public static void cargarProfesoresDesdeBD(Connection conn) {
 		listaProfesores = BaseDatos.volcadoProfesorsaLista(conn);
 	}
@@ -127,20 +133,19 @@ public class Academia {
 			while(sc.hasNext()) {
 				linea = sc.nextLine();
 				String[] datos = linea.split(";");
-				int id = Integer.parseInt(datos[0]);
-				String nombre = datos[1];
-				String apellido = datos[2];
-				String usuario = datos[3];
-				String contra = datos[4];
-				int tel = Integer.parseInt(datos[5]);
-				String domicilio = datos[6];
-				int baile = Integer.parseInt(datos[7]);
-				int profesor = Integer.parseInt(datos[8]);
-				int clase = Integer.parseInt(datos[9]);
-				Double dinero = Double.parseDouble(datos[10]);
-				int grupo = Integer.parseInt(datos[11]);
-				double calificacion = Double.parseDouble(datos[12]);
-				Alumno a = new Alumno(id, nombre, apellido, usuario, contra, tel, domicilio, baile, profesor, clase, dinero, grupo, calificacion);
+				String nombre = datos[0];
+				String apellido = datos[1];
+				String usuario = datos[2];
+				String contra = datos[3];
+				int tel = Integer.parseInt(datos[4]);
+				String domicilio = datos[5];
+				int baile = Integer.parseInt(datos[6]);
+				int profesor = Integer.parseInt(datos[7]);
+				int clase = Integer.parseInt(datos[8]);
+				Double dinero = Double.parseDouble(datos[9]);
+				int grupo = Integer.parseInt(datos[10]);
+				double calificacion = Double.parseDouble(datos[11]);
+				Alumno a = new Alumno(nombre, apellido, usuario, contra, tel, domicilio, baile, profesor, clase, dinero, grupo, calificacion);
 				BaseDatos.insertarAlumnoBD(con, a);
 			}
 			sc.close();

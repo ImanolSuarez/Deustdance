@@ -5,16 +5,19 @@ import java.awt.GraphicsEnvironment;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.sql.Connection;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JSpinner;
 import javax.swing.JTabbedPane;
 import javax.swing.JTextField;
 
 import deustDance.Alumno;
+import deustDance.BaseDatos;
 import deustDance.Profesor;
 
 
@@ -118,13 +121,34 @@ public class VentanaSecretaria extends JFrame {
 				String contrasenia = txtContrasenya.getText();
 				String telefono = txtTelefono.getText();
 				String domicilio = txtDomicilio.getText();
-				// Falta el baileasignado
-				//String profesorAsignado = txtProfesorAsignado.getText();
-				//String claseAsignada = txtClaseAsignada.getText();
-				double dinero = (double) spinnerDinero.getValue();
-				int grupo = (int) spinnerGrupo.getValue();
-				double calificacion = (double) spinnerCalificacion.getValue();
+				String baileAsignado = txtBaileAsignado.getText();
+				String profesorAsignado = txtProfesorAsignado.getText();
+				String claseAsignada = txtClaseAsignada.getText();
+				String dinero =  spinnerDinero.getValue().toString();
+				String grupo =  spinnerGrupo.getValue().toString();
+				String calificacion =  spinnerCalificacion.getValue().toString();
 				
+				if(!nombre.isEmpty() &&!apellidos.isEmpty() &&!usuario.isEmpty() &&!contrasenia.isEmpty() &&!domicilio.isEmpty() &&!baileAsignado.isEmpty() &&!profesorAsignado.isEmpty()&&!claseAsignada.isEmpty() && !telefono.isEmpty()) {
+					try {
+						int tel = Integer.parseInt(telefono);
+						int baile = Integer.parseInt(baileAsignado);
+						int profesor = Integer.parseInt(profesorAsignado);
+						int clase = Integer.parseInt(claseAsignada);
+						double din 	= Double.parseDouble(dinero);
+						int grup = Integer.parseInt(grupo);
+						double califi = Double.parseDouble(calificacion);
+						Alumno a = new Alumno(nombre, apellidos, usuario, contrasenia, tel, domicilio, baile, profesor, clase, din, grup, califi);
+						Connection c = BaseDatos.initBD("DeustDance.db");
+						BaseDatos.insertarAlumnoBD(c, a);
+						BaseDatos.closeBD(c);
+					}catch (Exception ex) {
+						JOptionPane.showMessageDialog(null, "ERROR NUMERICO");
+					}
+					JOptionPane.showMessageDialog(null, "REGISTRO REALIZADO CORRECTAMENTE");
+				}else {
+					JOptionPane.showMessageDialog(null, "REGISTRO INCORRECTO");
+				}
+				/*
 				Alumno nuevo = new Alumno();
 				nuevo.setNombre(nombre);
 				nuevo.setApellidos(apellidos);
@@ -135,14 +159,16 @@ public class VentanaSecretaria extends JFrame {
 				nuevo.setDinero(dinero);
 				nuevo.setGrupo(grupo);
 				nuevo.setCalificacion(calificacion);
-				
+				*/
 				// El profesor debería ser seleccionado de una lista desplegable, asi como la clase, el grupo y el baile 
 				// Falta guardar los datos en la base de datos
+				/*
 				spinnerGrupo.setValue(0);
 				txtDomicilio.setText("");
 				txtUsuario.setText("");
 				txtContrasenya.setText("");
 				txtTelefono.setText("");
+				*/
 			}
 		});
 		
@@ -236,6 +262,7 @@ public class VentanaSecretaria extends JFrame {
 				txtTelefonoP.setText("");
 			}
 		});
+		
 		
 		botonModificarP.addActionListener(new ActionListener() {
 			
