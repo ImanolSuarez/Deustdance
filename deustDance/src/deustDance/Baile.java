@@ -1,7 +1,7 @@
 package deustDance;
 
 public class Baile {
-	
+	private static int contador = 1;
 	private int idBaile;
 	private int idProfesor;
 	private String descripcion;
@@ -10,9 +10,10 @@ public class Baile {
 	private int horasDeClase;
 	
 	
-	public Baile(int idBaile,int idProfesor, String descripcion, Tipo tipoBaile, double precio, int horasDeClase) {
+	public Baile(int idProfesor, String descripcion, Tipo tipoBaile, double precio, int horasDeClase) {
 		super();
-		this.idBaile = idBaile;
+		this.idBaile = contador;
+		contador++;
 		this.idProfesor = idProfesor;
 		this.descripcion = descripcion;
 		this.tipoBaile = tipoBaile;
@@ -22,9 +23,10 @@ public class Baile {
 	}
 	
 
-	public Baile(int idBaile, int idProfesor, String descripcion, String tipoBaile, double precio, int horasDeClase) {
+	public Baile( int idProfesor, String descripcion, String tipoBaile, double precio, int horasDeClase) {
 		super();
-		this.idBaile = idBaile;
+		this.idBaile = contador;
+		contador++;
 		this.idProfesor = idProfesor;
 		this.descripcion = descripcion;
 		setTipoBaile(tipoBaile);
@@ -104,7 +106,7 @@ public class Baile {
 
 	@Override
 	public String toString() {
-		return "Tipo de baile: "+ tipoBaile + "descripcion: " + descripcion + ", precio: " + precio + "€"
+		return "id: " + idBaile + ", tipo de baile: "+ tipoBaile + "descripcion: " + descripcion + ", precio: " + precio + "€"
 				+ ", horas de clase: " + horasDeClase ;
 	}
 

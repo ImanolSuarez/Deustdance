@@ -38,15 +38,17 @@ public class Main {
 		Academia.cargarDatosAlumno(con, "resources/alumnos.csv");	
 		Academia.cargarDatosProfesor(con, "resources/profesores.csv");
 		Academia.cargarDatosSecretaria(con, "resources/secretarias.csv");
+		Academia.cargarDatosBaile(con, "resources/baile.csv");
 		Academia.cargarAlumnoDesdeBD(con);
-		Academia.ver();
 		Academia.cargarProfesoresDesdeBD(con);
 		Academia.cargarSecretariaDesdeBD(con);
+		BaseDatos.insertarAlumnoProfesorBD(con);
+		BaseDatos.insertarBaileProfesor(con);
 		BaseDatos.closeBD(con);
 		
 		
 		
-		VentanaInicioSesion v = new VentanaInicioSesion();
+		//VentanaInicioSesion v = new VentanaInicioSesion();
 		
 			
 		

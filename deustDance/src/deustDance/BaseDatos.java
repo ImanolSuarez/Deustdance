@@ -2,6 +2,7 @@ package deustDance;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -46,8 +47,9 @@ public class BaseDatos {
 		String drop4 = "DROP TABLE IF EXISTS Profesor";
 		String sq2 = "CREATE TABLE IF NOT EXISTS Profesor(id Integer, nombre String, apellido String, usuario String, contraseña String, telefono int, domicilio String, grupo Integer)";
 		String drop2 = "DROP TABLE IF EXISTS Baile";
-		String sq3 = "CREATE TABLE IF NOT EXISTS Baile(id Integer, idProfesorBaile Integer, descripcion String, tipo String, precio Double, horas int)";
+		String sq3 = "CREATE TABLE IF NOT EXISTS Baile(id Integer, idProfesorBaile Integer, descripcion String, tipo String, precio double, horas Integer)";
 		String sq4 = "CREATE TABLE IF NOT EXISTS BaileProfesor(idProfesor Integer, idBaile Integer)";
+		String drop6 = "DROP TABLE IF EXISTS AlumnoProfesor";
 		String sq5 = "CREATE TABLE IF NOT EXISTS AlumnoProfesor(idProfesor Integer, idAlumno Integer)";
 		String drop3 = "DROP TABLE IF EXISTS Clase";
 		String sq6 = "CREATE TABLE IF NOT EXISTS Clase(id Integer, nombre String, idProfesorClase Integer)";
@@ -63,6 +65,7 @@ public class BaseDatos {
 			st.executeUpdate(drop2);
 			st.executeUpdate(sq3);
 			st.executeUpdate(sq4);
+			st.executeUpdate(drop6);
 			st.executeUpdate(sq5);
 			st.executeUpdate(drop3);
 			st.executeUpdate(sq6);
@@ -114,13 +117,12 @@ public class BaseDatos {
 			Statement st = con.createStatement();
 			ResultSet rs = st.executeQuery(sql);
 			while(rs.next()) {
-				int id = rs.getInt("id");
 				int id_Profesor = rs.getInt("idProfesorBaile");
 				String descripcion = rs.getString("descripcion");
 				String tipo = rs.getString("tipo");
 				Double precio = rs.getDouble("precio");
 				int horas = rs.getInt("horas");
-				Baile b = new Baile(id, id_Profesor, descripcion, tipo, precio, horas);
+				Baile b = new Baile(id_Profesor, descripcion, tipo, precio, horas);
 				l.add(b);
 			}
 			rs.close();
@@ -178,12 +180,82 @@ public class BaseDatos {
 		
 	}
 	
+	//Insertar valores a las tablas AlumnoProfesor
+	
+	public static void insertarAlumnoProfesorBD(Connection con) {
+		String sql = "SELECT id, idProfesorAlumno FROM Alumno";
+		
+		try {
+			Statement st = con.createStatement();
+			ResultSet rs = st.executeQuery(sql);
+			String sql2 = "INSERT INTO AlumnoProfesor (idProfesor, idAlumno) VALUES (?,?) ";
+			PreparedStatement prs = con.prepareStatement(sql2);
+			while(rs.next()) {
+				int idAlumno = rs.getInt("id");
+				int idProfesor = rs.getInt("idProfesorAlumno");
+				prs.setInt(1, idProfesor);
+				prs.setInt(2, idAlumno);
+				prs.executeUpdate();
+			}
+			prs.close();
+			rs.close();
+			st.close();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+	
 	/*Insertar una secretaria nueva*/
 	public static void insertarSecretariaBD(Connection con, Secretaria s) {
 		String sql = String.format("INSERT INTO SECRETARIA VALUES('%s','%s','%s','%s','%d','%s')", s.getNombre(), s.getApellidos(), s.getUsuario(), s.getContrasenia(), s.getTelefono(), s.getDomicilio());
 		try {
 			Statement st = con.createStatement();
 			st.executeUpdate(sql);
+			st.close();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+	
+	/*Insertar Bile*/
+	public static void insertarBaileBD(Connection con, Baile b) {
+		String sql = "INSERT INTO Baile (id, idProfesorBaile, descripcion, tipo, precio, horas) VALUES (?, ?, ?, ?, ?, ?)";
+	    try {
+	        PreparedStatement ps = con.prepareStatement(sql);
+	        ps.setInt(1, b.getIdBaile());
+	        ps.setInt(2, b.getIdProfesor());
+	        ps.setString(3, b.getDescripcion());
+	        ps.setString(4, b.getTipoBaileStr());
+	        ps.setDouble(5, b.getPrecio());
+	        ps.setInt(6, b.getHorasDeClase());
+
+	        ps.executeUpdate();
+	        ps.close();
+	    } catch (SQLException e) {
+	        e.printStackTrace();
+	    }
+	}
+	
+	/*Insertar baileProfesor*/
+	
+	public static void insertarBaileProfesor(Connection con) {
+		String sql = "SELECT idProfesorBaile, id FROM Baile";
+		try {
+			Statement st = con.createStatement();
+			ResultSet rs = st.executeQuery(sql);
+			String sql2 = "INSERT INTO BaileProfesor (idProfesor, idBaile) VALUES (?,?)";
+			PreparedStatement pst = con.prepareStatement(sql2);
+			while(rs.next()) {
+				int idBaile = rs.getInt("id");
+				int idP = rs.getInt("idProfesorBaile");
+				pst.setInt(1, idP);
+				pst.setInt(2, idBaile);
+				pst.executeUpdate();
+			}
+			pst.close();
+			rs.close();
 			st.close();
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block

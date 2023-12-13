@@ -28,11 +28,6 @@ public class Academia {
 		listaAlumnos = BaseDatos.volcadoAlumnosaLista(conn);
 	}
 	
-	public static void ver() {
-		for(Alumno a : listaAlumnos) {
-			System.out.println(a);
-		}
-	}
 	
 	public static void cargarProfesoresDesdeBD(Connection conn) {
 		listaProfesores = BaseDatos.volcadoProfesorsaLista(conn);
@@ -147,6 +142,7 @@ public class Academia {
 				double calificacion = Double.parseDouble(datos[11]);
 				Alumno a = new Alumno(nombre, apellido, usuario, contra, tel, domicilio, baile, profesor, clase, dinero, grupo, calificacion);
 				BaseDatos.insertarAlumnoBD(con, a);
+				
 			}
 			sc.close();
 		} catch (FileNotFoundException e) {
@@ -183,6 +179,7 @@ public class Academia {
 				Profesor p = new Profesor(id, nombre, apellido, usuario, contra, tf, domicilio, listaAlumnos, grupo, listaBaile, listaClase);
 				BaseDatos.insertarProfesorBD(con, p);
 			}
+			sc.close();
 		} catch (FileNotFoundException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -206,6 +203,30 @@ public class Academia {
 				Secretaria s = new Secretaria(nombre, apellido, usuario, contra, tf, domicilio);
 				BaseDatos.insertarSecretariaBD(con, s);
 			}
+			sc.close();
+		} catch (FileNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+	
+	public static void cargarDatosBaile(Connection con, String file) {
+		
+		try {
+			Scanner sc = new Scanner(new FileReader(file));
+			String titulo = sc.nextLine();
+			while(sc.hasNext()) {
+				String linea = sc.nextLine();
+				String[] datos = linea.split(";");
+				int idPr = Integer.parseInt(datos[0]);
+				String descr = datos[1];
+				String tipoBaile = datos[2];
+				double precio = Double.parseDouble(datos[3]);
+				int horas = Integer.parseInt(datos[4]);
+				Baile b = new Baile(idPr, descr, tipoBaile, precio, horas);
+				BaseDatos.insertarBaileBD(con, b);
+			}
+			sc.close();
 		} catch (FileNotFoundException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
