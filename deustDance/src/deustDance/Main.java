@@ -39,11 +39,14 @@ public class Main {
 		Academia.cargarDatosProfesor(con, "resources/profesores.csv");
 		Academia.cargarDatosSecretaria(con, "resources/secretarias.csv");
 		Academia.cargarDatosBaile(con, "resources/baile.csv");
+		Academia.cargarDatosClase(con, "resources/clase.csv");
 		Academia.cargarAlumnoDesdeBD(con);
 		Academia.cargarProfesoresDesdeBD(con);
 		Academia.cargarSecretariaDesdeBD(con);
 		BaseDatos.insertarAlumnoProfesorBD(con);
 		BaseDatos.insertarBaileProfesor(con);
+		BaseDatos.insertarClaseProfesor(con);
+		Academia.ver();
 		BaseDatos.closeBD(con);
 		
 		

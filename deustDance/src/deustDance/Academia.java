@@ -28,6 +28,12 @@ public class Academia {
 		listaAlumnos = BaseDatos.volcadoAlumnosaLista(conn);
 	}
 	
+	public static void ver() {
+		for(Alumno a : listaAlumnos) {
+			System.out.println(a);
+		}
+	}
+	
 	
 	public static void cargarProfesoresDesdeBD(Connection conn) {
 		listaProfesores = BaseDatos.volcadoProfesorsaLista(conn);
@@ -142,14 +148,12 @@ public class Academia {
 				double calificacion = Double.parseDouble(datos[11]);
 				Alumno a = new Alumno(nombre, apellido, usuario, contra, tel, domicilio, baile, profesor, clase, dinero, grupo, calificacion);
 				BaseDatos.insertarAlumnoBD(con, a);
-				
 			}
 			sc.close();
 		} catch (FileNotFoundException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		
 	}
 	
 	public static void cargarDatosProfesor(Connection con, String file) {
@@ -233,7 +237,24 @@ public class Academia {
 		}
 	}
 	
-	
+	public static void cargarDatosClase(Connection conn, String file) {
+		
+		try {
+			Scanner sc = new Scanner(new FileReader(file));
+			String titulo = sc.nextLine();
+			while(sc.hasNext()) {
+				String linea = sc.nextLine();
+				String[] datos = linea.split(";");
+				String nombre = datos[0];
+				int idProf = Integer.parseInt(datos[1]);
+				Clase c = new Clase(nombre, idProf);
+				BaseDatos.insertarClaseBD(conn, c);
+			}
+		} catch (FileNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
 	
 	
 

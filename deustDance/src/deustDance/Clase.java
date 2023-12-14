@@ -11,7 +11,7 @@ public class Clase {
 	private int idProfesor;
 	
 	
-	public Clase(int num, String nombre, int idProfesor) {
+	public Clase(String nombre, int idProfesor) {
 		super();
 		num = contador;
 		contador++;
@@ -24,6 +24,15 @@ public class Clase {
 	public Clase() {
 		super();
 		
+	}
+	
+
+	public int getNum() {
+		return num;
+	}
+
+	public void setNum(int num) {
+		this.num = num;
 	}
 
 	public String getNombre() {
@@ -44,7 +53,7 @@ public class Clase {
 
 	@Override
 	public String toString() {
-		return "Nombre de la clase: " + nombre + "-" + num + ", id profesor: " + idProfesor;
+		return "id " + num + ", nombre de la clase: " + nombre + "-" + num + ", id profesor: " + idProfesor;
 	}
 	
 	

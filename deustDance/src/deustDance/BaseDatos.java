@@ -48,11 +48,13 @@ public class BaseDatos {
 		String sq2 = "CREATE TABLE IF NOT EXISTS Profesor(id Integer, nombre String, apellido String, usuario String, contraseña String, telefono int, domicilio String, grupo Integer)";
 		String drop2 = "DROP TABLE IF EXISTS Baile";
 		String sq3 = "CREATE TABLE IF NOT EXISTS Baile(id Integer, idProfesorBaile Integer, descripcion String, tipo String, precio double, horas Integer)";
+		String drop7 = "DROP TABLE IF EXISTS BaileProfesor";
 		String sq4 = "CREATE TABLE IF NOT EXISTS BaileProfesor(idProfesor Integer, idBaile Integer)";
 		String drop6 = "DROP TABLE IF EXISTS AlumnoProfesor";
 		String sq5 = "CREATE TABLE IF NOT EXISTS AlumnoProfesor(idProfesor Integer, idAlumno Integer)";
 		String drop3 = "DROP TABLE IF EXISTS Clase";
 		String sq6 = "CREATE TABLE IF NOT EXISTS Clase(id Integer, nombre String, idProfesorClase Integer)";
+		String drop8 = "DROP TABLE IF EXISTS ClaseProfesor";
 		String sq7 = "CREATE TABLE IF NOT EXISTS ClaseProfesor(idProfesor Integer, idClase Integer)";
 		String drop5 = "DROP TABLE IF EXISTS Secretaria";
 		String sq8 = "CREATE TABLE IF NOT EXISTS Secretaria(nombre String, apellido String, usuario String, contraseña String, telefono int, domicilio String)";
@@ -64,11 +66,13 @@ public class BaseDatos {
 			st.executeUpdate(sq2);
 			st.executeUpdate(drop2);
 			st.executeUpdate(sq3);
+			st.executeUpdate(drop7);
 			st.executeUpdate(sq4);
 			st.executeUpdate(drop6);
 			st.executeUpdate(sq5);
 			st.executeUpdate(drop3);
 			st.executeUpdate(sq6);
+			st.executeUpdate(drop8);
 			st.executeUpdate(sq7);
 			st.executeUpdate(drop5);
 			st.executeUpdate(sq8);
@@ -141,10 +145,9 @@ public class BaseDatos {
 			Statement st = con.createStatement();
 			ResultSet rs = st.executeQuery(sql);
 			while(rs.next()) {
-				int id = rs.getInt("id");
 				String nombre = rs.getString("nombre");
 				int id_Profesor = rs.getInt("idProfesor");
-				Clase c = new Clase(id, nombre, id_Profesor);
+				Clase c = new Clase(nombre, id_Profesor);
 				listaClases.add(c);
 			}
 		} catch (SQLException e) {
@@ -218,6 +221,47 @@ public class BaseDatos {
 			e.printStackTrace();
 		}
 	}
+	
+	/*Insertar las clases*/
+	
+	public static void insertarClaseBD(Connection con, Clase c) {
+		String sql = String.format("INSERT INTO Clase Values('%d','%s','%d')", c.getNum(), c.getNombre(), c.getIdProfesor());
+		try {
+			Statement st = con.createStatement();
+			st.executeUpdate(sql);
+			st.close();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+	
+	/*Insertar la relacion de los profesor con las clase: la tabla ClaseProfesor*/
+	
+	public static void insertarClaseProfesor(Connection con) {
+		String sql = "SELECT id, idProfesorClase FROM Clase";
+		String sql2 = "INSERT INTO ClaseProfesor(idProfesor, idClase) VALUES(?,?)";
+		try {
+			Statement st = con.createStatement();
+			ResultSet rs = st.executeQuery(sql);
+			PreparedStatement pst = con.prepareStatement(sql2);
+			while(rs.next()) {
+				int idProf = rs.getInt("id");
+				int idCl = rs.getInt("idProfesorClase");
+				pst.setInt(1, idProf);
+				pst.setInt(2, idCl);
+				pst.executeUpdate();
+			}
+			pst.close();
+			rs.close();
+			st.close();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+	}
+	
 	
 	/*Insertar Bile*/
 	public static void insertarBaileBD(Connection con, Baile b) {
