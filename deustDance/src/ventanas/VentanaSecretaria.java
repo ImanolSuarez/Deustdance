@@ -6,6 +6,7 @@ import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.sql.Connection;
+import java.util.regex.Pattern;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -16,8 +17,10 @@ import javax.swing.JSpinner;
 import javax.swing.JTabbedPane;
 import javax.swing.JTextField;
 
+import deustDance.Academia;
 import deustDance.Alumno;
 import deustDance.BaseDatos;
+import deustDance.Main;
 import deustDance.Profesor;
 
 
@@ -43,6 +46,7 @@ public class VentanaSecretaria extends JFrame {
 	protected JButton botonAnyadir;
 	protected JButton botonModificar;
 	protected JButton botonEliminar;
+	protected JButton botonTerminarRegistro;
 	
 	
 	protected JTextField txtNombreP;
@@ -54,6 +58,7 @@ public class VentanaSecretaria extends JFrame {
 	protected JButton botonAnyadirP;
 	protected JButton botonModificarP;
 	protected JButton botonEliminarP;
+	
 	
 	public VentanaSecretaria() {
 		
@@ -78,6 +83,7 @@ public class VentanaSecretaria extends JFrame {
 		botonAnyadir = new JButton("Añadir alumno");
 		botonModificar = new JButton("Modificar alumno");
 		botonEliminar = new JButton("Eliminar alumno");
+		botonTerminarRegistro = new JButton("Terminar registro");
 		
 		
 		JPanel panelTexto = new JPanel();
@@ -115,6 +121,7 @@ public class VentanaSecretaria extends JFrame {
 			@SuppressWarnings("static-access")
 			@Override
 			public void actionPerformed(ActionEvent e) {
+				
 				String nombre = txtNombre.getText();
 				String apellidos = txtApellidos.getText();
 				String usuario = txtUsuario.getText();
@@ -137,38 +144,46 @@ public class VentanaSecretaria extends JFrame {
 						double din 	= Double.parseDouble(dinero);
 						int grup = Integer.parseInt(grupo);
 						double califi = Double.parseDouble(calificacion);
-						Alumno a = new Alumno(nombre, apellidos, usuario, contrasenia, tel, domicilio, baile, profesor, clase, din, grup, califi);
-						Connection c = BaseDatos.initBD("DeustDance.db");
-						BaseDatos.insertarAlumnoBD(c, a);
-						BaseDatos.closeBD(c);
+						if(nombreCorrecto(nombre) && apellidoCorrecto(apellidos) && usuarioCorrecto(usuario) && contraCorrecto(contrasenia) && tfCorrecto(telefono) && domicilioCorrecto(domicilio)
+								&& baileCorrecto(baileAsignado) && profeCorrecto(profesorAsignado) && claseCorrecto(claseAsignada)) {
+								Alumno a = new Alumno(nombre, apellidos, usuario, contrasenia, tel, domicilio, baile, profesor, clase, din, grup, califi);
+								Academia.anyadirAlumno(a);
+								JOptionPane.showMessageDialog(null, "REGISTRO REALIZADO CORRECTAMENTE");
+						}else {
+							JOptionPane.showMessageDialog(null, "ERROR EN EL FORMATO");
+						}
 					}catch (Exception ex) {
 						JOptionPane.showMessageDialog(null, "ERROR NUMERICO");
 					}
-					JOptionPane.showMessageDialog(null, "REGISTRO REALIZADO CORRECTAMENTE");
 				}else {
 					JOptionPane.showMessageDialog(null, "REGISTRO INCORRECTO");
 				}
-				/*
-				Alumno nuevo = new Alumno();
-				nuevo.setNombre(nombre);
-				nuevo.setApellidos(apellidos);
-				nuevo.setUsuario(usuario);
-				nuevo.setContrasenia(contrasenia);
-				nuevo.setTelefono(Integer.parseInt(telefono));
-				nuevo.setDomicilio(domicilio);
-				nuevo.setDinero(dinero);
-				nuevo.setGrupo(grupo);
-				nuevo.setCalificacion(calificacion);
-				*/
 				// El profesor debería ser seleccionado de una lista desplegable, asi como la clase, el grupo y el baile 
 				// Falta guardar los datos en la base de datos
-				/*
-				spinnerGrupo.setValue(0);
-				txtDomicilio.setText("");
+				
+				txtNombre.setText("");
+				txtApellidos.setText("");
 				txtUsuario.setText("");
 				txtContrasenya.setText("");
 				txtTelefono.setText("");
-				*/
+				txtDomicilio.setText("");
+				txtBaileAsignado.setText("");
+				txtProfesorAsignado.setText("");
+				txtClaseAsignada.setText("");
+				spinnerDinero.setValue(0);
+				spinnerGrupo.setValue(0);
+				spinnerCalificacion.setValue(0);
+				
+			}
+		});
+		
+		botonTerminarRegistro.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				Academia.guardarDatosAlumno("resources/alumnos.csv");
+				setVisible(false);
+				
 			}
 		});
 		
@@ -191,10 +206,11 @@ public class VentanaSecretaria extends JFrame {
 		});
 		
 		JPanel panelBotones = new JPanel();
-		panelBotones.setLayout(new GridLayout(1,3));
+		panelBotones.setLayout(new GridLayout(1,4));
 		panelBotones.add(botonAnyadir);
 		panelBotones.add(botonModificar);
 		panelBotones.add(botonEliminar);
+		panelBotones.add(botonTerminarRegistro);
 		
 		
 		JPanel panelDatos = new JPanel();
@@ -240,19 +256,34 @@ public class VentanaSecretaria extends JFrame {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				String nombreyapellidos = txtNombreP.getText();
-				int grupo = (int) spinnerGrupoP.getValue();
+				String grupo = spinnerGrupoP.getValue().toString();
 				String domicilio = txtDomicilioP.getText(); 
 				String usuario = txtUsuarioP.getText();
-				String contrasenya = txtContrasenyaP.getText();
-				String telefono = txtTelefonoP.getText();
-				Profesor nuevo = new Profesor();
+				String contra = txtContrasenyaP.getText();
+				String tf = txtTelefonoP.getText();
+				
+				if(!nombreyapellidos.isEmpty() && !domicilio.isEmpty() && !usuario.isEmpty() && !contra.isEmpty() && !tf.isEmpty() ) {
+					try {
+						int grup = Integer.parseInt(grupo);
+						int telefono = Integer.parseInt(tf);
+						if(nombreCorrecto(nombreyapellidos) && domicilioCorrecto(domicilio) && usuarioCorrecto(usuario) && contraCorrecto(contra) && tfCorrecto(tf)) {
+							JOptionPane.showMessageDialog(null, "REGISTRO REALIZADO CORRECTAMENTE");
+						}else {
+							JOptionPane.showMessageDialog(null, "ERROR EN EL FORMATO");
+						}
+					}catch (NumberFormatException ex) {
+						JOptionPane.showMessageDialog(null, "ERROR NUMERICO");
+					}
+				}
+				
+				/*
 				nuevo.setNombre(nombreyapellidos);
 				nuevo.setGrupo(grupo);
 				nuevo.setDomicilio(domicilio);
 				nuevo.setUsuario(usuario);
 				nuevo.setContrasenia(contrasenya);
 				nuevo.setTelefono(grupo);
-				
+				*/
 				// Falta guardar los datos en la base de datos
 				txtNombreP.setText("");
 				spinnerGrupoP.setValue(0);
@@ -321,5 +352,57 @@ public class VentanaSecretaria extends JFrame {
 	
 	public static void main(String[] args) {
 		new VentanaSecretaria();
+	}
+	private boolean nombreCorrecto(String nombre) {
+		String patron = "[A-Z][a-z]{2,7}";
+		return Pattern.matches(patron, nombre);
+	}
+	private boolean apellidoCorrecto(String apellido) {
+		String patron = "[A-Z][a-z]{3,10}";
+		return Pattern.matches(patron, apellido);
+	}
+	private boolean usuarioCorrecto(String usuario) {
+		String patron = "[A-Za-z]{4,}[0-9]*";
+		return Pattern.matches(patron, usuario);
+	}
+	private boolean contraCorrecto(String contra) {
+		String patron = "[A-Za-z]{5,}[0-9]*";
+		return Pattern.matches(patron, contra);
+	}
+	private boolean tfCorrecto(String tf) {
+		String patron = "[6][0-9]{8,9}";
+		return Pattern.matches(patron, tf);
+	}
+	private boolean domicilioCorrecto(String domicilio) {
+		String patron = "[A-Z][a-z]{3,15}";
+		return Pattern.matches(patron, domicilio);
+	}
+	private boolean baileCorrecto(String baileAsig) {
+		try {
+			int num = Integer.parseInt(baileAsig);
+			return num >=1 && num <= 9;
+		}catch (NumberFormatException | NullPointerException e) {
+			return false;
+		}
+	}
+	private boolean profeCorrecto(String profeAsig) {
+		try {
+			int num = Integer.parseInt(profeAsig);
+			return num >=1 && num <= 9;
+		}catch (NumberFormatException | NullPointerException e) {
+			return false;
+		}
+	}
+	private boolean claseCorrecto(String claseAsig) {
+		try {
+			int num = Integer.parseInt(claseAsig);
+			return num >=1 && num <= 9;
+		}catch (NumberFormatException | NullPointerException e) {
+			return false;
+		}
+	}
+	private boolean nombreyApellidoP(String texto) {
+		String formato = "[A-Z][a-z]}{2,7}/s[A-Z][a-z]{3,10}";
+		return Pattern.matches(texto, formato);
 	}
 }

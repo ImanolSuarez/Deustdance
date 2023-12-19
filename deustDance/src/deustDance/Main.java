@@ -46,12 +46,11 @@ public class Main {
 		BaseDatos.insertarAlumnoProfesorBD(con);
 		BaseDatos.insertarBaileProfesor(con);
 		BaseDatos.insertarClaseProfesor(con);
-		Academia.ver();
 		BaseDatos.closeBD(con);
 		
 		
 		
-		//VentanaInicioSesion v = new VentanaInicioSesion();
+		VentanaInicioSesion v = new VentanaInicioSesion();
 		
 			
 		

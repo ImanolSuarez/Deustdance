@@ -2,6 +2,7 @@ package deustDance;
 
 import java.io.FileNotFoundException;
 import java.io.FileReader;
+import java.io.PrintWriter;
 import java.sql.Connection;
 import java.util.ArrayList;
 import java.util.List;
@@ -129,7 +130,6 @@ public class Academia {
 		
 		try {
 			Scanner sc = new Scanner(new FileReader(nomFich));
-			String titulos = sc.nextLine();
 			String linea;
 			while(sc.hasNext()) {
 				linea = sc.nextLine();
@@ -150,6 +150,21 @@ public class Academia {
 				BaseDatos.insertarAlumnoBD(con, a);
 			}
 			sc.close();
+		} catch (FileNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+	
+	public static void guardarDatosAlumno(String file) {
+		try {
+			PrintWriter pw = new PrintWriter(file);
+			for(Alumno a : listaAlumnos) {
+				pw.write(a.getNombre()+";"+a.getApellidos()+";"+a.getUsuario()+";"+a.getContrasenia()+";"+a.getTelefono()+";"+a.getDomicilio()+";"+a.getBaileAsignado()
+							+";"+a.getProfesorAsignado()+";"+a.getId_claseAsignada()+";"+a.getDinero()+";"+a.getGrupo()+";"+a.getCalificacion()+"\n");
+			}
+			pw.flush();
+			pw.close();
 		} catch (FileNotFoundException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -184,6 +199,20 @@ public class Academia {
 				BaseDatos.insertarProfesorBD(con, p);
 			}
 			sc.close();
+		} catch (FileNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+	
+	public static void guardarDatosProfesor(String file) {
+		try {
+			PrintWriter pw = new PrintWriter(file);
+			for(Profesor p : listaProfesores) {
+				pw.write(p.getNombre()+";"+p.getApellidos()+"\n");
+			}
+			pw.flush();
+			pw.close();
 		} catch (FileNotFoundException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
