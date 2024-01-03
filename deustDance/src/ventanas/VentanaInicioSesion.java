@@ -166,9 +166,7 @@ public class VentanaInicioSesion extends JFrame{
 		
 		
 	}
-	public static void main(String[] args) {
-		new VentanaInicioSesion();
-	}
+	
 	
 
 }

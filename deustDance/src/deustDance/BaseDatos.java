@@ -396,5 +396,46 @@ public class BaseDatos {
 			return l;
 		}
 	
+	/*BUSCA SI EL ALUMNO YA ESTA EN LA BASE DE DATOS MEDIANTE EL USUARIO*/
+	public static Alumno buscarAlumno(Connection con, String usuario) {
+		String sql = String.format("SELECT * FROM Alumno WHERE usuario = '%s'", usuario);
+		Alumno a = null;
+		try {
+			Statement st = con.createStatement();
+			ResultSet rs = st.executeQuery(sql);
+			if(rs.next()) {
+				String nombre = rs.getString("nombre");
+				String apellido = rs.getString("apellido");
+				String usu = rs.getString("usuario");
+				String contra = rs.getString("contraseña");
+				int tel = rs.getInt("telefono");
+				String domicilio = rs.getString("domicilio");
+				int idB = rs.getInt("idBaile");
+				int idP = rs.getInt("idProfesorAlumno");
+				int idC = rs.getInt("idClase");
+				double dinero = rs.getDouble("dinero");
+				int grupo = rs.getInt("grupo");
+				double calificacion = rs.getDouble("calificacion");
+				a = new Alumno(nombre, apellido, usuario, contra, tel, domicilio, idB, idP, idC, dinero, grupo, calificacion);
+			}
+			rs.close();
+			st.close();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return a;
+	}
 	
+	/*ELIMINA A UNA PERSOAN DE LA BASE DE DATOS*/
+	
+	public static void eliminarAlumno(Connection con, String usuario) {
+		String sql = String.format("DELETE FROM Alumno WHERE usuario = '%s'", usuario);
+		try {
+			Statement st = con.createStatement();
+			st.execute(sql);
+			st.close();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+	}
 }

@@ -59,6 +59,7 @@ public class VentanaSecretaria extends JFrame {
 	protected JButton botonModificarP;
 	protected JButton botonEliminarP;
 	
+	Connection con = BaseDatos.initBD("DeustDance.db");
 	
 	public VentanaSecretaria() {
 		
@@ -147,8 +148,13 @@ public class VentanaSecretaria extends JFrame {
 						if(nombreCorrecto(nombre) && apellidoCorrecto(apellidos) && usuarioCorrecto(usuario) && contraCorrecto(contrasenia) && tfCorrecto(telefono) && domicilioCorrecto(domicilio)
 								&& baileCorrecto(baileAsignado) && profeCorrecto(profesorAsignado) && claseCorrecto(claseAsignada)) {
 								Alumno a = new Alumno(nombre, apellidos, usuario, contrasenia, tel, domicilio, baile, profesor, clase, din, grup, califi);
-								Academia.anyadirAlumno(a);
-								JOptionPane.showMessageDialog(null, "REGISTRO REALIZADO CORRECTAMENTE");
+								if(BaseDatos.buscarAlumno(con, usuario) == null) {
+									Academia.anyadirAlumno(a);
+									JOptionPane.showMessageDialog(null, "REGISTRO REALIZADO CORRECTAMENTE");
+								}else {
+									JOptionPane.showMessageDialog(null, "USUARIO YA EXISTENTE");
+								}
+								
 						}else {
 							JOptionPane.showMessageDialog(null, "ERROR EN EL FORMATO");
 						}
@@ -182,7 +188,7 @@ public class VentanaSecretaria extends JFrame {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				Academia.guardarDatosAlumno("resources/alumnos.csv");
-				setVisible(false);
+				setDefaultCloseOperation(EXIT_ON_CLOSE);
 				
 			}
 		});
@@ -200,7 +206,13 @@ public class VentanaSecretaria extends JFrame {
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				// TODO
+				String usuario = txtUsuario.getText();
+				BaseDatos.eliminarAlumno(con, usuario);
+				if(BaseDatos.buscarAlumno(con, usuario) == null) {
+					JOptionPane.showMessageDialog(null, "USUARIO ELIMINADO");
+				}else {
+					JOptionPane.showMessageDialog(null, "EL USUARIO NO SE PUDO ELIMINAR, REVISE LOS DATOS");
+				}
 				
 			}
 		});
@@ -340,7 +352,7 @@ public class VentanaSecretaria extends JFrame {
 
         this.add(tabbedPane);	
 		
-		this.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
+
 		this.setTitle("Ventana del alumno");
 		int anchoP = GraphicsEnvironment.getLocalGraphicsEnvironment().getDefaultScreenDevice().getDisplayMode().getWidth();
 		int altoP = GraphicsEnvironment.getLocalGraphicsEnvironment().getDefaultScreenDevice().getDisplayMode().getHeight();
