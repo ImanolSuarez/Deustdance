@@ -196,47 +196,55 @@ public class VentanaSecretaria extends JFrame {
 				
 			}
 		});
-		/*
+		
 		botonModificar.addActionListener(new ActionListener() {
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				String usuario = txtUsuario.getText();
-				if(BaseDatos.buscarAlumno(con, usuario) != null) {
-					
+				String nombre = txtNombre.getText();
+				String apellidos = txtApellidos.getText();
+				String contrasenia = txtContrasenya.getText();
+				String telefono = txtTelefono.getText();
+				String domicilio = txtDomicilio.getText();
+				String baileAsignado = txtBaileAsignado.getText();
+				String profesorAsignado = txtProfesorAsignado.getText();
+				String claseAsignada = txtClaseAsignada.getText();
+				String dinero =  spinnerDinero.getValue().toString();
+				String grupo =  spinnerGrupo.getValue().toString();
+				String calificacion =  spinnerCalificacion.getValue().toString();
+				if(!nombre.isEmpty() &&!apellidos.isEmpty()  &&!contrasenia.isEmpty() &&!domicilio.isEmpty() &&!baileAsignado.isEmpty() &&!profesorAsignado.isEmpty()&&!claseAsignada.isEmpty() && !telefono.isEmpty()) {
 					try {
-						Academia.borradoDeAlumnosCSV("resources/alumnos.csv", usuario);
-					} catch (IOException e1) {
-						e1.printStackTrace();
-					}
-					
-					String campo = JOptionPane.showInputDialog("Ingrese el nombre del campo a modificar:");
-					if(campo.equals("Nombre") || campo.equals("Apellidos") || campo.equals("Usuario") || campo.equals("Contraseña") || campo.equals("Telefono")||campo.equals("Domicilio")||campo.equals("Baile Asignado") || campo.equals("Profesor Asignado") || campo.equals("Clase Asignada")) {
-						String nombreNuevo = txtNombre.getText();
-						if(!nombreNuevo.isEmpty()) {
-							BaseDatos.modificarAlumno(con,campo, nombreNuevo, usuario);
+						int tel = Integer.parseInt(telefono);
+						int baile = Integer.parseInt(baileAsignado);
+						int profesor = Integer.parseInt(profesorAsignado);
+						int clase = Integer.parseInt(claseAsignada);
+						double din 	= Double.parseDouble(dinero);
+						int grup = Integer.parseInt(grupo);
+						double califi = Double.parseDouble(calificacion);
+						
+						String usuario = JOptionPane.showInputDialog("Introduzca el usuario del alumno");
+						if(BaseDatos.buscarAlumno(con, usuario) != null) {
+							BaseDatos.modificarAlumno(con, nombre, apellidos, contrasenia, tel, domicilio, baile, profesor, clase, din, grup, califi, usuario);
+							JOptionPane.showMessageDialog(null, "USUARIO MODIFICADO CON EXITO");
 							List<Alumno> listaAlumnos = BaseDatos.obtenerAlumnos(con);
 							Academia.borrarTodosLosAlumnos();
-							for (Alumno a : listaAlumnos) {
-							    if (!Academia.contieneAlumno(a)) {
-							        Academia.anyadirAlumno(a);
-							        System.out.println(a);
-							    }
+							for(Alumno a : listaAlumnos) {
+								if(!Academia.contieneAlumno(a)) {
+									Academia.anyadirAlumno(a);
+								}
 							}
-							JOptionPane.showMessageDialog(null, "Alumno modificado con exito");
+							
 						}else {
-							JOptionPane.showMessageDialog(null, "Lo que desea cambiar esta vacio");
+							JOptionPane.showMessageDialog(null, "Error al intentar eliminar el usuario");
 						}
-					}else {
-						JOptionPane.showMessageDialog(null, "Alumno no encontrado");
+					}catch (NumberFormatException e3) {
+						
 					}
-					}else {
-						JOptionPane.showMessageDialog(null, "Campo erroneo");
-					}
-					
-					
+				}else {
+					JOptionPane.showMessageDialog(null, "ERROR. INTRODUZCA TODOS LOS DATOS");
+				}
 			}
-		});*/
+		});
 		
 		botonEliminar.addActionListener(new ActionListener() {
 			
@@ -251,7 +259,7 @@ public class VentanaSecretaria extends JFrame {
 						for (Alumno a : listaAlumnos) {
 						    if (!Academia.contieneAlumno(a)) {
 						        Academia.anyadirAlumno(a);
-						        System.out.println(a);
+						  
 						    }
 						}
 					}else {
@@ -366,7 +374,33 @@ public class VentanaSecretaria extends JFrame {
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				
+				String nombre = txtNombreP.getText();
+				String apellido = textApellidoP.getText();
+				String contra = txtContrasenyaP.getText();
+				String domicilio = txtDomicilioP.getText();
+				String tel = txtTelefonoP.getText();
+				String grupo = spinnerGrupoP.getValue().toString();
+				if (!nombre.isEmpty()  &&   !apellido.isEmpty() && !grupo.isEmpty() && !domicilio.isEmpty() && !contra.isEmpty() && !tel.isEmpty()) {
+					String usuario = JOptionPane.showInputDialog("Introduce el usuario del profesor a modificar: ");
+					int g = Integer.parseInt(grupo);
+					int t = Integer.parseInt(tel);
+					if(BaseDatos.buscarProfesor(con, usuario) != null) {
+						BaseDatos.modificarProfesor(con, nombre, apellido, contra, t, domicilio, g, usuario);
+						List<Profesor> listaProfesores = BaseDatos.listaProfesores(con);
+						Academia.borrarTodosLosProfesores();
+						JOptionPane.showMessageDialog(null, "Profesor modificado con exito");
+						for (Profesor a : listaProfesores) {
+						    if (!Academia.contieneProfesor(a)) {
+						        Academia.anyadirProfesor(a);;
+						        System.out.println(a);
+						    }
+						}
+					}else {
+						JOptionPane.showMessageDialog(null, "NO SE HA PODIDO ENCONTRAR AL PROFESOR");
+					}
+				}else {
+					JOptionPane.showMessageDialog(null, "REVISE LOS CAMPOS. ALGUN CAMPO NULO");
+				}
 				
 				
 			}

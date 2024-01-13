@@ -220,44 +220,6 @@ public class Academia {
 		}
 	}
 	
-	public static void borradoDeAlumnosCSV(String nomFich, String usuarioABorrar) throws IOException {
-	    File archivoCsv = new File(nomFich);
-	    File archivoTemporal = new File("temp.csv");
-	    BufferedReader br = null;
-	    PrintWriter pw = null;
-
-	    try {
-	        br = new BufferedReader(new FileReader(archivoCsv));
-	        pw = new PrintWriter(new FileWriter(archivoTemporal));
-	        String linea;
-
-	        while ((linea = br.readLine()) != null) {
-	            String datos[] = linea.split(";");
-	            if (!datos[2].equals(usuarioABorrar)) {
-	                pw.println(linea);
-	            }
-	        }
-	    } catch (FileNotFoundException e) {
-	        e.printStackTrace();
-	    } finally {
-	        if (br != null) {
-	            br.close();
-	        }
-	        if (pw != null) {
-	            pw.close();
-	        }
-	    }
-
-	    if (!archivoCsv.delete()) {
-	        System.out.println("No se pudo eliminar el archivo original");
-	    }
-	    if (!archivoTemporal.renameTo(archivoCsv)) {
-	        System.out.println("No se pudo renombrar el archivo temporal");
-	    }
-	}
-	
-	
-	
 	public static void cargarDatosProfesor(Connection con, String file) {
 		
 		List<Alumno> listaAlumnos = new ArrayList<>();

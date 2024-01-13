@@ -547,5 +547,54 @@ public class BaseDatos {
 		return p;
 	}
 	
+	/*MODIFICAR PROFESOR*/
+	
+	public static void modificarProfesor(Connection con, String nombre, String apellido, String contraseña, int tel, String domicilio, int grupo, String usuario) {
+	    String sql = "UPDATE Profesor SET nombre = ?, apellido = ?, contraseña = ?, domicilio = ?, telefono = ?, grupo = ? WHERE usuario = ?";
+	    
+	    try (PreparedStatement pstmt = con.prepareStatement(sql)) {
+	        pstmt.setString(1, nombre);
+	        pstmt.setString(2, apellido);
+	        pstmt.setString(3, contraseña);
+	        pstmt.setString(4, domicilio);
+	        pstmt.setInt(5, tel);
+	        pstmt.setInt(6, grupo);
+	        pstmt.setString(7, usuario);
+
+	        pstmt.executeUpdate();
+	    } catch (SQLException e) {
+	        e.printStackTrace();
+	    }
+	}
+	
+	/*MODIFICAR UN ALUMNO*/
+	
+	public static void modificarAlumno(Connection con, String nombre, String apellidos, String contrasenia, int telefono,
+	        String domicilio, int baileAsignado, int profesorAsignado, int claseAsignada, double dinero,
+	        int grupo, double calificacion, String usuario) {
+	    String sql = "UPDATE Alumno SET nombre = ?, apellido = ?, contraseña = ?, telefono = ?, domicilio = ?, " +
+	            "idBaile = ?, idProfesorAlumno = ?, idClase = ?, dinero = ?, grupo = ?, calificacion = ? " +
+	            "WHERE usuario = ?";
+	    
+	    try (PreparedStatement pstmt = con.prepareStatement(sql)) {
+	        pstmt.setString(1, nombre);
+	        pstmt.setString(2, apellidos);
+	        pstmt.setString(3, contrasenia);
+	        pstmt.setInt(4, telefono);
+	        pstmt.setString(5, domicilio);
+	        pstmt.setInt(6, baileAsignado);
+	        pstmt.setInt(7, profesorAsignado);
+	        pstmt.setInt(8, claseAsignada);
+	        pstmt.setDouble(9, dinero);
+	        pstmt.setInt(10, grupo);
+	        pstmt.setDouble(11, calificacion);
+	        pstmt.setString(12, usuario);
+
+	        pstmt.executeUpdate();
+	    } catch (SQLException e) {
+	        e.printStackTrace();
+	    }
+	}
+	
 	
 }
