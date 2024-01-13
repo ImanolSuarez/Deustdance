@@ -254,19 +254,17 @@ public class Academia {
 			while(sc.hasNext()) {
 				linea = sc.nextLine();
 				String datos[] = linea.split(";");
-				int id = Integer.parseInt(datos[0]);
-				String nombre = datos[1];
-				String apellido =  datos[2];
-				String usuario = datos[3];
-				String contra = datos[4];
-				int tf = Integer.parseInt(datos[5]);
-				String domicilio = datos[6];
-				int grupo = Integer.parseInt(datos[7]);
-				
-				listaAlumnos = BaseDatos.obtenerAlumnosProfesor(con, id);
-				listaBaile = BaseDatos.obtenerBaileProfesor(con, id);
-				listaClase = BaseDatos.obtenerClaseProfesor(con, id);
-				Profesor p = new Profesor(id, nombre, apellido, usuario, contra, tf, domicilio, listaAlumnos, grupo, listaBaile, listaClase);
+				String nombre = datos[0];
+				String apellido =  datos[1];
+				String usuario = datos[2];
+				String contra = datos[3];
+				int tf = Integer.parseInt(datos[4]);
+				String domicilio = datos[5];
+				int grupo = Integer.parseInt(datos[6]);
+				listaAlumnos = BaseDatos.obtenerAlumnosProfesor(con);
+				listaBaile = BaseDatos.obtenerBaileProfesor(con);
+				listaClase = BaseDatos.obtenerClaseProfesor(con);
+				Profesor p = new Profesor(nombre, apellido, usuario, contra, tf, domicilio, listaAlumnos, grupo, listaBaile, listaClase);
 				BaseDatos.insertarProfesorBD(con, p);
 			}
 			sc.close();

@@ -82,8 +82,8 @@ public class BaseDatos {
 		}
 	}
 	/*Seleccionar todos los alumnos a los que les da clase el profesor 1*/
-	public static List<Alumno> obtenerAlumnosProfesor(Connection con, int idProfesor){
-		String sql = "SELECT * FROM Alumno AL, alumnoprofesor AP WHERE AL.idProfesorAlumno=AP.idProfesor AND idProfesor= '"+idProfesor+"'";
+	public static List<Alumno> obtenerAlumnosProfesor(Connection con){
+		String sql = "SELECT * FROM Alumno AL, alumnoprofesor AP WHERE AL.idProfesorAlumno=AP.idProfesor";
 		List<Alumno> l = new ArrayList<>();
 		try {
 			Statement st = con.createStatement();
@@ -114,9 +114,9 @@ public class BaseDatos {
 	}
 	/*listado de Bailes que que da un determinado profesor*/
 	
-	public static List<Baile> obtenerBaileProfesor(Connection con, int idProfesor){
+	public static List<Baile> obtenerBaileProfesor(Connection con){
 		List<Baile> l = new ArrayList<>();
-		String sql = "SELECT * FROM Baile BA, BaileProfesor BP WHERE BA.idProfesorBaile = BP.idProfesor AND idProfesor =" + idProfesor; //"SELECT BA FROM Baile BA, PROFESOR PR WHERE BA.idProfesor = PR.idProfesor AND idPofesor ="
+		String sql = "SELECT * FROM Baile BA, BaileProfesor BP WHERE BA.idProfesorBaile = BP.idProfesor"; // "SELECT BA FROM Baile BA, PROFESOR PR WHERE BA.idProfesor = PR.idProfesor AND idPofesor ="
 		try {
 			Statement st = con.createStatement();
 			ResultSet rs = st.executeQuery(sql);
@@ -138,9 +138,9 @@ public class BaseDatos {
 	}
 	/*Listado de todas las clases que da un profesor*/
 	
-	public static List<Clase> obtenerClaseProfesor(Connection con, int idProfesor){
+	public static List<Clase> obtenerClaseProfesor(Connection con){
 		List<Clase> listaClases = new ArrayList<>();
-		String sql = "SELECT * FROM Clase CL, ClaseProfesor CP WHERE CL.idProfesorClase = CP.idProfesor AND idProfesor =" + idProfesor;
+		String sql = "SELECT * FROM Clase CL, ClaseProfesor CP WHERE CL.idProfesorClase = CP.idProfesor";
 		try {
 			Statement st = con.createStatement();
 			ResultSet rs = st.executeQuery(sql);
@@ -349,7 +349,6 @@ public class BaseDatos {
 				Statement st = con.createStatement();
 				ResultSet rs = st.executeQuery(sql);
 				while(rs.next()) {
-					int id = rs.getInt("id");
 					String nombre = rs.getString("nombre");
 					String apellido = rs.getString("apellido");
 					String usuario = rs.getString("usuario");
@@ -357,10 +356,10 @@ public class BaseDatos {
 					int tel = rs.getInt("telefono");
 					String domicilio = rs.getString("domicilio");
 					int grupo = rs.getInt("grupo");
-					listaAlumnos = BaseDatos.obtenerAlumnosProfesor(con, id);
-					listaBaile = BaseDatos.obtenerBaileProfesor(con, id);
-					listaClase = BaseDatos.obtenerClaseProfesor(con, id);
-					Profesor p = new Profesor(id, nombre, apellido, usuario, contra, tel, domicilio, listaAlumnos, grupo, listaBaile, listaClase);
+					listaAlumnos = BaseDatos.obtenerAlumnosProfesor(con);
+					listaBaile = BaseDatos.obtenerBaileProfesor(con);
+					listaClase = BaseDatos.obtenerClaseProfesor(con);
+					Profesor p = new Profesor( nombre, apellido, usuario, contra, tel, domicilio, listaAlumnos, grupo, listaBaile, listaClase);
 					l.add(p);
 				}
 				rs.close();
