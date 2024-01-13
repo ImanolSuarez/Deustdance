@@ -4,6 +4,7 @@ import java.awt.BorderLayout;
 
 import java.awt.GraphicsEnvironment;
 import java.awt.GridLayout;
+import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.logging.Logger;
@@ -41,14 +42,14 @@ public class VentanaInicioSesion extends JFrame{
 	
 	
 	public VentanaInicioSesion() {
-		
+		setTitle("LOGIN");
 		setDefaultCloseOperation(DISPOSE_ON_CLOSE);
 		int anchoP = GraphicsEnvironment.getLocalGraphicsEnvironment().getDefaultScreenDevice().getDisplayMode().getWidth();
 		int altoP = GraphicsEnvironment.getLocalGraphicsEnvironment().getDefaultScreenDevice().getDisplayMode().getHeight();
 		setSize(anchoP,altoP);
 		setExtendedState(MAXIMIZED_BOTH);
 		setResizable(false);
-		setTitle("Ventana inicio sesion");
+		
 		
 		/*CEACION CON PANELES Y COMPONENTES*/
 		
@@ -136,9 +137,7 @@ public class VentanaInicioSesion extends JFrame{
 		});
 		
 		
-		
-		
-		
+	
 		
 		/*AÑADIR LOS COMPONENTES AL PANEL Y A LA VENTA*/
 		

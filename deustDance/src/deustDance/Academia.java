@@ -1,12 +1,18 @@
 package deustDance;
 
+import java.io.BufferedReader;
+import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.Connection;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
+
+import javax.swing.JOptionPane;
 
 public class Academia {
 	
@@ -30,7 +36,7 @@ public class Academia {
 	}
 	
 	public static void ver() {
-		for(Alumno a : listaAlumnos) {
+		for(Profesor a : listaProfesores) {
 			System.out.println(a);
 		}
 	}
@@ -44,9 +50,15 @@ public class Academia {
 		listaSecretaria = BaseDatos.volcadoSecretariosaLista(conn);
 	}
 	
+	public static void borrarTodosLosAlumnos() {
+		listaAlumnos.clear();
+	}
+	
 	public static void anyadirAlumno(Alumno a) {
 		listaAlumnos.add(a);
 	}
+	
+	
 	
 	public static void anyadirProfesor(Profesor p) {
 		listaProfesores.add(p);
@@ -58,6 +70,15 @@ public class Academia {
 	}
 	
 	/*METODOS PARA BUSCAR ALUMNOS REPETIDOS*/
+	
+	public static boolean contieneAlumno(Alumno alumnoBuscar) {
+	    for (Alumno a : listaAlumnos) {
+	        if (a.getUsuario().equals(alumnoBuscar.getUsuario())) {
+	            return true; // El alumno ya está en la lista
+	        }
+	    }
+	    return false; // El alumno no está en la lista
+	}
 	
 	public static Alumno buscarAlumno(String usuario) {
 		
@@ -151,12 +172,13 @@ public class Academia {
 			}
 			sc.close();
 		} catch (FileNotFoundException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}
 	
+	
 	public static void guardarDatosAlumno(String file) {
+
 		try {
 			PrintWriter pw = new PrintWriter(file);
 			for(Alumno a : listaAlumnos) {
@@ -166,9 +188,58 @@ public class Academia {
 			pw.flush();
 			pw.close();
 		} catch (FileNotFoundException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+	}
+	
+	public static void guardarDatosProfesor(String file) {
+
+		try {
+			PrintWriter pw = new PrintWriter(file);
+			for(Profesor a : listaProfesores) {
+				pw.write(a.getNombre()+";"+a.getApellidos()+";"+a.getUsuario()+";"+a.getContrasenia()+";"+a.getTelefono()+";"+a.getDomicilio()+";"+a.getGrupo());
+			}
+			pw.flush();
+			pw.close();
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		}
+	}
+	
+	public static void borradoDeAlumnosCSV(String nomFich, String usuarioABorrar) throws IOException {
+	    File archivoCsv = new File(nomFich);
+	    File archivoTemporal = new File("temp.csv");
+	    BufferedReader br = null;
+	    PrintWriter pw = null;
+
+	    try {
+	        br = new BufferedReader(new FileReader(archivoCsv));
+	        pw = new PrintWriter(new FileWriter(archivoTemporal));
+	        String linea;
+
+	        while ((linea = br.readLine()) != null) {
+	            String datos[] = linea.split(";");
+	            if (!datos[2].equals(usuarioABorrar)) {
+	                pw.println(linea);
+	            }
+	        }
+	    } catch (FileNotFoundException e) {
+	        e.printStackTrace();
+	    } finally {
+	        if (br != null) {
+	            br.close();
+	        }
+	        if (pw != null) {
+	            pw.close();
+	        }
+	    }
+
+	    if (!archivoCsv.delete()) {
+	        System.out.println("No se pudo eliminar el archivo original");
+	    }
+	    if (!archivoTemporal.renameTo(archivoCsv)) {
+	        System.out.println("No se pudo renombrar el archivo temporal");
+	    }
 	}
 	
 	public static void cargarDatosProfesor(Connection con, String file) {
@@ -200,24 +271,11 @@ public class Academia {
 			}
 			sc.close();
 		} catch (FileNotFoundException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}
 	
-	public static void guardarDatosProfesor(String file) {
-		try {
-			PrintWriter pw = new PrintWriter(file);
-			for(Profesor p : listaProfesores) {
-				pw.write(p.getNombre()+";"+p.getApellidos()+"\n");
-			}
-			pw.flush();
-			pw.close();
-		} catch (FileNotFoundException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-	}
+
 	
 	public static void cargarDatosSecretaria(Connection con, String file) {
 		

@@ -1,8 +1,11 @@
 package deustDance;
 
+import java.util.Objects;
 
 public class Alumno extends Persona{
 	
+	
+
 	private static int contador = 1;
 	private int id;
 	private int baileAsignado;
@@ -118,6 +121,27 @@ public class Alumno extends Persona{
 				+ ", getNombre()=" + getNombre() + ", getApellidos()=" + getApellidos() + ", getUsuario()="
 				+ getUsuario() + ", getContrasenia()=" + getContrasenia() + ", getTelefono()=" + getTelefono()
 				+ ", getDomicilio()=" + getDomicilio();
+	}
+	
+	@Override
+	public int hashCode() {
+		return Objects.hash(baileAsignado, calificacion, dinero, grupo, id, id_claseAsignada, id_profesorAsignado);
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Alumno other = (Alumno) obj;
+		return baileAsignado == other.baileAsignado
+				&& Double.doubleToLongBits(calificacion) == Double.doubleToLongBits(other.calificacion)
+				&& Double.doubleToLongBits(dinero) == Double.doubleToLongBits(other.dinero) && grupo == other.grupo
+				&& id == other.id && id_claseAsignada == other.id_claseAsignada
+				&& id_profesorAsignado == other.id_profesorAsignado;
 	}
 	
 	
