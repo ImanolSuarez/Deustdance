@@ -59,7 +59,7 @@ public class VentanaAlumno extends JFrame{
 	protected static JPanel panelInformacionAcademica;
 	
 	public VentanaAlumno() {
-		
+		//AQUI CARGAR BASE DE DATOS Y LOGGER
 		//PANELES
 		panelC = new JPanel();
 		panelC.setOpaque(false);
