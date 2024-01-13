@@ -18,33 +18,58 @@ public class VentanaAlumno extends JFrame{
 	public static Alumno alumno;
 	SimpleDateFormat formatoFecha = new SimpleDateFormat("dd-MM-yyyy");
 	
-	// Panel principal
+	// PANEL PRINCIPAL
 	protected static JPanel panelC;
 	
+	// TABLA
+	protected static Tablas tabla;
 	
-	protected JLabel labelFoto;
-	protected JButton botonEditar;
-	protected JTextField textoNombre;
-	protected JTextField textoApellidos;
-	protected JTextField textoUsuario;
-	protected JTextField textoContraseña;
-	protected JTextField textoDomicilio;
-	protected JTextField textoprofesorAsignado;
-	protected JTextField textoclaseAsignada;
-	protected JTextField textodinero;
-	protected JTextField textogrupo;
-	protected JTextField textocalificacion;
-	protected JButton botonImprimirCalendar;
-	protected JButton botonCargarFoto;
-	protected VentanaSecretaria ventanaSecretaria;
+	
+	// DATOS 
+	protected static JLabel labelFoto;
+	protected static JPanel panelDatos;
+	protected static JLabel botonEditar;
+	protected static JLabel labelNombre;
+	protected static JLabel labelApellido;
+	protected static JLabel labelUsuario;
+	protected static JLabel labelContraseña;
+	protected static JLabel labelDomicilio;
+	protected static JLabel labelProfesorAsignado;
+	protected static JLabel labelClaseAsignada;
+	protected static JLabel labelDinero;
+	protected static JLabel labelGrupo;
+	protected static JLabel labelCalificacion;
+	
+	//protected static JTextField textoNombre;
+	//protected static JTextField textoApellidos;
+	//protected static JTextField textoUsuario;
+	//protected static JTextField textoContraseña;
+	//protected static JTextField textoDomicilio;
+	//protected static JTextField textoprofesorAsignado;
+	//protected static JTextField textoclaseAsignada;
+	//protected static JTextField textodinero;
+	//protected static JTextField textogrupo;
+	//protected static JTextField textocalificacion;
+	//protected static JButton botonImprimirCalendar;
+	protected static JButton botonCargarFoto;
+	protected static VentanaSecretaria ventanaSecretaria;
+	
+	// PANELES
+	protected static JPanel panelInformacionPersonal;
+	protected static JPanel panelInformacionAcademica;
 	
 	public VentanaAlumno() {
 		
-		JPanel panelInformacionPersonal = new JPanel();
-		JPanel panelInformacionAcademica = new JPanel();
-		JPanel panelImagen = new JPanel();
+		//PANELES
+		panelC = new JPanel();
+		panelC.setOpaque(false);
+		panelInformacionPersonal = new JPanel();
+		panelInformacionAcademica = new JPanel();
 		
-		panelInformacionPersonal.setLayout(new BorderLayout());
+		// TABLAS
+		tabla = new Tablas();
+		
+		panelInformacionPersonal.setLayout(new GridBagLayout());
 		panelInformacionAcademica.setLayout(new BorderLayout());
 		
 		Border bordeInformacionPersonal = BorderFactory.createTitledBorder("Información personal");
@@ -55,50 +80,62 @@ public class VentanaAlumno extends JFrame{
 		
 		panelInformacionPersonal.setLayout(new GridLayout(7,2));
 		
-		textoNombre = new JTextField(20);
-		textoApellidos = new JTextField(20);
-		textoUsuario = new JTextField(20);
-		textoContraseña = new JTextField(20);
-		textoDomicilio = new JTextField(20);
-		textoprofesorAsignado = new JTextField(20);
-		textoclaseAsignada = new JTextField(20);
-		textodinero = new JTextField(20);
-		textogrupo = new JTextField(20);
-		textocalificacion = new JTextField(20);
-		labelFoto = new JLabel();
+		// ELEMENTOS DE DATOS
+		labelNombre = new JLabel("Nombre:		" + alumno.getNombre());
+		labelApellido = new JLabel("Apellido:		" + alumno.getApellidos());
+		labelUsuario = new JLabel("Usuario:		" + alumno.getUsuario());
+		labelContraseña = new JLabel("Contraseña:		" + alumno.getContrasenia());
+		labelDomicilio = new JLabel("Domicilio:		" + alumno.getDomicilio());
+		labelProfesorAsignado = new JLabel("Profesor asignado		" + alumno.getProfesorAsignado());
+		labelClaseAsignada = new JLabel("Clase asignada		" + alumno.getClaseAsignada());
+		labelDinero = new JLabel("Dinero		" +  alumno.getDinero());
+		labelGrupo = new JLabel("Grupo:		" +  alumno.getGrupo());
+		labelCalificacion = new JLabel("Calificación:		" + alumno.getCalificacion());
+		botonCargarFoto = new JButton("Cargar foto");
+		//textoNombre = new JTextField(20);
+		//textoApellidos = new JTextField(20);
+		//textoUsuario = new JTextField(20);
+		//textoContraseña = new JTextField(20);
+		//textoDomicilio = new JTextField(20);
+		//textoprofesorAsignado = new JTextField(20);
+		//textoclaseAsignada = new JTextField(20);
+		//textodinero = new JTextField(20);
+		//textogrupo = new JTextField(20);
+		//textocalificacion = new JTextField(20);
+		//labelFoto = new JLabel();
 		
 		
-		textoNombre.setEditable(false);
-		textoApellidos.setEditable(false);
-		textoUsuario.setEditable(false);
-		textoContraseña.setEditable(false);
-		textoDomicilio.setEditable(false);
-		textoprofesorAsignado.setEditable(false);
-		textoclaseAsignada.setEditable(false);
-		textodinero.setEditable(false);
-		textogrupo.setEditable(false);
-		textocalificacion.setEditable(false);
+		//textoNombre.setEditable(false);
+		//textoApellidos.setEditable(false);
+		//textoUsuario.setEditable(false);
+		//textoContraseña.setEditable(false);
+		//textoDomicilio.setEditable(false);
+		//textoprofesorAsignado.setEditable(false);
+		//textoclaseAsignada.setEditable(false);
+		//textodinero.setEditable(false);
+		//textogrupo.setEditable(false);
+		//textocalificacion.setEditable(false);
 		
-		panelInformacionPersonal.add(new JLabel("Nombre: "));
-		panelInformacionPersonal.add(textoNombre);
-		panelInformacionPersonal.add(new JLabel("Apellidos: "));
-		panelInformacionPersonal.add(textoApellidos);
-		panelInformacionPersonal.add(new JLabel("Usuario: "));
-		panelInformacionPersonal.add(textoUsuario);
-		panelInformacionPersonal.add(new JLabel("Contraseña: "));
-		panelInformacionPersonal.add(textoContraseña);
-		panelInformacionPersonal.add(new JLabel("Domicilio: "));
-		panelInformacionPersonal.add(textoDomicilio);
-		panelInformacionPersonal.add(new JLabel("Profesor Asignado: "));
-		panelInformacionPersonal.add(textoprofesorAsignado);
-		panelInformacionPersonal.add(new JLabel("Clase Asignada: "));
-		panelInformacionPersonal.add(textoclaseAsignada);
-		panelInformacionPersonal.add(new JLabel("Dinero: "));
-		panelInformacionPersonal.add(textodinero);
-		panelInformacionPersonal.add(new JLabel("Grupo: "));
-		panelInformacionPersonal.add(textogrupo);
-		panelInformacionPersonal.add(new JLabel("Calificación: "));
-		panelInformacionPersonal.add(textocalificacion);
+		panelInformacionPersonal.add(labelNombre);
+		
+		panelInformacionPersonal.add(labelApellido);
+		
+		panelInformacionPersonal.add(labelUsuario);
+		
+		panelInformacionPersonal.add(labelContraseña);
+		
+		panelInformacionPersonal.add(labelDomicilio);
+		
+		panelInformacionPersonal.add(labelProfesorAsignado);
+		
+		panelInformacionPersonal.add(labelClaseAsignada);
+		
+		panelInformacionPersonal.add(labelDinero);
+		
+		panelInformacionPersonal.add(labelGrupo);
+		
+		panelInformacionPersonal.add(labelCalificacion);
+		
 		
 		
 		//JFILECHOOSER PARA QUE EL ALUMNO ELIJA LA FOTO
@@ -136,28 +173,17 @@ public class VentanaAlumno extends JFrame{
 		panelInformacionPersonal.add(panelBotonPersonal, BorderLayout.SOUTH);
 		panelBotonPersonal.add(botonCargarFoto);
 	
+		//////////////////////////////
 		
-		botonImprimirCalendar = new JButton("Imprimir horario");
-		
-		
-		botonImprimirCalendar.addActionListener(new ActionListener() {
-			
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				
-				
-			}
-		});
 		
 		
 		panelInformacionAcademica.add(new JLabel("Horario: "), BorderLayout.CENTER);
 		JPanel panelBotonesAcademico = new JPanel();
-		panelBotonesAcademico.add(botonImprimirCalendar);
+		
 		
 		
 		panelInformacionAcademica.add(panelBotonesAcademico, BorderLayout.SOUTH);
 		
-		panelImagen.add(panelInformacionPersonal, BorderLayout.WEST);
 		this.add(panelInformacionPersonal, BorderLayout.WEST);
 		this.add(panelInformacionAcademica, BorderLayout.EAST);
 		
