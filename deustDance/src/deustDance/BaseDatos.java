@@ -425,6 +425,31 @@ public class BaseDatos {
 		return a;
 	}
 	
+	/*BUSCA SI EL PROFESOR YA ESTA EN LA BASE DE DATOS MEDIANTE EL USUARIO*/
+	public static Profesor buscarProfesor(Connection con, String usuario) {
+		String sql = String.format("SELECT * FROM Profesor WHERE usuario = '%s'", usuario);
+		Profesor a = null;
+		try {
+			Statement st = con.createStatement();
+			ResultSet rs = st.executeQuery(sql);
+			if(rs.next()) {
+				String nombre = rs.getString("nombre");
+				String apellido = rs.getString("apellido");
+				String usu = rs.getString("usuario");
+				String contra = rs.getString("contraseña");
+				int tel = rs.getInt("telefono");
+				String domicilio = rs.getString("domicilio");
+				int grupo = rs.getInt("grupo");
+				a = new Profesor(nombre, apellido, usu, contra, tel, domicilio, grupo);
+			}
+			rs.close();
+			st.close();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return a;
+	}
+	
 	/*ELIMINA A UNA PERSOAN DE LA BASE DE DATOS*/
 	
 	public static void eliminarAlumno(Connection con, String usuario) {
@@ -480,6 +505,46 @@ public class BaseDatos {
 	    }
 
 	    return listaAlumnos;
+	}
+	
+	/*ELIMINAR PROFESOR*/
+	
+	public static void eliminarProfesor(Connection con, String usuario) {
+		String sql = String.format("DELETE FROM Profesor WHERE usuario = '%s'", usuario);
+		try {
+			Statement st = con.createStatement();
+			st.executeUpdate(sql);
+			st.close();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+	
+	/*OBTENER TODOS LOS PROFESOR*/
+	
+	public static List<Profesor> listaProfesores(Connection con){
+		List<Profesor> p = new ArrayList<>();
+		String sql = "SELECT * FROM PROFESOR";
+		try {
+			Statement st = con.createStatement();
+			ResultSet rs = st.executeQuery(sql);
+			while(rs.next()) {
+				String nombre = rs.getString("nombre");
+				String apellido = rs.getString("apellido");
+				String usu = rs.getString("usuario");
+				String contra = rs.getString("contraseña");
+				int tel = rs.getInt("telefono");
+				String domicilio = rs.getString("domicilio");
+				int grupo = rs.getInt("grupo");
+				Profesor a = new Profesor(nombre, apellido, usu, contra, tel, domicilio, grupo);
+				p.add(a);
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return p;
 	}
 	
 	

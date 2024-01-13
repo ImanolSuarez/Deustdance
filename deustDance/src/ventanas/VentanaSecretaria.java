@@ -191,7 +191,7 @@ public class VentanaSecretaria extends JFrame {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				Academia.guardarDatosAlumno("resources/alumnos.csv");
-				Academia.guardarDatosProfesor("resources/alumnos.csv/profesor.csv");
+				Academia.guardarDatosProfesor("resources/profesores.csv");
 				dispose();
 				
 			}
@@ -242,15 +242,22 @@ public class VentanaSecretaria extends JFrame {
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				String usuario = txtUsuario.getText();
+				String usuario = JOptionPane.showInputDialog("Introduce el usuario del alumno: ");
 				try {
 					if(BaseDatos.buscarAlumno(con, usuario) != null) {
-						Academia.borradoDeAlumnosCSV("resources/alumnos.csv", usuario);
-						JOptionPane.showMessageDialog(null, "Usuario eliminado correctamente");
+						BaseDatos.eliminarAlumno(con, usuario);
+						List<Alumno> listaAlumnos = BaseDatos.obtenerAlumnos(con);
+						Academia.borrarTodosLosAlumnos();
+						for (Alumno a : listaAlumnos) {
+						    if (!Academia.contieneAlumno(a)) {
+						        Academia.anyadirAlumno(a);
+						        System.out.println(a);
+						    }
+						}
 					}else {
 						JOptionPane.showMessageDialog(null, "Error al intentar eliminar el usuario");
 					}
-				} catch (IOException e1) {
+				} catch (NumberFormatException e1) {
 					e1.printStackTrace();
 						
 				}
@@ -291,7 +298,7 @@ public class VentanaSecretaria extends JFrame {
 		botonEliminarP = new JButton("Eliminar profesor");
 		
 		JPanel panelTextoP = new JPanel();
-		panelTextoP.setLayout(new GridLayout(7,2));
+		panelTextoP.setLayout(new GridLayout(9,2));
         
 		panelTextoP.add(new JLabel("Nombre: "));
 		panelTextoP.add(txtNombreP);
@@ -305,12 +312,14 @@ public class VentanaSecretaria extends JFrame {
 		panelTextoP.add(txtUsuarioP);
 		panelTextoP.add(new JLabel("Contraseña: "));
 		panelTextoP.add(txtContrasenyaP);
+		panelTextoP.add(new JLabel("Telefono: "));
+		panelTextoP.add(txtTelefonoP);
+		
 		
 		botonAnyadirP.addActionListener(new ActionListener() {
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				
 				String nombre = txtNombreP.getText();
 				String apellido = textApellidoP.getText();
 				String grupo = spinnerGrupoP.getValue().toString();
@@ -318,44 +327,46 @@ public class VentanaSecretaria extends JFrame {
 				String usuario = txtUsuarioP.getText();
 				String contra = txtContrasenyaP.getText();
 				String tf = txtTelefonoP.getText();
-				
-				if(!nombre.isEmpty() && !domicilio.isEmpty() && !usuario.isEmpty() && !contra.isEmpty() && !tf.isEmpty() ) {
-					try {
-						int grup = Integer.parseInt(grupo);
-						int telefono = Integer.parseInt(tf);
-						if(nombreCorrecto(nombre) && apellidoCorrecto(apellido)&& domicilioCorrecto(domicilio) && usuarioCorrecto(usuario) && contraCorrecto(contra) && tfCorrecto(tf)) {
-							JOptionPane.showMessageDialog(null, "REGISTRO REALIZADO CORRECTAMENTE");
-							Profesor p = new Profesor(nombre, apellido, usuario, contra, telefono, domicilio, grup);
-							if(Academia.buscarProfesor(usuario) == null) {
-								Academia.anyadirProfesor(p);
-								JOptionPane.showMessageDialog(null, "REGISTRO REALIZADO CORRECTAMENTE");
-							}else {
-								JOptionPane.showMessageDialog(null, "Error.");
-							}
-						}else {
-							JOptionPane.showMessageDialog(null, "ERROR EN EL FORMATO");
+				 if (!nombre.isEmpty()  &&   !apellido.isEmpty() && !grupo.isEmpty() && !domicilio.isEmpty() && !usuario.isEmpty() && !contra.isEmpty() && !tf.isEmpty()) {
+			            try {
+			            	int gru = Integer.parseInt(grupo);
+			            	int telefo = Integer.parseInt(tf);
+			            	if(nombreCorrecto(nombre) && apellidoCorrecto(apellido) && usuarioCorrecto(usuario) && contraCorrecto(contra) && tfCorrecto(tf) && domicilioCorrecto(domicilio) && grupoCorrecto(grupo)) {
+			            		Profesor p = new Profesor(nombre, apellido, usuario, contra, telefo, domicilio, gru);
+			            		if(BaseDatos.buscarProfesor(con, usuario) == null) {
+			            			Academia.anyadirProfesor(p);
+			            			JOptionPane.showMessageDialog(null, "Porfesor añadido correctamente");
+			            		}else {
+			            			JOptionPane.showMessageDialog(null, "El profesor no se pudo añadir");
+			            		}
+			
+			            	}else{
+			            		JOptionPane.showMessageDialog(null, "Formato incorrecto");
+			            	}
+			            }catch (NumberFormatException e1) {
+			            	JOptionPane.showMessageDialog(null, "ERROR NUMERICO");
 						}
-					}catch (NumberFormatException ex) {
-						JOptionPane.showMessageDialog(null, "ERROR NUMERICO");
-					}
-				}
-				
-				// Falta guardar los datos en la base de datos
-				txtNombreP.setText("");
-				textApellidoP.setText("");
-				spinnerGrupoP.setValue(0);
-				txtDomicilioP.setText("");
-				txtUsuarioP.setText("");
-				txtContrasenyaP.setText("");
-				txtTelefonoP.setText("");
+			        } else {
+			            JOptionPane.showMessageDialog(null, "ERROR. PORFAVOR REVISE TODOS LOS CAMPOS");
+			        }
+				 txtNombreP.setText("");
+				 textApellidoP.setText("");
+					spinnerGrupoP.setValue(0);
+					txtDomicilioP.setText("");
+					txtUsuarioP.setText("");
+					txtContrasenyaP.setText("");
+					txtTelefonoP.setText("");
+				 
 			}
 		});
+		
 		
 		
 		botonModificarP.addActionListener(new ActionListener() {
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
+				
 				
 				
 			}
@@ -365,10 +376,32 @@ public class VentanaSecretaria extends JFrame {
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				
-				
-			}
+				String usuario = JOptionPane.showInputDialog(null,"Introduce el usuario a eliminar: ");
+				try {
+						if(BaseDatos.buscarProfesor(con, usuario) != null) {
+							BaseDatos.eliminarProfesor(con, usuario);
+							List<Profesor> listaProfesores = BaseDatos.listaProfesores(con);
+							Academia.borrarTodosLosProfesores();
+							for (Profesor a : listaProfesores) {
+							    if (!Academia.contieneProfesor(a)) {
+							        Academia.anyadirProfesor(a);;
+							        System.out.println(a);
+							    }
+							}
+							JOptionPane.showMessageDialog(null, "PROFESOR BORRADO CON EXITO");
+						}else {
+							JOptionPane.showMessageDialog(null, "EL PROFESOR NO SE PUDO BORRAR");
+						}
+						
+					} catch (NumberFormatException e3) {
+						e3.printStackTrace();
+					}
+				}
 		});
+		
+		
+		
+		
 		
 		JPanel panelBotonesP = new JPanel();
 		panelBotonesP.setLayout(new GridLayout(1,3));
@@ -442,6 +475,14 @@ public class VentanaSecretaria extends JFrame {
 			return false;
 		}
 	}
+	private boolean grupoCorrecto(String grupo) {
+		try {
+			int num = Integer.parseInt(grupo);
+			return num >=1 && num <= 9;
+		}catch (NumberFormatException | NullPointerException e) {
+			return false;
+		}
+	}
 	private boolean profeCorrecto(String profeAsig) {
 		try {
 			int num = Integer.parseInt(profeAsig);
@@ -462,4 +503,6 @@ public class VentanaSecretaria extends JFrame {
 		String formato = "[A-Z][a-z]}{2,7}/s[A-Z][a-z]{3,10}";
 		return Pattern.matches(texto, formato);
 	}
+	
+	
 }

@@ -54,6 +54,10 @@ public class Academia {
 		listaAlumnos.clear();
 	}
 	
+	public static void borrarTodosLosProfesores() {
+		listaProfesores.clear();
+	}
+	
 	public static void anyadirAlumno(Alumno a) {
 		listaAlumnos.add(a);
 	}
@@ -74,6 +78,15 @@ public class Academia {
 	public static boolean contieneAlumno(Alumno alumnoBuscar) {
 	    for (Alumno a : listaAlumnos) {
 	        if (a.getUsuario().equals(alumnoBuscar.getUsuario())) {
+	            return true; // El alumno ya está en la lista
+	        }
+	    }
+	    return false; // El alumno no está en la lista
+	}
+	
+	public static boolean contieneProfesor(Profesor profesorBuscar) {
+	    for (Profesor a : listaProfesores) {
+	        if (a.getUsuario().equals(profesorBuscar.getUsuario())) {
 	            return true; // El alumno ya está en la lista
 	        }
 	    }
@@ -197,7 +210,8 @@ public class Academia {
 		try {
 			PrintWriter pw = new PrintWriter(file);
 			for(Profesor a : listaProfesores) {
-				pw.write(a.getNombre()+";"+a.getApellidos()+";"+a.getUsuario()+";"+a.getContrasenia()+";"+a.getTelefono()+";"+a.getDomicilio()+";"+a.getGrupo());
+				pw.write(a.getNombre()+";"+a.getApellidos()+";"+a.getUsuario()+";"+a.getContrasenia()+";"+a.getTelefono()
+				+";"+a.getDomicilio()+";"+a.getGrupo()+"\n");
 			}
 			pw.flush();
 			pw.close();
@@ -242,6 +256,8 @@ public class Academia {
 	    }
 	}
 	
+	
+	
 	public static void cargarDatosProfesor(Connection con, String file) {
 		
 		List<Alumno> listaAlumnos = new ArrayList<>();
@@ -249,7 +265,6 @@ public class Academia {
 		List<Clase> listaClase = new ArrayList<>();
 		try {
 			Scanner sc = new Scanner(new FileReader(file));
-			String titulos = sc.nextLine();
 			String linea;
 			while(sc.hasNext()) {
 				linea = sc.nextLine();

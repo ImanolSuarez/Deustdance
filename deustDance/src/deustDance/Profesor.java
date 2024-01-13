@@ -24,7 +24,8 @@ public class Profesor extends Persona{
 	}
 	
 	public Profesor(String nom, String app, String usu, String con, int tel, String dom, int grup) {
-		super();
+		super(nom, app, usu, con, tel, dom);
+		this.grupo = grup;
 	}
 	
 	public Profesor() {
