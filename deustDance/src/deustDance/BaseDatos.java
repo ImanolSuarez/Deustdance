@@ -8,8 +8,30 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.FileHandler;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class BaseDatos {
+	protected static Logger logger = Logger.getLogger(BaseDatos.class.getName());
+	protected static Boolean loggerCreado = false;
+	
+	// METODO QUE AJUSTA LOS PARAMETROS DEL LOGGER
+	
+	public void logger() {
+		if(!loggerCreado) {
+			logger.setLevel( Level.ALL);
+			logger.setUseParentHandlers(false);
+			
+			try {
+				logger.addHandler(new FileHandler("BaseDeDatosAcademia.xml"));
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
+		loggerCreado = true;
+	}
+	
 	
 	/*METODO QUE REALIZA LA CONEXION A LA BASE DE DATOS*/
 	
@@ -26,7 +48,7 @@ public class BaseDatos {
 		return con;
 	}
 	
-	/*METODO QUE REALIZA EL CRIERRE DE LA BASE DE DATOS*/
+	/*METODO QUE REALIZA EL CIERRE DE LA BASE DE DATOS*/
 	
 	public static void closeBD(Connection con) {
 		if(con!=null) {
@@ -425,6 +447,7 @@ public class BaseDatos {
 		return a;
 	}
 	
+
 	/*BUSCA SI EL PROFESOR YA ESTA EN LA BASE DE DATOS MEDIANTE EL USUARIO*/
 	public static Profesor buscarProfesor(Connection con, String usuario) {
 		String sql = String.format("SELECT * FROM Profesor WHERE usuario = '%s'", usuario);
@@ -451,6 +474,9 @@ public class BaseDatos {
 	}
 	
 	/*ELIMINA A UNA PERSOAN DE LA BASE DE DATOS*/
+
+	/*ELIMINA A UNA PERSONA DE LA BASE DE DATOS*/
+
 	
 	public static void eliminarAlumno(Connection con, String usuario) {
 		String sql = String.format("DELETE FROM Alumno WHERE usuario = '%s'", usuario);
