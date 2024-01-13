@@ -4,13 +4,25 @@ import java.awt.*;
 
 import java.awt.event.*;
 import java.io.File;
-
+import java.text.SimpleDateFormat;
 import javax.swing.*;
 import javax.swing.border.*;
+
+import deustDance.Alumno;
 
 
 public class VentanaAlumno extends JFrame{
 	private static final long serialVersionUID = 1L;
+	
+	// COMPONENETES DE LA VENTANA ALUMNO QUE HA INICIADO SESION
+	public static Alumno alumno;
+	SimpleDateFormat formatoFecha = new SimpleDateFormat("dd-MM-yyyy");
+	
+	// Panel principal
+	protected static JPanel panelC;
+	
+	
+	protected JLabel labelFoto;
 	protected JButton botonEditar;
 	protected JTextField textoNombre;
 	protected JTextField textoApellidos;
@@ -53,6 +65,7 @@ public class VentanaAlumno extends JFrame{
 		textodinero = new JTextField(20);
 		textogrupo = new JTextField(20);
 		textocalificacion = new JTextField(20);
+		labelFoto = new JLabel();
 		
 		
 		textoNombre.setEditable(false);
@@ -163,7 +176,5 @@ public class VentanaAlumno extends JFrame{
 	public static void main(String[] args) {
 		new VentanaAlumno();
 	}
-	
-	
 	
 }
