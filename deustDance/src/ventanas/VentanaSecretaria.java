@@ -5,7 +5,9 @@ import java.awt.GraphicsEnvironment;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.IOException;
 import java.sql.Connection;
+import java.util.List;
 import java.util.regex.Pattern;
 
 import javax.swing.JButton;
@@ -50,6 +52,7 @@ public class VentanaSecretaria extends JFrame {
 	
 	
 	protected JTextField txtNombreP;
+	protected JTextField textApellidoP;
 	protected JSpinner spinnerGrupoP;
 	protected JTextField txtDomicilioP;
 	protected JTextField txtUsuarioP;
@@ -188,32 +191,69 @@ public class VentanaSecretaria extends JFrame {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				Academia.guardarDatosAlumno("resources/alumnos.csv");
-				setDefaultCloseOperation(EXIT_ON_CLOSE);
+				Academia.guardarDatosProfesor("resources/alumnos.csv/profesor.csv");
+				dispose();
 				
 			}
 		});
-		
+		/*
 		botonModificar.addActionListener(new ActionListener() {
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				// TODO
-				
+				String usuario = txtUsuario.getText();
+				if(BaseDatos.buscarAlumno(con, usuario) != null) {
+					
+					try {
+						Academia.borradoDeAlumnosCSV("resources/alumnos.csv", usuario);
+					} catch (IOException e1) {
+						e1.printStackTrace();
+					}
+					
+					String campo = JOptionPane.showInputDialog("Ingrese el nombre del campo a modificar:");
+					if(campo.equals("Nombre") || campo.equals("Apellidos") || campo.equals("Usuario") || campo.equals("Contraseña") || campo.equals("Telefono")||campo.equals("Domicilio")||campo.equals("Baile Asignado") || campo.equals("Profesor Asignado") || campo.equals("Clase Asignada")) {
+						String nombreNuevo = txtNombre.getText();
+						if(!nombreNuevo.isEmpty()) {
+							BaseDatos.modificarAlumno(con,campo, nombreNuevo, usuario);
+							List<Alumno> listaAlumnos = BaseDatos.obtenerAlumnos(con);
+							Academia.borrarTodosLosAlumnos();
+							for (Alumno a : listaAlumnos) {
+							    if (!Academia.contieneAlumno(a)) {
+							        Academia.anyadirAlumno(a);
+							        System.out.println(a);
+							    }
+							}
+							JOptionPane.showMessageDialog(null, "Alumno modificado con exito");
+						}else {
+							JOptionPane.showMessageDialog(null, "Lo que desea cambiar esta vacio");
+						}
+					}else {
+						JOptionPane.showMessageDialog(null, "Alumno no encontrado");
+					}
+					}else {
+						JOptionPane.showMessageDialog(null, "Campo erroneo");
+					}
+					
+					
 			}
-		});
+		});*/
 		
 		botonEliminar.addActionListener(new ActionListener() {
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				String usuario = txtUsuario.getText();
-				BaseDatos.eliminarAlumno(con, usuario);
-				if(BaseDatos.buscarAlumno(con, usuario) == null) {
-					JOptionPane.showMessageDialog(null, "USUARIO ELIMINADO");
-				}else {
-					JOptionPane.showMessageDialog(null, "EL USUARIO NO SE PUDO ELIMINAR, REVISE LOS DATOS");
+				try {
+					if(BaseDatos.buscarAlumno(con, usuario) != null) {
+						Academia.borradoDeAlumnosCSV("resources/alumnos.csv", usuario);
+						JOptionPane.showMessageDialog(null, "Usuario eliminado correctamente");
+					}else {
+						JOptionPane.showMessageDialog(null, "Error al intentar eliminar el usuario");
+					}
+				} catch (IOException e1) {
+					e1.printStackTrace();
+						
 				}
-				
 			}
 		});
 		
@@ -240,6 +280,7 @@ public class VentanaSecretaria extends JFrame {
 
         // Pestaña Profesores
         txtNombreP = new JTextField();
+        textApellidoP = new JTextField();
 		spinnerGrupoP = new JSpinner();
 		txtDomicilioP = new JTextField();
 		txtUsuarioP = new JTextField();
@@ -250,10 +291,12 @@ public class VentanaSecretaria extends JFrame {
 		botonEliminarP = new JButton("Eliminar profesor");
 		
 		JPanel panelTextoP = new JPanel();
-		panelTextoP.setLayout(new GridLayout(6,2));
+		panelTextoP.setLayout(new GridLayout(7,2));
         
-		panelTextoP.add(new JLabel("Nombre y Apellidos: "));
+		panelTextoP.add(new JLabel("Nombre: "));
 		panelTextoP.add(txtNombreP);
+		panelTextoP.add(new JLabel("Apellidos: "));
+		panelTextoP.add(textApellidoP);
 		panelTextoP.add(new JLabel("Grupo: "));
 		panelTextoP.add(spinnerGrupoP);
 		panelTextoP.add(new JLabel("Domicilio: "));
@@ -267,19 +310,28 @@ public class VentanaSecretaria extends JFrame {
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				String nombreyapellidos = txtNombreP.getText();
+				
+				String nombre = txtNombreP.getText();
+				String apellido = textApellidoP.getText();
 				String grupo = spinnerGrupoP.getValue().toString();
 				String domicilio = txtDomicilioP.getText(); 
 				String usuario = txtUsuarioP.getText();
 				String contra = txtContrasenyaP.getText();
 				String tf = txtTelefonoP.getText();
 				
-				if(!nombreyapellidos.isEmpty() && !domicilio.isEmpty() && !usuario.isEmpty() && !contra.isEmpty() && !tf.isEmpty() ) {
+				if(!nombre.isEmpty() && !domicilio.isEmpty() && !usuario.isEmpty() && !contra.isEmpty() && !tf.isEmpty() ) {
 					try {
 						int grup = Integer.parseInt(grupo);
 						int telefono = Integer.parseInt(tf);
-						if(nombreCorrecto(nombreyapellidos) && domicilioCorrecto(domicilio) && usuarioCorrecto(usuario) && contraCorrecto(contra) && tfCorrecto(tf)) {
+						if(nombreCorrecto(nombre) && apellidoCorrecto(apellido)&& domicilioCorrecto(domicilio) && usuarioCorrecto(usuario) && contraCorrecto(contra) && tfCorrecto(tf)) {
 							JOptionPane.showMessageDialog(null, "REGISTRO REALIZADO CORRECTAMENTE");
+							Profesor p = new Profesor(nombre, apellido, usuario, contra, telefono, domicilio, grup);
+							if(Academia.buscarProfesor(usuario) == null) {
+								Academia.anyadirProfesor(p);
+								JOptionPane.showMessageDialog(null, "REGISTRO REALIZADO CORRECTAMENTE");
+							}else {
+								JOptionPane.showMessageDialog(null, "Error.");
+							}
 						}else {
 							JOptionPane.showMessageDialog(null, "ERROR EN EL FORMATO");
 						}
@@ -288,16 +340,9 @@ public class VentanaSecretaria extends JFrame {
 					}
 				}
 				
-				/*
-				nuevo.setNombre(nombreyapellidos);
-				nuevo.setGrupo(grupo);
-				nuevo.setDomicilio(domicilio);
-				nuevo.setUsuario(usuario);
-				nuevo.setContrasenia(contrasenya);
-				nuevo.setTelefono(grupo);
-				*/
 				// Falta guardar los datos en la base de datos
 				txtNombreP.setText("");
+				textApellidoP.setText("");
 				spinnerGrupoP.setValue(0);
 				txtDomicilioP.setText("");
 				txtUsuarioP.setText("");
@@ -311,7 +356,7 @@ public class VentanaSecretaria extends JFrame {
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				// TODO
+				
 				
 			}
 		});
@@ -320,7 +365,7 @@ public class VentanaSecretaria extends JFrame {
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				// TODO
+				
 				
 			}
 		});

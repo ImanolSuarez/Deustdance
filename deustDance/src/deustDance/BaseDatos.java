@@ -438,4 +438,50 @@ public class BaseDatos {
 			e.printStackTrace();
 		}
 	}
+	
+	/*MODIFICAR UN ALUMNO*/
+	/*
+	public static void modificarAlumno(Connection con, String nuevoNombre, nuevoApellido, nuevoContra, String usuario) {
+	    String sql = String.format("UPDATE ALUMNO SET nombre = ?, apellido = ?, contraseña = ?, telefono = ?, domicilio = ?, idBaile = ?, idProfesorAlumno = ?, idClase = ?, dinero = ?, grupo = ?, calificacion = ? WHERE usuario = ?");
+	    try (PreparedStatement pst = con.prepareStatement(sql)) {
+	        pst.setString(1, nuevoValor);
+	        pst.setString(2, usuario);
+	        pst.executeUpdate();
+	    } catch (SQLException e) {
+	        e.printStackTrace();
+	    }
+	}*/
+	
+	/*OBTENER EL USUARIO*/
+	
+	public static List<Alumno> obtenerAlumnos(Connection con) {
+	    List<Alumno> listaAlumnos = new ArrayList<>();
+	    String sql = "SELECT * FROM Alumno";
+	    try (Statement st = con.createStatement(); ResultSet rs = st.executeQuery(sql)) {
+	        while (rs.next()) {
+	            // Extraer los valores del ResultSet y crear un objeto Alumno
+	            String nombre = rs.getString("nombre");
+	            String apellido = rs.getString("apellido");
+	            String usu = rs.getString("usuario");
+	            String contra = rs.getString("contraseña");
+	            int tel = rs.getInt("telefono");
+	            String domicilio = rs.getString("domicilio");
+	            int idB = rs.getInt("idBaile");
+	            int idP = rs.getInt("idProfesorAlumno");
+	            int idC = rs.getInt("idClase");
+	            double dinero = rs.getDouble("dinero");
+	            int grupo = rs.getInt("grupo");
+	            double calificacion = rs.getDouble("calificacion");
+
+	            Alumno alumno = new Alumno(nombre, apellido, usu, contra, tel, domicilio, idB, idP, idC, dinero, grupo, calificacion);
+	            listaAlumnos.add(alumno);
+	        }
+	    } catch (SQLException e) {
+	        e.printStackTrace();
+	    }
+
+	    return listaAlumnos;
+	}
+	
+	
 }

@@ -22,6 +22,10 @@ public class Profesor extends Persona{
 		this.listaClases = listaClases;
 	}
 	
+	public Profesor(String nom, String app, String usu, String con, int tel, String dom, int grup) {
+		super();
+	}
+	
 	public Profesor() {
 		super();
 		this.id = 1;
