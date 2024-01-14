@@ -1,26 +1,27 @@
 package ventanas;
 
-import java.awt.BorderLayout;
 
-import java.awt.GraphicsEnvironment;
-import java.awt.GridLayout;
+import java.awt.Color;
+import java.awt.Font;
 import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.ItemEvent;
+import java.awt.event.ItemListener;
+import java.util.ArrayList;
 import java.util.logging.Logger;
-
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
+import javax.swing.JCheckBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
-import javax.swing.JPanel;
 import javax.swing.JPasswordField;
+import javax.swing.JProgressBar;
 import javax.swing.JTextField;
-
+import javax.swing.Timer;
 import deustDance.Academia;
 import deustDance.Alumno;
-import deustDance.Persona;
 import deustDance.Profesor;
 import deustDance.Secretaria;
 
@@ -38,39 +39,175 @@ public class VentanaInicioSesion extends JFrame{
 	private JLabel contrasenia;
 	private JButton botonValidar;
 	private Logger logger = Logger.getLogger(VentanaInicioSesion.class.getName());
+	private ArrayList<String> listaImagenes;
+	private JLabel labelFoto;
+	private JLabel labelLogo;
+	private JLabel condiciones;
+	private JCheckBox checkCondiciones;
+	private JProgressBar barraProgreso;
+	private Timer time;
+	private JLabel labelFoto2;
 	
 	
 	
 	public VentanaInicioSesion() {
-		setTitle("LOGIN");
-		setDefaultCloseOperation(DISPOSE_ON_CLOSE);
-		int anchoP = GraphicsEnvironment.getLocalGraphicsEnvironment().getDefaultScreenDevice().getDisplayMode().getWidth();
-		int altoP = GraphicsEnvironment.getLocalGraphicsEnvironment().getDefaultScreenDevice().getDisplayMode().getHeight();
-		setSize(anchoP,altoP);
-		setExtendedState(MAXIMIZED_BOTH);
-		setResizable(false);
+		
+		this.setTitle("LOGIN");
+		this.setSize(400,600);
+		this.setLayout(null);
+		this.setBounds(500, 100, 500, 600);
+		this.setResizable(false);
+		/*CARGAMOS LA IMAGEN DEL FONDO*/
+		String imagePath = "/imagenes/fondoLogin.jpg";
+		this.setContentPane(new JLabel(new ImageIcon(getClass().getResource(imagePath))));
 		
 		
-		/*CEACION CON PANELES Y COMPONENTES*/
+		/*CEACION CON PANELES Y COMPONENTES*/ 
 		
-		JPanel panelNorte = new JPanel();
-		JPanel panelCentro = new JPanel();
-		JPanel panelSur = new JPanel();
-		JPanel panelText = new JPanel(new GridLayout(4,1));
-		JPanel panelImagen = new JPanel();
-		
-		JLabel labelFoto = new JLabel();
 		JLabel textoBienvenida = new JLabel("BIENVENIDO A DEUSTDANCE");
 		
-		labelFoto.setIcon(new ImageIcon(getClass().getResource("/imagenes/imagenBaile.png")));
+		textoBienvenida.setBounds(145, 0, 200, 130);
+		textoBienvenida.setFont(new Font("Agency FB", Font.BOLD, 20));
+		textoBienvenida.setForeground(Color.WHITE);
+		add(textoBienvenida);
+		
+		labelFoto = new JLabel();
+		labelFoto2 = new JLabel(new ImageIcon(getClass().getResource("/imagenes/imagenBaile.png")));
+		ImageIcon imagenLogo = (new ImageIcon(getClass().getResource("/imagenes/imagenLogo.png")));
+		setIconImage(imagenLogo.getImage());
+		
+		listaImagenes = new ArrayList<>();
+		listaImagenes.add("/imagenes/imagenHilo1.png");
+		listaImagenes.add("/imagenes/imagenHilo2.png");
+		listaImagenes.add("/imagenes/imagenHilo3.jpg");
+		listaImagenes.add("/imagenes/imagenHilo4.jpg");
+		
+		Thread hiloImagenes= new Thread(new Runnable() {
+			@Override
+			public void run() {
+				
+				for (int i=0;i<listaImagenes.size();i++) {
+					try {
+						Thread.sleep(1000);
+					} catch (InterruptedException e) {
+						e.printStackTrace();
+					}
+					logger.info("Hilo. Cargando imagenes");
+					cambiarImagen(listaImagenes.get(i));
+					if (i==listaImagenes.size()-1) {
+						i=0;
+					}
+				}	
+			}		
+		});
+		
+		hiloImagenes.setDaemon(true);
+		hiloImagenes.start();
+		
+		barraProgreso = new JProgressBar();
+		
+		usuario = new JLabel("Usuario:");
+		usuario.setForeground(Color.WHITE);
 		
 		textUsuario = new JTextField(20);
+		
+		contrasenia = new JLabel("Contraseña");
+		contrasenia.setForeground(Color.WHITE);
+		
 		textContrasenia = new JPasswordField(20);
 		
-		usuario = new JLabel("Usuario: ");
-		contrasenia = new JLabel("Contraseña");
+		botonValidar = new JButton("VALIDAR");
 		
-		botonValidar = new JButton("Validar");
+		condiciones = new JLabel("Aceptar terminos y condiciones");
+		condiciones.setForeground(Color.WHITE);
+		
+		checkCondiciones = new JCheckBox();
+		
+		time = new Timer(1000, new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				if(checkCondiciones.isSelected()) {
+					int value = barraProgreso.getValue();
+					if(value < 100) {
+						barraProgreso.setValue(value + 10);
+					}else {
+						time.stop();
+					}
+				}
+				
+			}
+		});
+		
+		checkCondiciones.addItemListener(new ItemListener() {
+			
+			@Override
+			public void itemStateChanged(ItemEvent e) {
+				 if (e.getStateChange() == ItemEvent.SELECTED) {
+					 logger.info("Ha clicado el checkBox");
+	                    barraProgreso.setVisible(true);
+	                    barraProgreso.setValue(0);
+	                    time.start();
+	               } else {
+	            	   logger.info("Todavia no ha clicado el checkBox");
+	                    barraProgreso.setVisible(false);
+	                    botonValidar.setEnabled(false);
+	                    time.stop();
+	                }
+	            }
+		});
+		time.addActionListener(new ActionListener() {
+		    @Override
+		    public void actionPerformed(ActionEvent e) {
+		        if (barraProgreso.getValue() >= 95) {
+		        	logger.info("Barra progreso ha llegado a 100. Se habilita el boton");
+		            System.out.println(barraProgreso.getValue());
+		            botonValidar.setEnabled(true);
+		            time.stop();
+		            JOptionPane.showMessageDialog(null, "REGISTRO VALIDADO CORRECTAMENTE");
+		        } else {
+		        	logger.info("Todavia no ha llegado la barra de progreso a 100");
+		            botonValidar.setEnabled(false);
+		        }
+		    }
+		});
+		barraProgreso.setStringPainted(true);
+		barraProgreso.setVisible(false);
+		botonValidar.setEnabled(false);
+		
+		
+		logger.info("Cargando componenetes a la ventana");
+		
+		labelFoto.setBounds(235, 110, 220, 125);
+		this.add(labelFoto);
+		
+		labelFoto2.setBounds(10, 110, 220, 125);
+		this.add(labelFoto2);
+		
+		usuario.setBounds(160, 250, 150, 30);
+		add(usuario);
+		
+		textUsuario.setBounds(160, 275, 150, 30);
+		this.add(textUsuario);
+		
+		contrasenia.setBounds(160, 325, 150, 30);
+		this.add(contrasenia);
+			
+		textContrasenia.setBounds(160, 350, 150, 30);
+		this.add(textContrasenia);
+		
+		condiciones.setBounds(180, 390, 150, 30);
+		this.add(condiciones);
+		
+		checkCondiciones.setBounds(160, 400, 18, 17);
+		this.add(checkCondiciones);
+		
+		botonValidar.setBounds(160, 450, 150, 30);
+		add(botonValidar);
+		
+		barraProgreso.setBounds(160, 420, 150, 20);
+		add(barraProgreso);
+		
 		
 		
 		/*EVENTOS*/
@@ -125,47 +262,26 @@ public class VentanaInicioSesion extends JFrame{
 						JOptionPane.showMessageDialog(null, "CONTRASEÑA ERRONEA", "ERROR", JOptionPane.ERROR_MESSAGE);
 					}
 				}
-				
-				
-				
-				
-				
 				textUsuario.setText("");
 				textContrasenia.setText("");
 				
 			}
 		});
-		
-		
 	
-		
-		/*AÑADIR LOS COMPONENTES AL PANEL Y A LA VENTA*/
-		
-		panelNorte.add(textoBienvenida);
-		
-		panelText.add(usuario);
-		panelText.add(textUsuario);
-		panelText.add(contrasenia);
-		panelText.add(textContrasenia);
-		
-		panelCentro.add(panelText);
-		
-		panelImagen.add(labelFoto);
-		
-		panelSur.add(botonValidar);
-		
-		logger.info("Añadiendo los componentes a la ventana");
-		
-		add(panelNorte, BorderLayout.NORTH);
-		add(panelCentro, BorderLayout.CENTER);
-		add(panelSur, BorderLayout.SOUTH);
-		add(panelImagen, BorderLayout.EAST);
-		
+		 
 		setVisible(true);
 		
 		
 	}
+	public void cambiarImagen(String ruta) {
+		ImageIcon iconoImagen= new ImageIcon(getClass().getResource(ruta));
+		Image imagenEscalada= iconoImagen.getImage().getScaledInstance(240, 125, java.awt.Image.SCALE_SMOOTH);
+		labelFoto.setIcon(new ImageIcon(imagenEscalada));
+	}
 	
+	public static void main(String[] args) {
+		new VentanaInicioSesion();
+	}
 	
 
 }
