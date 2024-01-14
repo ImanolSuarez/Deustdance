@@ -2,7 +2,7 @@ package deustDance;
 
 import java.util.Objects;
 
-public class Alumno extends Persona{
+public class Alumno extends Persona implements Comparable<Alumno>{
 	
 	
 
@@ -142,6 +142,12 @@ public class Alumno extends Persona{
 				&& Double.doubleToLongBits(dinero) == Double.doubleToLongBits(other.dinero) && grupo == other.grupo
 				&& id == other.id && id_claseAsignada == other.id_claseAsignada
 				&& id_profesorAsignado == other.id_profesorAsignado;
+	}
+
+	@Override
+	public int compareTo(Alumno o) {
+		
+		return id - o.getId();
 	}
 	
 	

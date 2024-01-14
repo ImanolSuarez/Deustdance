@@ -25,7 +25,7 @@ import deustDance.BaseDatos;
 
 public class VentanaAlumnoS extends JFrame{
 	
-Connection con = BaseDatos.initBD("DeustDance.db");
+	Connection con = BaseDatos.initBD("DeustDance.db");
 	
 	private JLabel labelNombre;
 	private JLabel labelApellidos;

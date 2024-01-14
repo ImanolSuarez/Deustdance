@@ -682,4 +682,37 @@ public class BaseDatos {
 		return a;
 	}
 	
+	/*OBTENER LOS PROFESOR SEGUN SU id*/
+	
+	
+	public static Profesor obtenerProfesorId(Connection con,int id) {
+		String sql = String.format("SELECT * FROM Profesor WHERE id = '%d'", id);
+		Profesor a = null;
+		try {
+			Statement st = con.createStatement();
+			ResultSet rs = st.executeQuery(sql);
+			if(rs != null) {
+				String nombre = rs.getString("nombre");
+				String apellido = rs.getString("apellido");
+				String usu = rs.getString("usuario");
+				String contra = rs.getString("contraseña");
+				int tel = rs.getInt("telefono");
+				String domicilio = rs.getString("domicilio");
+				int grupo = rs.getInt("grupo");
+				a = new Profesor(nombre, apellido, usu, contra, tel, domicilio, grupo);
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return a;
+		
+	}
+	
+	
+	
+	
+	
+	
+	
 }

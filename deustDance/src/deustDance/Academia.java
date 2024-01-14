@@ -1,4 +1,5 @@
 package deustDance;
+import java.util.Map.Entry;
 
 import java.io.BufferedReader;
 import java.io.File;
@@ -9,23 +10,33 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.Connection;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Scanner;
+import java.util.Set;
+import java.util.TreeSet;
 
 import javax.swing.JOptionPane;
 
 public class Academia {
 	
+	static Connection con = BaseDatos.initBD("DeustDance.db");
 	private static List<Baile> listaBailes = new ArrayList<Baile>();
 	private static List<Alumno> listaAlumnos = new ArrayList<>();
 	private static List<Profesor> listaProfesores = new ArrayList<>();
 	private static List<Clase> listaClases = new ArrayList<>();
 	private static List<Secretaria> listaSecretaria = new ArrayList<>();
+	private static Map<Integer, List<Alumno>> mapaProfesorAlumno = new HashMap<>();
 	
-
+	
 	
 	
 	/*METODOS DE LA CLASE ACADEMIA*/
+	
+	public static Map<Integer, List<Alumno>> getMapaProfesorAlumno() {
+		return mapaProfesorAlumno;
+	}
 	
 	
 	/*METODO PARA AÑADIR ALUMNOS*/
@@ -36,9 +47,19 @@ public class Academia {
 	}
 	
 	public static void ver() {
-		for(Profesor a : listaProfesores) {
-			System.out.println(a);
-		}
+	    System.out.println("Iniciando el método ver()");
+	    
+	    for (int id : mapaProfesorAlumno.keySet()) {
+	        System.out.println("Profesor ID: " + id);
+	        
+	        List<Alumno> listaAlumno = mapaProfesorAlumno.get(id);
+	        
+	        for (Alumno a : listaAlumno) {
+	            System.out.println("   Alumno: " + a);
+	        }
+	    }
+
+	    System.out.println("Finalizando el método ver()");
 	}
 	
 	
@@ -71,6 +92,36 @@ public class Academia {
 	public static void anyadirSecretario(Secretaria p) {
 		listaSecretaria.add(p);
 		
+	}
+	
+	/*CARGAR EL MAPA*/
+	
+	public static Map<Integer, List<Alumno>> cargarMapa() {
+	    Map<Integer, List<Alumno>> mapa = new HashMap<>();
+	    List<Alumno> listaAlum = BaseDatos.obtenerAlumnos(con); // Asegúrate de tener la conexión (con) disponible
+	    System.out.println(listaAlum.size());
+	    for (Alumno a : listaAlum) {
+	        if (!mapa.containsKey(a.getId_profesorAsignado())) {
+	            mapa.put(a.getId_profesorAsignado(), new ArrayList<>());
+	        }
+	        mapa.get(a.getId_profesorAsignado()).add(a);
+	        
+	    }
+	    
+	    for(Entry<Integer, List<Alumno>> e : mapa.entrySet()) {
+	    	System.out.println(e.getKey());
+	    }
+	    return mapa;
+	}
+	
+	/*OBTENER LA LISTA DE ALUMNOS*/
+	
+	public static List<Alumno> obtenerListaAlumno(int id){
+		List<Alumno> l = new ArrayList<>();
+		for(Alumno a : mapaProfesorAlumno.get(id)) {
+			l.add(a);
+		}
+		return l;
 	}
 	
 	/*METODOS PARA BUSCAR ALUMNOS REPETIDOS*/
