@@ -9,6 +9,7 @@ import javax.swing.*;
 import javax.swing.border.*;
 
 import deustDance.Alumno;
+import deustDance.BaseDatos;
 
 
 public class VentanaAlumno extends JFrame{
@@ -60,6 +61,8 @@ public class VentanaAlumno extends JFrame{
 	
 	public VentanaAlumno() {
 		//AQUI CARGAR BASE DE DATOS Y LOGGER
+		
+		BaseDatos.bd.logger();
 		//PANELES
 		panelC = new JPanel();
 		panelC.setOpaque(false);
@@ -92,18 +95,6 @@ public class VentanaAlumno extends JFrame{
 		labelGrupo = new JLabel("Grupo:		" +  alumno.getGrupo());
 		labelCalificacion = new JLabel("Calificación:		" + alumno.getCalificacion());
 		botonCargarFoto = new JButton("Cargar foto");
-		//textoNombre = new JTextField(20);
-		//textoApellidos = new JTextField(20);
-		//textoUsuario = new JTextField(20);
-		//textoContraseña = new JTextField(20);
-		//textoDomicilio = new JTextField(20);
-		//textoprofesorAsignado = new JTextField(20);
-		//textoclaseAsignada = new JTextField(20);
-		//textodinero = new JTextField(20);
-		//textogrupo = new JTextField(20);
-		//textocalificacion = new JTextField(20);
-		//labelFoto = new JLabel();
-		
 		
 		//textoNombre.setEditable(false);
 		//textoApellidos.setEditable(false);
@@ -117,23 +108,14 @@ public class VentanaAlumno extends JFrame{
 		//textocalificacion.setEditable(false);
 		
 		panelInformacionPersonal.add(labelNombre);
-		
 		panelInformacionPersonal.add(labelApellido);
-		
 		panelInformacionPersonal.add(labelUsuario);
-		
 		panelInformacionPersonal.add(labelContraseña);
-		
 		panelInformacionPersonal.add(labelDomicilio);
-		
 		panelInformacionPersonal.add(labelProfesorAsignado);
-		
 		panelInformacionPersonal.add(labelClaseAsignada);
-		
 		panelInformacionPersonal.add(labelDinero);
-		
 		panelInformacionPersonal.add(labelGrupo);
-		
 		panelInformacionPersonal.add(labelCalificacion);
 		
 		
