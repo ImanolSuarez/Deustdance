@@ -16,6 +16,12 @@ public class BaseDatos {
 	protected static Logger logger = Logger.getLogger(BaseDatos.class.getName());
 	protected static Boolean loggerCreado = false;
 	
+	public static BaseDatos bd = new BaseDatos();
+	
+	public BaseDatos() {
+		
+	}
+	
 	// METODO QUE AJUSTA LOS PARAMETROS DEL LOGGER
 	
 	public void logger() {
