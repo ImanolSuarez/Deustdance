@@ -52,7 +52,7 @@ public class VentanaAlumno extends JFrame{
 	//protected static JTextField textocalificacion;
 	//protected static JButton botonImprimirCalendar;
 	protected static JButton botonCargarFoto;
-	protected static VentanaSecretaria ventanaSecretaria;
+	
 	
 	// PANELES
 	protected static JPanel panelInformacionPersonal;

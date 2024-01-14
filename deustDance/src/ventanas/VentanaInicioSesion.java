@@ -57,6 +57,7 @@ public class VentanaInicioSesion extends JFrame{
 		this.setLayout(null);
 		this.setBounds(500, 100, 500, 600);
 		this.setResizable(false);
+		
 		/*CARGAMOS LA IMAGEN DEL FONDO*/
 		String imagePath = "/imagenes/fondoLogin.jpg";
 		this.setContentPane(new JLabel(new ImageIcon(getClass().getResource(imagePath))));
@@ -164,6 +165,7 @@ public class VentanaInicioSesion extends JFrame{
 		            System.out.println(barraProgreso.getValue());
 		            botonValidar.setEnabled(true);
 		            time.stop();
+		            hiloImagenes.stop();
 		            JOptionPane.showMessageDialog(null, "REGISTRO VALIDADO CORRECTAMENTE");
 		        } else {
 		        	logger.info("Todavia no ha llegado la barra de progreso a 100");
@@ -239,7 +241,7 @@ public class VentanaInicioSesion extends JFrame{
 								
 							}else if(s.getContrasenia().equals(contra)){
 								JOptionPane.showMessageDialog(null, "BIENVENIDO A DEUSTDANCE", "INICIO DE SESION", JOptionPane.INFORMATION_MESSAGE);
-								new VentanaSecretaria();
+								new VentanaInicial();
 								setVisible(false);
 								logger.info("Abriendo la ventana secretario");
 							}else {

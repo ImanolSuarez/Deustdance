@@ -622,5 +622,58 @@ public class BaseDatos {
 	    }
 	}
 	
+	/*OBTENER UN ALUMNO*/
+	
+	public static Alumno obtenerAlumno(Connection con, String usuario) {
+		Alumno a = null;
+		String sql = String.format("SELECT * from Alumno WHERE usuario = '%s'", usuario);
+		try {
+			Statement st = con.createStatement();
+			ResultSet rs = st.executeQuery(sql);
+			if(rs != null) {
+				String nombre = rs.getString("nombre");
+	            String apellido = rs.getString("apellido");
+	            String usu = rs.getString("usuario");
+	            String contra = rs.getString("contraseña");
+	            int tel = rs.getInt("telefono");
+	            String domicilio = rs.getString("domicilio");
+	            int idB = rs.getInt("idBaile");
+	            int idP = rs.getInt("idProfesorAlumno");
+	            int idC = rs.getInt("idClase");
+	            double dinero = rs.getDouble("dinero");
+	            int grupo = rs.getInt("grupo");
+	            double calificacion = rs.getDouble("calificacion");
+
+	            a = new Alumno(nombre, apellido, usu, contra, tel, domicilio, idB, idP, idC, dinero, grupo, calificacion);
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return a;
+	}
+	
+	public static Profesor obtenerProfesor(Connection con, String usuario) {
+		Profesor a = null;
+		String sql = String.format("SELECT * from Profesor WHERE usuario = '%s'", usuario);
+		try {
+			Statement st = con.createStatement();
+			ResultSet rs = st.executeQuery(sql);
+			if(rs != null) {
+				String nombre = rs.getString("nombre");
+				String apellido = rs.getString("apellido");
+				String usu = rs.getString("usuario");
+				String contra = rs.getString("contraseña");
+				int tel = rs.getInt("telefono");
+				String domicilio = rs.getString("domicilio");
+				int grupo = rs.getInt("grupo");
+				a = new Profesor(nombre, apellido, usu, contra, tel, domicilio, grupo);
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return a;
+	}
 	
 }
