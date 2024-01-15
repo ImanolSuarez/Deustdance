@@ -10,6 +10,7 @@ import java.util.logging.Logger;
 import java.util.regex.Pattern;
 
 import javax.swing.DefaultListModel;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -35,13 +36,13 @@ public class VentanaProfesorS extends JFrame{
 	private JLabel labelDomicilio;
 	private JLabel labelTelefono;
 	
-	protected JTextField txtNombreP;
-	protected JTextField textApellidoP;
-	protected JSpinner spinnerGrupoP;
-	protected JTextField txtDomicilioP;
-	protected JTextField txtUsuarioP;
-	protected JTextField txtContrasenyaP;
-	protected JTextField txtTelefonoP;
+	private JTextField txtNombreP;
+	private JTextField textApellidoP;
+	private JSpinner spinnerGrupoP;
+	private JTextField txtDomicilioP;
+	private JTextField txtUsuarioP;
+	private JTextField txtContrasenyaP;
+	private JTextField txtTelefonoP;
 	
 	private JButton botonAnyadir;
 	private JButton botonBorrar;
@@ -50,11 +51,12 @@ public class VentanaProfesorS extends JFrame{
 	private JButton botonSalir;
 	private JButton botonA;
 	private JButton botonH;
+	private JButton botonInfo;
 	private Logger logger = Logger.getLogger(VentanaProfesorS.class.getName());
 	
-	protected DefaultListModel<String> modeloListaP;
-	protected JList<String> listaProfesor;
-	protected JScrollPane scrollListaP;
+	private DefaultListModel<String> modeloListaP;
+	private JList<String> listaProfesor;
+	private JScrollPane scrollListaP;
 	
 	public VentanaProfesorS() {
 		
@@ -108,6 +110,7 @@ public class VentanaProfesorS extends JFrame{
 		botonH = new JButton("Horario");
 		botonA = new JButton("Alumnos");
 		botonSalir = new JButton("Salir");
+		botonInfo = new JButton(new ImageIcon(getClass().getResource("/imagenes/imagenInfo.jpg")));
 		
 		logger.info("cargando los componentes a la ventana");
 		
@@ -173,6 +176,9 @@ public class VentanaProfesorS extends JFrame{
 		
 		botonSeleccionar.setBounds(650,330, 150, 30);
 		add(botonSeleccionar);
+		
+		botonInfo.setBounds(780, 30, 20, 20);
+		add(botonInfo);
 		
 		labelTexto.setBounds(550, -20, 200,200);
 		add(labelTexto);
@@ -367,6 +373,16 @@ public class VentanaProfesorS extends JFrame{
 			public void actionPerformed(ActionEvent e) {
 				logger.info("cargando la ventan alumno");
 				new VentanaAlumnoS();
+				dispose();
+				
+			}
+		});
+		
+		botonInfo.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				new VentanaInformacion();
 				dispose();
 				
 			}

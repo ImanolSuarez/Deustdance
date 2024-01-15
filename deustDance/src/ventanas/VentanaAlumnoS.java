@@ -10,6 +10,7 @@ import java.util.logging.Logger;
 import java.util.regex.Pattern;
 
 import javax.swing.DefaultListModel;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -40,18 +41,18 @@ public class VentanaAlumnoS extends JFrame{
 	private JLabel labelDinero;
 	private JLabel labelCalificacion;
 	
-	protected JTextField txtNombre;
-	protected JTextField txtApellidos;	
-	protected JTextField txtUsuario;
-	protected JTextField txtContrasenya;
-	protected JTextField txtTelefono;
-	protected JTextField txtDomicilio;
-	protected JTextField txtBaileAsignado;
-	protected JTextField txtProfesorAsignado;
-	protected JTextField txtClaseAsignada;
-	protected JSpinner spinnerDinero;
-	protected JSpinner spinnerGrupo;
-	protected JSpinner spinnerCalificacion;	
+	private JTextField txtNombre;
+	private JTextField txtApellidos;	
+	private JTextField txtUsuario;
+	private JTextField txtContrasenya;
+	private JTextField txtTelefono;
+	private JTextField txtDomicilio;
+	private JTextField txtBaileAsignado;
+	private JTextField txtProfesorAsignado;
+	private JTextField txtClaseAsignada;
+	private JSpinner spinnerDinero;
+	private JSpinner spinnerGrupo;
+	private JSpinner spinnerCalificacion;	
 	
 	private JButton botonAnyadir;
 	private JButton botonBorrar;
@@ -63,16 +64,18 @@ public class VentanaAlumnoS extends JFrame{
 	
 	private Logger logger = Logger.getLogger(VentanaAlumnoS.class.getName());
 	
-	protected DefaultListModel<String> modeloListaA;
-	protected JList<String> listaAlumno;
-	protected JScrollPane scrollLista;
+	private DefaultListModel<String> modeloListaA;
+	private JList<String> listaAlumno;
+	private JScrollPane scrollLista;
+	
+	private JButton botonI;
 	
 	public VentanaAlumnoS() {
 		
 		this.setTitle("Ventana alumno secretaria");
 		this.setSize(400,600);
 		this.setLayout(null);
-		this.setBounds(500, 100, 1000, 500);
+		this.setBounds(300, 100, 1000, 500);
 		this.setResizable(false);
 		
 		JLabel labelT = new JLabel("REGISTRO DE DATOS DEL ALUMNO");
@@ -140,6 +143,7 @@ public class VentanaAlumnoS extends JFrame{
 		botonH = new JButton("Horario");
 		botonP = new JButton("Alumnos");
 		botonSalir = new JButton("Salir");
+		botonI = new JButton(new ImageIcon(getClass().getResource("/imagenes/imagenInfo.jpg")));
 		
 		
 		/*CREACION DE LA JList*/
@@ -247,6 +251,9 @@ public class VentanaAlumnoS extends JFrame{
 		
 		botonH.setBounds(460,400, 100, 30);
 		add(botonH);
+		
+		botonI.setBounds(900, 40, 20, 20);
+		add(botonI);
 		
 		labelTexto.setBounds(750, 20, 130, 150);
 		add(labelTexto);
@@ -477,6 +484,16 @@ public class VentanaAlumnoS extends JFrame{
 			}
 		});
 		
+		botonI.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				new VentanaInformacion();
+				dispose();
+				
+			}
+		});
+		
 		
 		setVisible(true);
 	}
@@ -543,6 +560,9 @@ public class VentanaAlumnoS extends JFrame{
 		}catch (NumberFormatException | NullPointerException e) {
 			return false;
 		}
+	}
+	public static void main(String[] args) {
+		new VentanaAlumnoS();
 	}
 
 }

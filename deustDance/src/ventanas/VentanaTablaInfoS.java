@@ -15,6 +15,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -59,12 +60,14 @@ public class VentanaTablaInfoS extends JFrame{
 	
 	private int fila, columna;
 	
+	private JButton botonI;
+	
 	public VentanaTablaInfoS() {
 		
 		this.setTitle("Ventana horario secretaria");
 		this.setSize(400,600);
 		this.setLayout(null);
-		this.setBounds(500, 100, 900, 800);
+		this.setBounds(300, 90, 900, 800);
 		this.setResizable(false);
 		
 		labelBusqueda = new JLabel("Introduzca el nombre de la persona: ");
@@ -74,6 +77,7 @@ public class VentanaTablaInfoS extends JFrame{
 		botonA = new JButton("Alumno");
 		botonP = new JButton("Profesor");
 		botonBaile = new JButton("Baile");
+		botonI = new JButton(new ImageIcon(getClass().getResource("/imagenes/imagenInfo.jpg")));
 		
 		fila = -1;
 		columna = -1;
@@ -116,6 +120,9 @@ public class VentanaTablaInfoS extends JFrame{
 		
 		botonBaile.setBounds(600, 720, 150, 30);
 		add(botonBaile);
+		
+		botonI.setBounds(800, 15, 20, 20);
+		add(botonI);
 		
 		/*EVENTOS*/
 		
@@ -267,6 +274,15 @@ public class VentanaTablaInfoS extends JFrame{
 			}
 		});
 		
+		botonI.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				new VentanaInformacion();
+				dispose();
+				
+			}
+		});
 		
 		setVisible(true);
 	}

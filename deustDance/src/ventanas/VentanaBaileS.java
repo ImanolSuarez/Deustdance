@@ -11,6 +11,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
@@ -44,6 +45,8 @@ public class VentanaBaileS extends JFrame{
 	private JScrollPane scrollTablaP;
 	
 	private JButton botonSalir;
+	
+	private JButton botonI;
 	
 	public VentanaBaileS() {
 		
@@ -84,6 +87,7 @@ public class VentanaBaileS extends JFrame{
 		add(comboBaile);
 		
 		botonSalir = new JButton("Salir");
+		botonI = new JButton(new ImageIcon(getClass().getResource("/imagenes/imagenInfo.jpg")));
 		
 		labelTexto1.setBounds(200,-25,250,100);
 		add(labelTexto1);
@@ -93,6 +97,9 @@ public class VentanaBaileS extends JFrame{
 		
 		botonSalir.setBounds(30,200,100,30);
 		add(botonSalir);
+		
+		botonI.setBounds(1350, 15, 20, 20);
+		add(botonI);
 		
 		/*EVENTOS*/
 		
@@ -124,6 +131,16 @@ public class VentanaBaileS extends JFrame{
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				new VentanaTablaInfoS();
+				dispose();
+				
+			}
+		});
+		
+		botonI.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				new VentanaInformacion();
 				dispose();
 				
 			}
