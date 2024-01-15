@@ -83,6 +83,24 @@ public class VentanaAlumno extends JFrame{
 		// TABLAS
 		tabla = new Tablas();
 		
+		
+		// MENU
+		menuAlumno = new JMenuBar();
+		menuAlumno.setMargin(null);
+		menuAlumno.setBackground(null);
+		
+		calificaciones = new JMenu("Calificaciones");
+		consultarCalificaciones = new JMenuItem("Consultar");
+		calificaciones.add(consultarCalificaciones);
+		
+		horario = new JMenu("Horario");
+		consultarHorario = new JMenuItem("Consultar");
+		horario.add(consultarHorario);
+		
+		menuAlumno.add(calificaciones);
+		menuAlumno.add(horario);
+		
+		//ELEMENTOS DATOS PERSONALES
 		panelInformacionPersonal.setLayout(new GridBagLayout());
 		panelInformacionAcademica.setLayout(new BorderLayout());
 		
@@ -94,7 +112,6 @@ public class VentanaAlumno extends JFrame{
 		
 		panelInformacionPersonal.setLayout(new GridLayout(7,2));
 		
-		// ELEMENTOS DE DATOS
 		labelNombre = new JLabel("Nombre:		" + alumno.getNombre());
 		labelApellido = new JLabel("Apellido:		" + alumno.getApellidos());
 		labelUsuario = new JLabel("Usuario:		" + alumno.getUsuario());
@@ -107,16 +124,6 @@ public class VentanaAlumno extends JFrame{
 		labelCalificacion = new JLabel("Calificación:		" + alumno.getCalificacion());
 		botonCargarFoto = new JButton("Cargar foto");
 		
-		//textoNombre.setEditable(false);
-		//textoApellidos.setEditable(false);
-		//textoUsuario.setEditable(false);
-		//textoContraseña.setEditable(false);
-		//textoDomicilio.setEditable(false);
-		//textoprofesorAsignado.setEditable(false);
-		//textoclaseAsignada.setEditable(false);
-		//textodinero.setEditable(false);
-		//textogrupo.setEditable(false);
-		//textocalificacion.setEditable(false);
 		
 		panelInformacionPersonal.add(labelNombre);
 		panelInformacionPersonal.add(labelApellido);
@@ -129,6 +136,7 @@ public class VentanaAlumno extends JFrame{
 		panelInformacionPersonal.add(labelGrupo);
 		panelInformacionPersonal.add(labelCalificacion);
 		
+		// ELEMENTOS DE CURSOS
 		
 		
 		//JFILECHOOSER PARA QUE EL ALUMNO ELIJA LA FOTO
