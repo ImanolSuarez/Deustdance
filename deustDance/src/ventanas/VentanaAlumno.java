@@ -17,6 +17,7 @@ public class VentanaAlumno extends JFrame{
 	
 	// COMPONENETES DE LA VENTANA ALUMNO QUE HA INICIADO SESION
 	public static Alumno alumno;
+	
 	SimpleDateFormat formatoFecha = new SimpleDateFormat("dd-MM-yyyy");
 	
 	// PANEL PRINCIPAL
@@ -25,8 +26,16 @@ public class VentanaAlumno extends JFrame{
 	// TABLA
 	protected static Tablas tabla;
 	
+	// MENU
+	protected static JMenuBar menuAlumno;
+	protected static JMenu calificaciones;
+	protected static JMenu horario;
 	
-	// DATOS 
+	protected static JMenuItem cerrarSesion;
+	protected static JMenuItem consultarCalificaciones;
+	protected static JMenuItem consultarHorario;
+	
+	// DATOS PERSONALES
 	protected static JLabel labelFoto;
 	protected static JPanel panelDatos;
 	protected static JLabel botonEditar;
@@ -41,19 +50,21 @@ public class VentanaAlumno extends JFrame{
 	protected static JLabel labelGrupo;
 	protected static JLabel labelCalificacion;
 	
-	//protected static JTextField textoNombre;
-	//protected static JTextField textoApellidos;
-	//protected static JTextField textoUsuario;
-	//protected static JTextField textoContraseña;
-	//protected static JTextField textoDomicilio;
-	//protected static JTextField textoprofesorAsignado;
-	//protected static JTextField textoclaseAsignada;
-	//protected static JTextField textodinero;
-	//protected static JTextField textogrupo;
-	//protected static JTextField textocalificacion;
-	//protected static JButton botonImprimirCalendar;
+	// ELEMENTOS CURSOS
+	protected static JPanel panelTablaCursos;
+	protected static JPanel panelCampos;
+	protected static JLabel añadir;
+	protected static JLabel eliminar;
+	protected static JLabel buscar;
+	protected static JTextField textoBuscar;
 	protected static JButton botonCargarFoto;
 	
+	// ELEMENTOS NOTAS
+	protected static JTable tablaNotas;
+	protected static JLabel botonExpediente;
+	
+	// ELEMENTOS HORARIO
+	protected static JTable tablaHorario;
 	
 	// PANELES
 	protected static JPanel panelInformacionPersonal;
@@ -72,6 +83,24 @@ public class VentanaAlumno extends JFrame{
 		// TABLAS
 		tabla = new Tablas();
 		
+		
+		// MENU
+		menuAlumno = new JMenuBar();
+		menuAlumno.setMargin(null);
+		menuAlumno.setBackground(null);
+		
+		calificaciones = new JMenu("Calificaciones");
+		consultarCalificaciones = new JMenuItem("Consultar");
+		calificaciones.add(consultarCalificaciones);
+		
+		horario = new JMenu("Horario");
+		consultarHorario = new JMenuItem("Consultar");
+		horario.add(consultarHorario);
+		
+		menuAlumno.add(calificaciones);
+		menuAlumno.add(horario);
+		
+		//ELEMENTOS DATOS PERSONALES
 		panelInformacionPersonal.setLayout(new GridBagLayout());
 		panelInformacionAcademica.setLayout(new BorderLayout());
 		
@@ -83,7 +112,6 @@ public class VentanaAlumno extends JFrame{
 		
 		panelInformacionPersonal.setLayout(new GridLayout(7,2));
 		
-		// ELEMENTOS DE DATOS
 		labelNombre = new JLabel("Nombre:		" + alumno.getNombre());
 		labelApellido = new JLabel("Apellido:		" + alumno.getApellidos());
 		labelUsuario = new JLabel("Usuario:		" + alumno.getUsuario());
@@ -96,16 +124,6 @@ public class VentanaAlumno extends JFrame{
 		labelCalificacion = new JLabel("Calificación:		" + alumno.getCalificacion());
 		botonCargarFoto = new JButton("Cargar foto");
 		
-		//textoNombre.setEditable(false);
-		//textoApellidos.setEditable(false);
-		//textoUsuario.setEditable(false);
-		//textoContraseña.setEditable(false);
-		//textoDomicilio.setEditable(false);
-		//textoprofesorAsignado.setEditable(false);
-		//textoclaseAsignada.setEditable(false);
-		//textodinero.setEditable(false);
-		//textogrupo.setEditable(false);
-		//textocalificacion.setEditable(false);
 		
 		panelInformacionPersonal.add(labelNombre);
 		panelInformacionPersonal.add(labelApellido);
@@ -118,8 +136,29 @@ public class VentanaAlumno extends JFrame{
 		panelInformacionPersonal.add(labelGrupo);
 		panelInformacionPersonal.add(labelCalificacion);
 		
+		// ELEMENTOS DE CURSOS
+		panelTablaCursos = new JPanel();
+		panelTablaCursos.setOpaque(false);
+		panelCampos = new JPanel();
+		panelCampos.setOpaque(false);
 		
+		añadir = new JLabel();
+		ImageIcon icono1 = new ImageIcon("/imagenes/añadir.jpg");
+		Image imagen1 = icono1.getImage();
+		Image imagenFinal1 = imagen1.getScaledInstance(30, 30, java.awt.Image.SCALE_SMOOTH);
+		añadir.setIcon(new ImageIcon(imagenFinal1));
 		
+		eliminar = new JLabel();
+		ImageIcon icono2 = new ImageIcon("/imagenes/eliminar.png");
+		Image imagen2 = icono2.getImage();
+		Image imagenFinal2 = imagen2.getScaledInstance(30, 30, java.awt.Image.SCALE_SMOOTH);
+		eliminar.setIcon(new ImageIcon(imagenFinal2));
+		
+		buscar = new JLabel();
+		ImageIcon icono3 = new ImageIcon("/imagenes/lupa.jpeg");
+		Image imagen3 = icono3.getImage();
+		Image imagenFinal3 = imagen3.getScaledInstance(30, 30, java.awt.Image.SCALE_SMOOTH);
+		buscar.setIcon(new ImageIcon(imagenFinal3));
 		//JFILECHOOSER PARA QUE EL ALUMNO ELIJA LA FOTO
 		
 		JLabel etiquetaFoto = new JLabel();
