@@ -35,7 +35,7 @@ public class VentanaAlumno extends JFrame{
 	protected static JMenuItem consultarCalificaciones;
 	protected static JMenuItem consultarHorario;
 	
-	// DATOS 
+	// DATOS PERSONALES
 	protected static JLabel labelFoto;
 	protected static JPanel panelDatos;
 	protected static JLabel botonEditar;
@@ -137,8 +137,28 @@ public class VentanaAlumno extends JFrame{
 		panelInformacionPersonal.add(labelCalificacion);
 		
 		// ELEMENTOS DE CURSOS
+		panelTablaCursos = new JPanel();
+		panelTablaCursos.setOpaque(false);
+		panelCampos = new JPanel();
+		panelCampos.setOpaque(false);
 		
+		añadir = new JLabel();
+		ImageIcon icono1 = new ImageIcon("/imagenes/añadir.jpg");
+		Image imagen1 = icono1.getImage();
+		Image imagenFinal1 = imagen1.getScaledInstance(30, 30, java.awt.Image.SCALE_SMOOTH);
+		añadir.setIcon(new ImageIcon(imagenFinal1));
 		
+		eliminar = new JLabel();
+		ImageIcon icono2 = new ImageIcon("/imagenes/eliminar.png");
+		Image imagen2 = icono2.getImage();
+		Image imagenFinal2 = imagen2.getScaledInstance(30, 30, java.awt.Image.SCALE_SMOOTH);
+		eliminar.setIcon(new ImageIcon(imagenFinal2));
+		
+		buscar = new JLabel();
+		ImageIcon icono3 = new ImageIcon("/imagenes/lupa.jpeg");
+		Image imagen3 = icono3.getImage();
+		Image imagenFinal3 = imagen3.getScaledInstance(30, 30, java.awt.Image.SCALE_SMOOTH);
+		buscar.setIcon(new ImageIcon(imagenFinal3));
 		//JFILECHOOSER PARA QUE EL ALUMNO ELIJA LA FOTO
 		
 		JLabel etiquetaFoto = new JLabel();
