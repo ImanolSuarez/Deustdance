@@ -58,6 +58,7 @@ public class VentanaBaileS extends JFrame{
 		this.setBounds(00, 100, 1500, 400);
 		this.setLayout(null);
 		this.setResizable(false);
+		this.setDefaultCloseOperation(DO_NOTHING_ON_CLOSE);
 		
 		ImageIcon imagenLogo = (new ImageIcon(getClass().getResource("/imagenes/imagenLogo.png")));
 		setIconImage(imagenLogo.getImage());

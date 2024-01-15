@@ -68,6 +68,7 @@ public class VentanaProfesorS extends JFrame{
 		this.setLayout(null);
 		this.setBounds(500, 100, 850, 400);
 		this.setResizable(false);
+		this.setDefaultCloseOperation(DO_NOTHING_ON_CLOSE);
 		
 		ImageIcon imagenLogo = (new ImageIcon(getClass().getResource("/imagenes/imagenLogo.png")));
 		setIconImage(imagenLogo.getImage());

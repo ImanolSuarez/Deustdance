@@ -30,6 +30,7 @@ public class VentanaInicial extends JFrame{
 		this.setLayout(null);
 		this.setBounds(500, 100, 500, 400);
 		this.setResizable(false);
+		this.setDefaultCloseOperation(DO_NOTHING_ON_CLOSE);
 		
 		/*CARGAMOS LA IMAGEN DEL FONDO*/
 		String imagePath = "/imagenes/fondoLogin.jpg";

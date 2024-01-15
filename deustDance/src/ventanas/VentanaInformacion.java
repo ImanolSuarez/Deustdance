@@ -24,6 +24,7 @@ public class VentanaInformacion extends JFrame{
 		this.setLayout(null);
 		this.setBounds(500, 100, 900, 400);
 		this.setResizable(false);
+		this.setDefaultCloseOperation(DO_NOTHING_ON_CLOSE);
 		
 		JLabel txt = new JLabel("Informacion sobre los procedimientos");
 		txt.setFont(new Font("Agency FB", Font.BOLD, 20));

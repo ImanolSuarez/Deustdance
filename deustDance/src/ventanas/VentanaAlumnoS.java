@@ -77,6 +77,7 @@ public class VentanaAlumnoS extends JFrame{
 		this.setLayout(null);
 		this.setBounds(300, 100, 1000, 500);
 		this.setResizable(false);
+		this.setDefaultCloseOperation(DO_NOTHING_ON_CLOSE);
 		
 		ImageIcon imagenLogo = (new ImageIcon(getClass().getResource("/imagenes/imagenLogo.png")));
 		setIconImage(imagenLogo.getImage());

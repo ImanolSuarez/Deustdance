@@ -70,9 +70,9 @@ public class VentanaTablaInfoS extends JFrame{
 		this.setTitle("Ventana horario secretaria");
 		this.setSize(400,600);
 		this.setLayout(null);
-		this.setBounds(300, 90, 900, 800);
+		this.setBounds(300, 90, 900, 500);
 		this.setResizable(false);
-		
+		this.setDefaultCloseOperation(DO_NOTHING_ON_CLOSE);
 		ImageIcon imagenLogo = (new ImageIcon(getClass().getResource("/imagenes/imagenLogo.png")));
 		setIconImage(imagenLogo.getImage());
 		
@@ -108,7 +108,7 @@ public class VentanaTablaInfoS extends JFrame{
 		arbol.setBounds(30, 40, 200, 130);
 		add(arbol);
 		
-		scrollTabla.setBounds(250, 45, 600, 650);
+		scrollTabla.setBounds(250, 45, 600, 300);
 		add(scrollTabla);
 		
 		labelBusqueda.setBounds(300, -30, 300, 100);
@@ -117,16 +117,16 @@ public class VentanaTablaInfoS extends JFrame{
 		txtBusqueda.setBounds(520, 10, 150, 30);
 		add(txtBusqueda);
 		
-		botonSalir.setBounds(120, 720, 150, 30);
+		botonSalir.setBounds(120, 360, 150, 30);
 		add(botonSalir);
 		
-		botonA.setBounds(280, 720, 150, 30);
+		botonA.setBounds(280, 360, 150, 30);
 		add(botonA);
 		
-		botonP.setBounds(440, 720, 150, 30);
+		botonP.setBounds(440, 360, 150, 30);
 		add(botonP);
 		
-		botonBaile.setBounds(600, 720, 150, 30);
+		botonBaile.setBounds(600, 360, 150, 30);
 		add(botonBaile);
 		
 		botonI.setBounds(800, 15, 20, 20);
@@ -148,7 +148,7 @@ public class VentanaTablaInfoS extends JFrame{
 						logger.info("se carga la lista de alumnos");
 						tabla.setModel(new ModeloTabla(l));
 					}else {
-						System.out.println("a");
+						
 					}
 				}catch (NumberFormatException e2) {
 					
@@ -304,7 +304,7 @@ public class VentanaTablaInfoS extends JFrame{
 		int pos = 0;
 		for(int id : Academia.cargarMapa().keySet()) {
 			Profesor p = BaseDatos.obtenerProfesorId(con, id);
-			DefaultMutableTreeNode n = new DefaultMutableTreeNode(p.getNombre()+","+id);
+			DefaultMutableTreeNode n = new DefaultMutableTreeNode(id);
 			modeloArbol.insertNodeInto(n, (DefaultMutableTreeNode) modeloArbol.getRoot(), pos);
 			pos++;
 		}
