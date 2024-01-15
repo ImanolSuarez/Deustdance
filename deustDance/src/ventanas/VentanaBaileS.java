@@ -10,6 +10,7 @@ import java.sql.Connection;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.logging.Logger;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -48,6 +49,8 @@ public class VentanaBaileS extends JFrame{
 	
 	private JButton botonI;
 	
+	private Logger logger = Logger.getLogger(VentanaProfesorS.class.getName());
+	
 	public VentanaBaileS() {
 		
 		this.setTitle("Ventana horario secretaria");
@@ -66,6 +69,8 @@ public class VentanaBaileS extends JFrame{
 		JLabel labelTexto2 = new JLabel("Listado de profesores de ese baile: ");
 		labelTexto2.setFont(new Font("Agency FB", Font.BOLD, 20));
 		labelTexto2.setForeground(Color.BLACK);
+		
+		logger.info("cargando los componentes a la ventana");
 		
 		/*CREACION DE LA JTABLE ALUMNO*/
 		
@@ -112,6 +117,7 @@ public class VentanaBaileS extends JFrame{
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
+				logger.info("ha seleccionado un elemento del combo");
 				Tipo tipo = (Tipo)comboBaile.getSelectedItem();
 				String tipoSeleccionado = tipo.toString();
 				Baile b = BaseDatos.obtenerBaileTipo(con, tipoSeleccionado);
@@ -119,6 +125,7 @@ public class VentanaBaileS extends JFrame{
 					List<Alumno> listaAlumnos = Academia.cargarMapaTipoAlumno().get(b.getIdBaile());
 					List<Profesor> listProfesores = Academia.cargarMapaTipoProfesor().get(b.getIdBaile());
 					if(listaAlumnos != null && !listaAlumnos.isEmpty() && listProfesores != null) {
+						logger.info("cargamos los modelos de las dos tablas");
 						tabla.setModel(new ModeloTabla(listaAlumnos));
 						tablaP.setModel(new ModeloTablaP(listProfesores));
 					}
@@ -133,6 +140,7 @@ public class VentanaBaileS extends JFrame{
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
+				logger.info("ha pulsado el boton salir");
 				new VentanaTablaInfoS();
 				dispose();
 				
@@ -143,6 +151,7 @@ public class VentanaBaileS extends JFrame{
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
+				logger.info("ha pulsado el boton de informacion");
 				new VentanaInformacion();
 				dispose();
 				

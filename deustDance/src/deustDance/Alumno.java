@@ -42,6 +42,8 @@ public class Alumno extends Persona implements Comparable<Alumno>{
 	}
 
 	
+	
+
 	public int getId() {
 		return id;
 	}
@@ -116,7 +118,7 @@ public class Alumno extends Persona implements Comparable<Alumno>{
 
 	@Override
 	public String toString() {
-		return "Alumno id: " + id + ", baileAsignado=" + baileAsignado + ", profesorAsignado=" + id_profesorAsignado + ", claseAsignada="
+		return "Alumno " + "baileAsignado=" + baileAsignado + ", profesorAsignado=" + id_profesorAsignado + ", claseAsignada="
 				+ id_claseAsignada + ", dinero=" + dinero + ", grupo=" + grupo + ", calificacion=" + calificacion
 				+ ", getNombre()=" + getNombre() + ", getApellidos()=" + getApellidos() + ", getUsuario()="
 				+ getUsuario() + ", getContrasenia()=" + getContrasenia() + ", getTelefono()=" + getTelefono()
@@ -147,7 +149,7 @@ public class Alumno extends Persona implements Comparable<Alumno>{
 	@Override
 	public int compareTo(Alumno o) {
 		
-		return id - o.getId();
+		return getNombre().compareTo(o.getNombre());
 	}
 	
 	

@@ -14,7 +14,7 @@ public class ProfesorTest {
 	
 	@Before
 	public void setUp() {
-		//p = new Profesor("Profesor", "Apellido", "usuario", "contraseña",677787767,"domicilio", null, 2, null, null);
+		p = new Profesor("Profesor", "Apellido", "usuario", "contraseña",677787767,"domicilio", null, 2, null, null);
 	}
 	
 	@Test

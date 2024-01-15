@@ -53,7 +53,7 @@ public class Clase {
 
 	@Override
 	public String toString() {
-		return "id " + num + ", nombre de la clase: " + nombre + "-" + num + ", id profesor: " + idProfesor;
+		return "Nombre de la clase: " + nombre + "-" + "id profesor: " + idProfesor;
 	}
 	
 	

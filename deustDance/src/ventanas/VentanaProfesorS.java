@@ -2,6 +2,8 @@ package ventanas;
 
 import java.awt.Color;
 import java.awt.Font;
+import java.awt.Graphics;
+import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.sql.Connection;
@@ -16,6 +18,7 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JList;
 import javax.swing.JOptionPane;
+import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JSpinner;
 import javax.swing.JTextField;
@@ -69,13 +72,13 @@ public class VentanaProfesorS extends JFrame{
 		ImageIcon imagenLogo = (new ImageIcon(getClass().getResource("/imagenes/imagenLogo.png")));
 		setIconImage(imagenLogo.getImage());
 		
-		/*CARGAMOS LA IMAGEN DEL FONDO*/
-		//String imagePath = "/imagenes/fondoLogin.jpg";
-		//this.setContentPane(new JLabel(new ImageIcon(getClass().getResource(imagePath))));
-		
 		JLabel labelTexto = new JLabel("Listado de profesores: ");
 		labelTexto.setFont(new Font("Agency FB", Font.BOLD, 20));
 		labelTexto.setForeground(Color.BLACK);
+		
+		JLabel labelTexto1 = new JLabel("Registro de datos profesores: ");
+		labelTexto1.setFont(new Font("Agency FB", Font.BOLD, 20));
+		labelTexto1.setForeground(Color.BLACK);
 		
 		labelNombre = new JLabel("Nombre: ");
 		labelNombre.setForeground(Color.BLACK);
@@ -185,6 +188,9 @@ public class VentanaProfesorS extends JFrame{
 		
 		labelTexto.setBounds(550, -20, 200,200);
 		add(labelTexto);
+		
+		labelTexto1.setBounds(60, -10, 200, 100);
+		add(labelTexto1);
 		
 		/*CREACION DE LA JLIST*/
 		
@@ -385,6 +391,7 @@ public class VentanaProfesorS extends JFrame{
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
+				logger.info("ha pulsado el boton info");
 				new VentanaInformacion();
 				dispose();
 				

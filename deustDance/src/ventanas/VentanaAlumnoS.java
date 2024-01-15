@@ -491,6 +491,7 @@ public class VentanaAlumnoS extends JFrame{
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
+				logger.info("ha pulsado el boton info");
 				new VentanaInformacion();
 				dispose();
 				

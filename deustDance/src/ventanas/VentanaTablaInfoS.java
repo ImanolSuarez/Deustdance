@@ -14,6 +14,7 @@ import java.sql.Connection;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.logging.Logger;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -62,6 +63,8 @@ public class VentanaTablaInfoS extends JFrame{
 	
 	private JButton botonI;
 	
+	private Logger logger = Logger.getLogger(VentanaProfesorS.class.getName());
+	
 	public VentanaTablaInfoS() {
 		
 		this.setTitle("Ventana horario secretaria");
@@ -100,6 +103,8 @@ public class VentanaTablaInfoS extends JFrame{
 		
 		/*AÑADIENDO LOS COMPONENTES A LA VENTANA*/
 		
+		logger.info("cargando los componentes a la ventana");
+		
 		arbol.setBounds(30, 40, 200, 130);
 		add(arbol);
 		
@@ -135,10 +140,12 @@ public class VentanaTablaInfoS extends JFrame{
 			public void valueChanged(TreeSelectionEvent e) {
 				TreePath tp = e.getPath();
 				try {
+					logger.info("se selecciono un elemento en el combo");
 					String[] cadena = tp.getLastPathComponent().toString().split(",");
 					int id = Integer.parseInt(cadena[cadena.length-1].trim());
 					List<Alumno> l = Academia.cargarMapa().get(id);
 					if(l != null && !l.isEmpty()) {
+						logger.info("se carga la lista de alumnos");
 						tabla.setModel(new ModeloTabla(l));
 					}else {
 						System.out.println("a");
@@ -154,6 +161,7 @@ public class VentanaTablaInfoS extends JFrame{
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
+				logger.info("ha pulsado el boton salir");
 				new VentanaInicial();
 				dispose();
 				
@@ -164,6 +172,7 @@ public class VentanaTablaInfoS extends JFrame{
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
+				logger.info("ha pulsado el oton de Alumno");
 				new VentanaAlumnoS();
 				dispose();
 				
@@ -174,6 +183,7 @@ public class VentanaTablaInfoS extends JFrame{
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
+				logger.info("ha pulsado el boton de Profesor");
 				new VentanaProfesorS();
 				dispose();
 				
@@ -184,6 +194,7 @@ public class VentanaTablaInfoS extends JFrame{
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
+				logger.info("ha pulsado el boton de baile");
 				new VentanaBaileS();
 				dispose();
 				
@@ -198,7 +209,6 @@ public class VentanaTablaInfoS extends JFrame{
 			public Component getTableCellRendererComponent(JTable table, Object value, boolean isSelected, boolean hasFocus,
 					int row, int column) {
 				Component c = super.getTableCellRendererComponent(table, value, isSelected, hasFocus, row, column);
-				
 				if(row==fila && column==columna) {
 					c.setBackground(Color.GREEN);
 				}else {
@@ -241,13 +251,12 @@ public class VentanaTablaInfoS extends JFrame{
 			public Component getTableCellRendererComponent(JTable table, Object value, boolean isSelected, boolean hasFocus,
 					int row, int column) {
 				Component c = super.getTableCellRendererComponent(table, value, isSelected, hasFocus, row, column);
-				//Cuando el cambio se aplica a toda la fila, miramos el modelo
-				double precio = Double.parseDouble(modeloTabla.getValueAt(row, 6).toString());
-				if(precio < 30) {
-					c.setBackground(Color.GREEN);
-				}else {
-					c.setBackground(table.getBackground());
+				double precio = Double.parseDouble(modeloTabla.getValueAt(row, 5).toString());
+				if(precio < 5) {
+					c.setBackground(Color.RED);
 				}
+
+				
 				return c;
 			}
 		});
@@ -260,7 +269,7 @@ public class VentanaTablaInfoS extends JFrame{
 			
 			@Override
 			public void removeUpdate(DocumentEvent e) {
-				// TODO Auto-generated method stub
+				
 				
 			}
 			
@@ -272,7 +281,7 @@ public class VentanaTablaInfoS extends JFrame{
 			
 			@Override
 			public void changedUpdate(DocumentEvent e) {
-				// TODO Auto-generated method stub
+				
 				
 			}
 		});
@@ -281,6 +290,7 @@ public class VentanaTablaInfoS extends JFrame{
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
+				logger.info("ha pulsado el boton de info");
 				new VentanaInformacion();
 				dispose();
 				
@@ -307,7 +317,7 @@ public class VentanaTablaInfoS extends JFrame{
 	
 		class ModeloTabla extends DefaultTableModel{
 			
-			private List<Alumno> listaAlumno;
+			private List<Alumno> listaAlumno = new ArrayList<>();
 			private List<String> titulos = Arrays.asList("NOMBRE","APELLIDO","USUARIO","CONTRASEÑA","DOMICILIO","TELEFONO","CALIFICACION");
 			
 			public ModeloTabla(List<Alumno> lA) {
@@ -351,6 +361,4 @@ public class VentanaTablaInfoS extends JFrame{
 				}
 			}
 		}
-		
-
-}
+	}

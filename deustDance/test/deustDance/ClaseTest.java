@@ -9,10 +9,10 @@ import org.junit.Test;
 public class ClaseTest {
 	
 	private Clase c;
-	/*
+	
 	@Before
 	public void setUp() {
-		c = new Clase("Clase", null, null);
+		c = new Clase("Clase", 1);
 	}
 	@Test
 	public void getNombre() {
@@ -25,26 +25,11 @@ public class ClaseTest {
 	}
 	@Test
 	public void getListaProfesores() {
-		assertNull(c.getListaProfesores());
-	}
-	@Test
-	public void setListaProfesores() {
-		c.setListaProfesores(null);
-		assertNull(c.getListaProfesores());
-	}
-	@Test
-	public void getListaAlumnos() {
-		assertNull(c.getListaAlumnos());
-	}
-	@Test
-	public void setListaAlumnos() {
-		c.setListaAlumnos(null);
-		assertNull(c.getListaAlumnos());
+		assertEquals(1, c.getIdProfesor());
 	}
 	@Test
 	public void ClaseToString() {
-		assertEquals("Nombre de la clase: " + "Clase" + ", lista de profesores: " + null 
-					+ ", lista de alumnos=" + null, c.toString());
+		assertEquals("Nombre de la clase: " + "Clase" + "-" + "id profesor: " + 1, c.toString());
 	}
-	*/
+	
 }

@@ -107,7 +107,7 @@ public class Baile {
 
 	@Override
 	public String toString() {
-		return "id: " + idBaile + ", tipo de baile: "+ tipoBaile + "descripcion: " + descripcion + ", precio: " + precio + "€"
+		return "id: " + idProfesor + ", tipo de baile: "+ tipoBaile + "descripcion: " + descripcion + ", precio: " + precio + "€"
 				+ ", horas de clase: " + horasDeClase ;
 	}
 

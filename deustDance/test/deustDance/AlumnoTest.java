@@ -8,64 +8,77 @@ import org.junit.Before;
 import org.junit.Test;
 
 public class AlumnoTest {
-	/*
+	
 	private Alumno a;
 	@Before
 	public void setUp() {
-		//a = new Alumno("Alumno", "Apellido", "usuario", "contraseña", 677877643, "domicilio", null,null,null,200, 2, 5.0);
+		a = new Alumno("Alumno", "Apellido", "Usuario", "Contraseña", 688823376, "Domicilio", 1, 1, 1, 1, 1, 1);
 	}
 	@Test
 	public void getBaileAsignado() {
-		assertNull(a.getBaileAsignado());
+		assertEquals(1, a.getBaileAsignado());
 	}
 	@Test
 	public void setBaileAsignado() {
-		a.setBaileAsignado(null);
-		assertNull(a.getBaileAsignado());
+		a.setBaileAsignado(1);
+		assertEquals(1,a.getBaileAsignado());
 	}
 	@Test
 	public void getProfesorAsignado() {
-		assertNull(a.getProfesorAsignado());
+		assertEquals(1,a.getProfesorAsignado());
 	}
 	
 	public void getClaseAsignada() {
-		assertNull(a.getClaseAsignada());
+		assertEquals(1,a.getClaseAsignada());
 	}
 	
 	@Test
 	public void getDinero() {
-		assertEquals(200, a.getDinero(), 0);
+		assertEquals(1, a.getDinero(), 0);
 	}
 	@Test
 	public void setDinero() {
-		a.setDinero(200);
-		assertEquals(200, a.getDinero(), 0);
+		a.setDinero(1);
+		assertEquals(1, a.getDinero(), 0);
 	}
 	@Test
 	public void getGrupo() {
-		assertEquals(2, a.getGrupo(),0);
+		assertEquals(1, a.getGrupo(),0);
 	}
 	public void setGrupo() {
-		a.setGrupo(2);
-		assertEquals(2, a.getGrupo(),0);
+		a.setGrupo(1);
+		assertEquals(1, a.getGrupo(),0);
 	}
 	@Test
 	public void getCalificacion() {
-		assertEquals(5.00, a.getCalificacion(), 0);
+		assertEquals(1, a.getCalificacion(), 0);
 	}
 	@Test
 	public void setCalificacion() {
-		a.setCalificacion(5.00);
-		assertEquals(5.00, a.getCalificacion(), 0);
+		a.setCalificacion(1);
+		assertEquals(1, a.getCalificacion(), 0);
 	}
-	
 	@Test
 	public void testToString() {
-		assertEquals("Alumno [baileAsignado=" + null + ", profesorAsignado=" + null + ", claseAsignada="
-	            + null + ", dinero=" + 200.0 + ", grupo=" + 2 + ", calificacion=" + 5.00
-	            + ", getNombre()=" + "Alumno" + ", getApellidos()=" + "Apellido" + ", getUsuario()="
-	            + "usuario" + ", getContrasenia()=" + "contraseña" + ", getTelefono()=" + 677877643
-	            + ", getDomicilio()=" + "domicilio" + "]", a.toString());
+	    Alumno alumno = new Alumno();
+	    alumno.setBaileAsignado(1);
+	    alumno.setId_profesorAsignado(1);
+	    alumno.setId_claseAsignada(1);
+	    alumno.setDinero(1.0);
+	    alumno.setGrupo(1);
+	    alumno.setCalificacion(1.0);
+	    alumno.setNombre("Nombre");
+	    alumno.setApellidos("Apellido");
+	    alumno.setUsuario("Usuario");
+	    alumno.setContrasenia("Contraseña");
+	    alumno.setTelefono(688823376);
+	    alumno.setDomicilio("Domicilio");
+
+	    String expectedToString = "Alumno baileAsignado=1, profesorAsignado=1, claseAsignada=1, dinero=1.0, grupo=1, calificacion=1.0, " +
+	            "getNombre()=Nombre, getApellidos()=Apellido, getUsuario()=Usuario, getContrasenia()=Contraseña, " +
+	            "getTelefono()=688823376, getDomicilio()=Domicilio";
+
+	    assertEquals(expectedToString, alumno.toString());
 	}
-	*/
+	
 }
