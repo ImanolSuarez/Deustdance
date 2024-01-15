@@ -93,7 +93,7 @@ public class VentanaInicial extends JFrame{
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				logger.info("abriendo la ventana horario");
-				new VentanaHorarioS();
+				new VentanaTablaInfoS();
 				dispose();
 				
 			}

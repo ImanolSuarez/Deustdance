@@ -228,8 +228,8 @@ public class VentanaProfesorS extends JFrame{
 			        	logger.info("error, algun campo vacio");
 			            JOptionPane.showMessageDialog(null, "ERROR. PORFAVOR REVISE TODOS LOS CAMPOS");
 			        }
-				 txtNombreP.setText("");
-				 textApellidoP.setText("");
+				 	txtNombreP.setText("");
+				 	textApellidoP.setText("");
 					spinnerGrupoP.setValue(0);
 					txtDomicilioP.setText("");
 					txtUsuarioP.setText("");
@@ -355,7 +355,7 @@ public class VentanaProfesorS extends JFrame{
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				logger.info("cargando la ventana Horario");
-				new VentanaHorarioS();
+				new VentanaTablaInfoS();
 				dispose();
 				
 			}
