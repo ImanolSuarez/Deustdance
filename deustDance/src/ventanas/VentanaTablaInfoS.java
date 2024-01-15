@@ -30,6 +30,7 @@ import javax.swing.event.TreeSelectionEvent;
 import javax.swing.event.TreeSelectionListener;
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableCellRenderer;
 import javax.swing.tree.DefaultMutableTreeNode;
 import javax.swing.tree.DefaultTreeModel;
 import javax.swing.tree.TreePath;
@@ -100,7 +101,6 @@ public class VentanaTablaInfoS extends JFrame{
 		modeloTabla = new ModeloTabla(null);
 		tabla = new JTable(modeloTabla);
 		scrollTabla = new JScrollPane(tabla);
-		
 		/*AÑADIENDO LOS COMPONENTES A LA VENTANA*/
 		
 		logger.info("cargando los componentes a la ventana");
@@ -244,26 +244,7 @@ public class VentanaTablaInfoS extends JFrame{
 			}
 		});
 		
-		/*OTRO RENDER*/
-		/*
-		tabla.setDefaultRenderer(Object.class, new DefaultTableCellRenderer(){
-			@Override
-			public Component getTableCellRendererComponent(JTable table, Object value, boolean isSelected, boolean hasFocus,
-					int row, int column) {
-				Component c = super.getTableCellRendererComponent(table, value, isSelected, hasFocus, row, column);
-				double precio = Double.parseDouble(modeloTabla.getValueAt(row, 5).toString());
-				if(precio < 5) {
-					c.setBackground(Color.RED);
-				}
-
-				
-				return c;
-			}
-		});
-		*/
-		
-		
-		
+		/*OTRO RENDER*/		
 		
 		txtBusqueda.getDocument().addDocumentListener(new DocumentListener() {
 			
@@ -303,17 +284,12 @@ public class VentanaTablaInfoS extends JFrame{
 	private void cargarArbol() {
 		int pos = 0;
 		for(int id : Academia.cargarMapa().keySet()) {
-			Profesor p = BaseDatos.obtenerProfesorId(con, id);
 			DefaultMutableTreeNode n = new DefaultMutableTreeNode(id);
 			modeloArbol.insertNodeInto(n, (DefaultMutableTreeNode) modeloArbol.getRoot(), pos);
 			pos++;
 		}
 	}
 	
-	
-	public static void main(String[] args) {
-		new VentanaTablaInfoS();
-	}
 	
 		class ModeloTabla extends DefaultTableModel{
 			
@@ -361,4 +337,7 @@ public class VentanaTablaInfoS extends JFrame{
 				}
 			}
 		}
-	}
+		
+			
+		}
+	

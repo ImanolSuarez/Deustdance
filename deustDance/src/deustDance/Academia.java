@@ -93,6 +93,13 @@ public class Academia {
 		
 	}
 	
+	public static void ver() {
+		for(Entry<Integer, Integer> e : cargarMapaTipoProfesor().entrySet()) {
+			System.out.println("Mapa: ");
+			System.out.println(e.getKey() + ", "+e.getValue());
+		}
+	}
+	
 	/*CARGAR EL MAPA 1*/
 	
 	public static Map<Integer, List<Alumno>> cargarMapa() {
@@ -132,15 +139,14 @@ public class Academia {
 	
 	/*CARGAR MAPA 3*/
 	
-	public static Map<Integer, List<Profesor>> cargarMapaTipoProfesor(){
-		Map<Integer, List<Profesor>> mapa = new HashMap<>();
+	public static Map<Integer, Integer> cargarMapaTipoProfesor(){
+		Map<Integer, Integer> mapa = new HashMap<>();
 		List<Baile> listaBile = BaseDatos.obtenerTodosBailes(con);
 		for(Baile b : listaBile) {
 			if(!mapa.containsKey(b.getIdBaile())) {
-				mapa.put(b.getIdBaile(), new ArrayList<>());
+				mapa.put(b.getIdBaile(), 0);
 			}
-			Profesor p = BaseDatos.obtenerProfesorId(con, b.getIdProfesor());
-			mapa.get(b.getIdBaile()).add(p);
+			mapa.put(b.getIdBaile(), b.getIdProfesor());
 		}
 		return mapa;
 	}

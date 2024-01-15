@@ -35,6 +35,7 @@ public class Main {
 		
 		Connection con = BaseDatos.initBD("DeustDance.db");
 		BaseDatos.crearTabla(con);
+		Academia.ver();
 		Academia.cargarDatosAlumno(con, "resources/alumnos.csv");	
 		Academia.cargarDatosProfesor(con, "resources/profesores.csv");
 		Academia.cargarDatosSecretaria(con, "resources/secretarias.csv");

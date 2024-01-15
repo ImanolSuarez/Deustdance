@@ -20,6 +20,7 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
+import javax.swing.JTextArea;
 import javax.swing.table.DefaultTableModel;
 
 import deustDance.Academia;
@@ -41,9 +42,7 @@ public class VentanaBaileS extends JFrame{
 	private JTable tabla;
 	private JScrollPane scrollTabla;
 	
-	private ModeloTablaP modeloTablaP;
-	private JTable tablaP;
-	private JScrollPane scrollTablaP;
+	private JTextArea textoArea;
 	
 	private JButton botonSalir;
 	
@@ -67,7 +66,7 @@ public class VentanaBaileS extends JFrame{
 		labelTexto1.setFont(new Font("Agency FB", Font.BOLD, 20));
 		labelTexto1.setForeground(Color.BLACK);
 		
-		JLabel labelTexto2 = new JLabel("Listado de profesores de ese baile: ");
+		JLabel labelTexto2 = new JLabel("Listado del profesores de ese baile: ");
 		labelTexto2.setFont(new Font("Agency FB", Font.BOLD, 20));
 		labelTexto2.setForeground(Color.BLACK);
 		
@@ -81,13 +80,11 @@ public class VentanaBaileS extends JFrame{
 		scrollTabla.setBounds(175, 45, 600, 250);
 		add(scrollTabla);
 		
-		/*CREACION DE LA JTABLE PROFESOR*/
+		/*CREACION DE LA JTextArea PROFESOR*/
 		
-		modeloTablaP = new ModeloTablaP(null);
-		tablaP = new JTable(modeloTablaP);
-		scrollTablaP = new JScrollPane(tablaP);
-		scrollTablaP.setBounds(790,45,600,250);
-		add(scrollTablaP);
+		textoArea = new JTextArea();
+		textoArea.setBounds(900, 60, 300,100);
+		add(textoArea);
 		
 		/*CREACION DEL JComboBox*/
 		
@@ -119,26 +116,30 @@ public class VentanaBaileS extends JFrame{
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				logger.info("ha seleccionado un elemento del combo");
+				textoArea.setText("");
+				tabla.setModel(new ModeloTabla(null));
 				Tipo tipo = (Tipo)comboBaile.getSelectedItem();
 				String tipoSeleccionado = tipo.toString();
 				Baile b = BaseDatos.obtenerBaileTipo(con, tipoSeleccionado);
 				if(b != null) {
 					List<Alumno> listaAlumnos = Academia.cargarMapaTipoAlumno().get(b.getIdBaile());
-					List<Profesor> listProfesores = Academia.cargarMapaTipoProfesor().get(b.getIdBaile());
-					if(listaAlumnos != null && !listaAlumnos.isEmpty() && listProfesores != null) {
-						logger.info("cargamos los modelos de las dos tablas");
+					if(listaAlumnos != null ) {
 						tabla.setModel(new ModeloTabla(listaAlumnos));
-						tablaP.setModel(new ModeloTablaP(listProfesores));
+					}else {
+						System.out.println("no se ha podido cargar");
 					}
-				}else {
-					tabla.repaint();
-				}
+					
+					int id = Academia.cargarMapaTipoProfesor().get(b.getIdBaile());
+					Profesor p = BaseDatos.obtenerProfesorId(con, id);
+					String texto = p.getNombre() + " " + p.getApellidos();
+					textoArea.append(texto);
+					
+			}
 				
 			}
 		});
 		
 		botonSalir.addActionListener(new ActionListener() {
-			
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				logger.info("ha pulsado el boton salir");
@@ -163,9 +164,6 @@ public class VentanaBaileS extends JFrame{
 		
 	}
 	
-	public static void main(String[] args) {
-		new VentanaBaileS();
-	}
 	
 	class ModeloTabla extends DefaultTableModel{
 		
@@ -212,56 +210,7 @@ public class VentanaBaileS extends JFrame{
 				default: return null;
 			}
 		}
-	}
-	
-	class ModeloTablaP extends DefaultTableModel{
-		
-		private List<Profesor> listaProfesor;
-		private List<String> titulos = Arrays.asList("NOMBRE","APELLIDO","USUARIO","CONTRASEÑA","DOMICILIO","TELEFONO");
-		
-		public ModeloTablaP(List<Profesor> lP) {
-			listaProfesor = lP;
-		}
-		
-		@Override
-		public int getColumnCount() {
-			return titulos.size();
-		}
-		
-		@Override
-		public String getColumnName(int column) {
-			return titulos.get(column);
-		}
-		
-		@Override
-		public int getRowCount() {
-			if(listaProfesor == null)
-				return 0;
-			return listaProfesor.size();
-		}
-		
-		@Override
-		public boolean isCellEditable(int row, int column) {
-			return false;
-		}
-		
-		@Override
-		public Object getValueAt(int row, int column) {
-			Profesor p = listaProfesor.get(row);
-			switch(column) {
-				case 0: return p.getNombre();
-				case 1: return p.getApellidos();
-				case 2: return p.getUsuario();
-				case 3: return p.getContrasenia();
-				case 4: return p.getDomicilio();
-				case 5: return p.getTelefono();
-				default: return null;
-			}
-		}
-	}
-	
-	
-		
+	}	
 }
 
 

@@ -780,7 +780,7 @@ public class BaseDatos {
 		try {
 			Statement st = con.createStatement();
 			ResultSet rs = st.executeQuery(sql);
-			if(rs.next()) {
+			while(rs.next()) {
 				int id = rs.getInt("id");
 				int idProfe = rs.getInt("idProfesorBaile");
 				String descripcion = rs.getString("descripcion");

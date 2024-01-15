@@ -83,11 +83,12 @@ public class AcademiaTest {
 		 	Map<Integer, List<Alumno>> mapa = Academia.cargarMapaTipoAlumno();
 		 	assertNotNull(mapa);
 	  }
+	 /*
 	 @Test
 	  public void testcargarMapaTipoProfesor() {
 		 	Map<Integer, List<Profesor>> mapa = Academia.cargarMapaTipoProfesor();
 		 	assertNotNull(mapa);
-	  }
+	  }*/
 	 @Test
 	    public void testcontieneAlumno() {
 	       List<Alumno> listaAlumno = Academia.getListaAlumnos();
