@@ -66,6 +66,9 @@ public class VentanaProfesorS extends JFrame{
 		this.setBounds(500, 100, 850, 400);
 		this.setResizable(false);
 		
+		ImageIcon imagenLogo = (new ImageIcon(getClass().getResource("/imagenes/imagenLogo.png")));
+		setIconImage(imagenLogo.getImage());
+		
 		/*CARGAMOS LA IMAGEN DEL FONDO*/
 		//String imagePath = "/imagenes/fondoLogin.jpg";
 		//this.setContentPane(new JLabel(new ImageIcon(getClass().getResource(imagePath))));

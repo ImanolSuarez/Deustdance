@@ -56,6 +56,9 @@ public class VentanaBaileS extends JFrame{
 		this.setLayout(null);
 		this.setResizable(false);
 		
+		ImageIcon imagenLogo = (new ImageIcon(getClass().getResource("/imagenes/imagenLogo.png")));
+		setIconImage(imagenLogo.getImage());
+		
 		JLabel labelTexto1 = new JLabel("Listado de alumnos de ese baile: ");
 		labelTexto1.setFont(new Font("Agency FB", Font.BOLD, 20));
 		labelTexto1.setForeground(Color.BLACK);

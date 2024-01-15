@@ -78,6 +78,9 @@ public class VentanaAlumnoS extends JFrame{
 		this.setBounds(300, 100, 1000, 500);
 		this.setResizable(false);
 		
+		ImageIcon imagenLogo = (new ImageIcon(getClass().getResource("/imagenes/imagenLogo.png")));
+		setIconImage(imagenLogo.getImage());
+		
 		JLabel labelT = new JLabel("REGISTRO DE DATOS DEL ALUMNO");
 		labelT.setFont(new Font("Agency FB", Font.ROMAN_BASELINE, 20));
 		labelT.setForeground(Color.BLACK);

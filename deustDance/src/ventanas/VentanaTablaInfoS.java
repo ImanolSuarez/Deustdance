@@ -70,6 +70,9 @@ public class VentanaTablaInfoS extends JFrame{
 		this.setBounds(300, 90, 900, 800);
 		this.setResizable(false);
 		
+		ImageIcon imagenLogo = (new ImageIcon(getClass().getResource("/imagenes/imagenLogo.png")));
+		setIconImage(imagenLogo.getImage());
+		
 		labelBusqueda = new JLabel("Introduzca el nombre de la persona: ");
 		txtBusqueda = new JTextField(20);
 		
