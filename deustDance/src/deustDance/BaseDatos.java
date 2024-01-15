@@ -149,12 +149,13 @@ public class BaseDatos {
 			Statement st = con.createStatement();
 			ResultSet rs = st.executeQuery(sql);
 			while(rs.next()) {
+				int id = rs.getInt("id");
 				int id_Profesor = rs.getInt("idProfesorBaile");
 				String descripcion = rs.getString("descripcion");
 				String tipo = rs.getString("tipo");
 				Double precio = rs.getDouble("precio");
 				int horas = rs.getInt("horas");
-				Baile b = new Baile(id_Profesor, descripcion, tipo, precio, horas);
+				Baile b = new Baile(id, id_Profesor, descripcion, tipo, precio, horas);
 				l.add(b);
 			}
 			rs.close();
@@ -709,8 +710,50 @@ public class BaseDatos {
 		
 	}
 	
+	public static Baile obtenerBaileTipo(Connection con, String tipo) {
+		Baile b = null;
+		String sql = String.format("SELECT * FROM BAILE WHERE tipo = '%s'", tipo);
+		try {
+			Statement st = con.createStatement();
+			ResultSet rs = st.executeQuery(sql);
+			if(rs != null) {
+				// 		String sq3 = "CREATE TABLE IF NOT EXISTS Baile(id Integer, idProfesorBaile Integer, descripcion String, tipo String, precio double, horas Integer)";
+				int id = rs.getInt("id");
+				int idProfe = rs.getInt("idProfesorBaile");
+				String descripcion = rs.getString("descripcion");
+				String tipoBaile = rs.getString("tipo");
+				double precio = rs.getDouble("precio");
+				int horas = rs.getInt("horas");
+				b = new Baile(id, idProfe, descripcion, tipoBaile, precio, horas);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return b;
+	}	
 	
 	
+	public static List<Baile> obtenerTodosBailes(Connection con) {
+		List<Baile> listaBaile = new ArrayList<>();
+		String sql = "SELECT * FROM Baile";
+		try {
+			Statement st = con.createStatement();
+			ResultSet rs = st.executeQuery(sql);
+			if(rs.next()) {
+				int id = rs.getInt("id");
+				int idProfe = rs.getInt("idProfesorBaile");
+				String descripcion = rs.getString("descripcion");
+				String tipoBaile = rs.getString("tipo");
+				double precio = rs.getDouble("precio");
+				int horas = rs.getInt("horas");
+				Baile b = new Baile(id, idProfe, descripcion, tipoBaile, precio, horas);
+				listaBaile.add(b);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return listaBaile;
+	}
 	
 	
 	

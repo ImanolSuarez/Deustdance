@@ -55,6 +55,7 @@ public class VentanaTablaInfoS extends JFrame{
 	private JButton botonSalir;
 	private JButton botonA;
 	private JButton botonP;
+	private JButton botonBaile;
 	
 	private int fila, columna;
 	
@@ -72,6 +73,7 @@ public class VentanaTablaInfoS extends JFrame{
 		botonSalir = new JButton("Salir");
 		botonA = new JButton("Alumno");
 		botonP = new JButton("Profesor");
+		botonBaile = new JButton("Baile");
 		
 		fila = -1;
 		columna = -1;
@@ -111,6 +113,9 @@ public class VentanaTablaInfoS extends JFrame{
 		
 		botonP.setBounds(440, 720, 150, 30);
 		add(botonP);
+		
+		botonBaile.setBounds(600, 720, 150, 30);
+		add(botonBaile);
 		
 		/*EVENTOS*/
 		
@@ -160,6 +165,16 @@ public class VentanaTablaInfoS extends JFrame{
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				new VentanaProfesorS();
+				dispose();
+				
+			}
+		});
+		
+		botonBaile.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				new VentanaBaileS();
 				dispose();
 				
 			}

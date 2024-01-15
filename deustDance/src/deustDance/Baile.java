@@ -23,10 +23,11 @@ public class Baile {
 	}
 	
 
-	public Baile( int idProfesor, String descripcion, String tipoBaile, double precio, int horasDeClase) {
+	public Baile(int idBaile, int idProfesor, String descripcion, String tipoBaile, double precio, int horasDeClase) {
 		super();
 		this.idBaile = contador;
 		contador++;
+		this.idBaile = idBaile;
 		this.idProfesor = idProfesor;
 		this.descripcion = descripcion;
 		setTipoBaile(tipoBaile);

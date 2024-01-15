@@ -27,7 +27,10 @@ public class Academia {
 	private static List<Profesor> listaProfesores = new ArrayList<>();
 	private static List<Clase> listaClases = new ArrayList<>();
 	private static List<Secretaria> listaSecretaria = new ArrayList<>();
+	
+	
 	private static Map<Integer, List<Alumno>> mapaProfesorAlumno = new HashMap<>();
+	private static Map<Integer, List<Alumno>> mapaBaileAlumno = new HashMap<>();
 	
 	
 	
@@ -94,7 +97,7 @@ public class Academia {
 		
 	}
 	
-	/*CARGAR EL MAPA*/
+	/*CARGAR EL MAPA 1*/
 	
 	public static Map<Integer, List<Alumno>> cargarMapa() {
 	    Map<Integer, List<Alumno>> mapa = new HashMap<>();
@@ -113,6 +116,39 @@ public class Academia {
 	    }
 	    return mapa;
 	}
+	
+	/*CARGAR MAPA 2*/
+	
+	public static Map<Integer, List<Alumno>> cargarMapaTipoAlumno(){
+		
+		Map<Integer, List<Alumno>> mapa = new HashMap<>();
+		List<Alumno> listaAlum = BaseDatos.obtenerAlumnos(con);
+		for(Alumno a : listaAlum) {
+			if(!mapa.containsKey(a.getBaileAsignado())) {
+				mapa.put(a.getBaileAsignado(), new ArrayList<>());
+			}
+			mapa.get(a.getBaileAsignado()).add(a);
+		}
+		
+		
+		return mapa;
+	}
+	
+	/*CARGAR MAPA 3*/
+	
+	public static Map<Integer, List<Profesor>> cargarMapaTipoProfesor(){
+		Map<Integer, List<Profesor>> mapa = new HashMap<>();
+		List<Baile> listaBile = BaseDatos.obtenerTodosBailes(con);
+		for(Baile b : listaBile) {
+			if(!mapa.containsKey(b.getIdBaile())) {
+				mapa.put(b.getIdBaile(), new ArrayList<>());
+			}
+			Profesor p = BaseDatos.obtenerProfesorId(con, b.getIdProfesor());
+			mapa.get(b.getIdBaile()).add(p);
+		}
+		return mapa;
+	}
+	
 	
 	/*OBTENER LA LISTA DE ALUMNOS*/
 	
@@ -335,12 +371,13 @@ public class Academia {
 			while(sc.hasNext()) {
 				String linea = sc.nextLine();
 				String[] datos = linea.split(";");
-				int idPr = Integer.parseInt(datos[0]);
-				String descr = datos[1];
-				String tipoBaile = datos[2];
-				double precio = Double.parseDouble(datos[3]);
-				int horas = Integer.parseInt(datos[4]);
-				Baile b = new Baile(idPr, descr, tipoBaile, precio, horas);
+				int id = Integer.parseInt(datos[0]);
+				int idPr = Integer.parseInt(datos[1]);
+				String descr = datos[2];
+				String tipoBaile = datos[3];
+				double precio = Double.parseDouble(datos[4]);
+				int horas = Integer.parseInt(datos[5]);
+				Baile b = new Baile(id, idPr, descr, tipoBaile, precio, horas);
 				BaseDatos.insertarBaileBD(con, b);
 			}
 			sc.close();

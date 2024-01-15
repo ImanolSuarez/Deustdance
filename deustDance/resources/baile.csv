@@ -1,5 +1,9 @@
 Datos de prueba de bailes
-1;baile moderno;URBAN_DANCE;280.54;2
-2;baile clasico;HIP_HOP;100.00;1
-1;baile moderno;FUNKY_KIDS;160.43;3
-4;baile moderno;URBAN_DANCE;280.54;2
+1;1;baile moderno;URBAN_DANCE;280.54;2
+2;4;baile clasico;HIP_HOP;100.00;1
+3;2;baile moderno;FUNKY_KIDS;160.43;3
+4;3;baile moderno;URBAN_DANCE;280.54;2
+5;1;baile ballet;BALLET;300.0;2;
+6;1;baile moderno;BACHATA;100;1
+7;2;baile moderno;TANGO;250;3
+8;1;baile moderno;BAILE_MODERNO;200;2
