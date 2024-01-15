@@ -22,6 +22,7 @@ import javax.swing.JOptionPane;
 public class Academia {
 	
 	static Connection con = BaseDatos.initBD("DeustDance.db");
+	
 	private static List<Baile> listaBailes = new ArrayList<Baile>();
 	private static List<Alumno> listaAlumnos = new ArrayList<>();
 	private static List<Profesor> listaProfesores = new ArrayList<>();
@@ -41,6 +42,18 @@ public class Academia {
 		return mapaProfesorAlumno;
 	}
 	
+	public static List<Alumno> getListaAlumnos(){
+		return listaAlumnos;
+	}
+	
+	public static List<Profesor> getListaProfesores(){
+		return listaProfesores;
+	}
+	
+	public static List<Secretaria> getListaSecretaria(){
+		return listaSecretaria;
+	}
+	
 	
 	/*METODO PARA AÑADIR ALUMNOS*/
 	
@@ -49,35 +62,18 @@ public class Academia {
 		listaAlumnos = BaseDatos.volcadoAlumnosaLista(conn);
 	}
 	
-	public static void ver() {
-	    System.out.println("Iniciando el método ver()");
-	    
-	    for (int id : mapaProfesorAlumno.keySet()) {
-	        System.out.println("Profesor ID: " + id);
-	        
-	        List<Alumno> listaAlumno = mapaProfesorAlumno.get(id);
-	        
-	        for (Alumno a : listaAlumno) {
-	            System.out.println("   Alumno: " + a);
-	        }
-	    }
-
-	    System.out.println("Finalizando el método ver()");
-	}
-	
-	
-	public static void cargarProfesoresDesdeBD(Connection conn) {
+	public static void cargarProfesoresDesdeBD(Connection conn) { 
 		listaProfesores = BaseDatos.volcadoProfesorsaLista(conn);
 	}
 	
-	public static void cargarSecretariaDesdeBD(Connection conn) {
+	public static void cargarSecretariaDesdeBD(Connection conn) { 
 		listaSecretaria = BaseDatos.volcadoSecretariosaLista(conn);
 	}
 	
-	public static void borrarTodosLosAlumnos() {
+	public static void borrarTodosLosAlumnos() { 
 		listaAlumnos.clear();
 	}
-	
+
 	public static void borrarTodosLosProfesores() {
 		listaProfesores.clear();
 	}
@@ -88,7 +84,7 @@ public class Academia {
 	
 	
 	
-	public static void anyadirProfesor(Profesor p) {
+	public static void anyadirProfesor(Profesor p) { 
 		listaProfesores.add(p);
 	}
 	
@@ -101,7 +97,7 @@ public class Academia {
 	
 	public static Map<Integer, List<Alumno>> cargarMapa() {
 	    Map<Integer, List<Alumno>> mapa = new HashMap<>();
-	    List<Alumno> listaAlum = BaseDatos.obtenerAlumnos(con); // Asegúrate de tener la conexión (con) disponible
+	    List<Alumno> listaAlum = BaseDatos.obtenerAlumnos(con);
 	    System.out.println(listaAlum.size());
 	    for (Alumno a : listaAlum) {
 	        if (!mapa.containsKey(a.getId_profesorAsignado())) {

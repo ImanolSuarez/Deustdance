@@ -251,6 +251,47 @@ public class BaseDatos {
 		}
 	}
 	
+	/*OBTENER TODOS LOS SECRETARIOS*/
+	
+	public static List<Secretaria> obtenerSecretarios(Connection con) {
+		List<Secretaria> listaS = new ArrayList<>();
+		String sql = "Select * from secretaria";
+		try {
+			Statement st = con.createStatement();
+			ResultSet rs = st.executeQuery(sql);
+			while(rs.next()) {
+				String nombre = rs.getString("nombre");
+				String apellido = rs.getString("apellido");
+				String usuario = rs.getString("usuario");
+				String contra = rs.getString("contraseña");
+				int tel = rs.getInt("telefono");
+				String domicilio = rs.getString("domicilio");
+				Secretaria s = new Secretaria(nombre, apellido, usuario, contra, tel, domicilio);
+				listaS.add(s);
+			}
+			rs.close();
+			st.close();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return listaS;
+		
+	}
+	
+	public static void eliminarSecretaria(Connection con, String usuario) {
+		String sql = String.format("DELETE FROM Secretaria Where usuario = '%s'", usuario);
+		try {
+			Statement st = con.createStatement();
+			st.executeUpdate(sql);
+			st.close();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+	
+	
+	
 	/*Insertar las clases*/
 	
 	public static void insertarClaseBD(Connection con, Clase c) {
