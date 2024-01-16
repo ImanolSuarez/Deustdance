@@ -4,6 +4,7 @@ import java.awt.*;
 
 import java.awt.event.*;
 import java.io.File;
+import java.sql.Connection;
 import java.text.SimpleDateFormat;
 import java.util.Arrays;
 
@@ -16,7 +17,7 @@ import deustDance.BaseDatos;
 
 public class VentanaAlumno extends JFrame{
 	private static final long serialVersionUID = 1L;
-	
+	Connection con = BaseDatos.initBD("DeustDance.db");
 	// COMPONENETES DE LA VENTANA ALUMNO QUE HA INICIADO SESION
 	public static Alumno alumno;
 	
@@ -92,7 +93,7 @@ public class VentanaAlumno extends JFrame{
 		
 		/*A*/
 		String usuario = VentanaInicioSesion.textUsuario.toString();
-		Alumno a = BaseDatos.obtenerAlumno(null, usuario);
+		Alumno a = BaseDatos.obtenerAlumno(con, usuario);
 				
 		
 		// MENU
