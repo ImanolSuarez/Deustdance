@@ -11,6 +11,11 @@ import java.text.SimpleDateFormat;
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 
+import deustDance.Academia;
+import deustDance.BaseDatos;
+import deustDance.Dias;
+import deustDance.Horario;
+
 
 public class Tablas {
 	protected static JTable tabla;
@@ -59,6 +64,43 @@ public class Tablas {
 		
 		tabla.setRowHeight(25);
 		tabla.getTableHeader().setPreferredSize(new Dimension(tabla.getWidth(),30));
+		return tabla;
+	}
+	
+	public JTable tablaHorarioAlumno() {
+		
+		// MODELO CURSO
+		DefaultTableModel modeloCursosAlumno = new DefaultTableModel(new Object[] {"Hora","Lunes","Martes","Miercoles","Jueves","Viernes"},0) {
+			private static final long serialVersionUID = 1L;
+			
+			@Override
+			public boolean isCellEditable(int row, int column) {
+				return false;
+			}
+		};
+		for (int hora = 5; hora < 9 ; hora = hora + 2) {
+			Object[] linea = new Object[6];
+			linea[0] = hora + ":00  -  " + hora + ":50";
+			int columna = 1;
+			for(Dias dia : Dias.values()) {
+				for(Horario horario : Academia.getListaHorarios()) {
+					if(VentanaAlumno.alumno.getMapaGrupos().containsKey(horario.getGrupo().getCodigo()) && horario.getDia().toString().equals(dia.toString()) && horario.getHora() == hora) {
+						linea[columna] = horario.getGrupo();
+					}
+				}
+				columna++;
+			}
+			modeloCursosAlumno.addRow(linea);
+			modeloCursosAlumno.addRow(new Object[] {});
+			linea[0] = (hora + 1) + ":00  -  " + (hora + 1) + ":50";
+			modeloCursosAlumno.addColumn(linea);
+			modeloCursosAlumno.addColumn(new Object[] {});
+		}
+		modeloCursosAlumno.removeRow(modeloCursosAlumno.getRowCount() - 1);
+		
+		tabla = new JTable(modeloCursosAlumno);
+		tabla.setModel(modeloCursosAlumno);
+		tabla.getTableHeader().setReorderingAllowed(false);
 		return tabla;
 	}
 }
