@@ -23,6 +23,8 @@ public class VentanaAlumno extends JFrame{
 	SimpleDateFormat formatoFecha = new SimpleDateFormat("dd-MM-yyyy");
 	
 	ImagenPanel panel = new ImagenPanel ( new ImageIcon("/imagenes/fondoAlumno.jpg").getImage());
+	
+	
 	// PANEL PRINCIPAL
 	protected static JPanel panelC;
 	
