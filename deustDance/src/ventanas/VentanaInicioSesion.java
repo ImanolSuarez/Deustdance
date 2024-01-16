@@ -162,7 +162,6 @@ public class VentanaInicioSesion extends JFrame{
 		    public void actionPerformed(ActionEvent e) {
 		        if (barraProgreso.getValue() >= 95) {
 		        	logger.info("Barra progreso ha llegado a 100. Se habilita el boton");
-		            System.out.println(barraProgreso.getValue());
 		            botonValidar.setEnabled(true);
 		            time.stop();
 		            hiloImagenes.stop();
@@ -280,5 +279,6 @@ public class VentanaInicioSesion extends JFrame{
 		Image imagenEscalada= iconoImagen.getImage().getScaledInstance(240, 125, java.awt.Image.SCALE_SMOOTH);
 		labelFoto.setIcon(new ImageIcon(imagenEscalada));
 	}
+	
 
 }

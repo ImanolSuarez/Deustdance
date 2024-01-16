@@ -475,7 +475,6 @@ public class BaseDatos {
 			if(rs.next()) {
 				String nombre = rs.getString("nombre");
 				String apellido = rs.getString("apellido");
-				String usu = rs.getString("usuario");
 				String contra = rs.getString("contraseña");
 				int tel = rs.getInt("telefono");
 				String domicilio = rs.getString("domicilio");
