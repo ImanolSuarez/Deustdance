@@ -87,7 +87,7 @@ public class Tablas {
 					if(VentanaAlumno.alumno.getMapaGrupos().containsKey(horario.getGrupo().getCodigo()) && horario.getDia().toString().equals(dia.toString()) && horario.getHora() == hora) {
 						linea[columna] = horario.getGrupo();
 					}
-				}
+				} 
 				columna++;
 			}
 			modeloCursosAlumno.addRow(linea);
