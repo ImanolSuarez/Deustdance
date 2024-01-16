@@ -50,14 +50,8 @@ public class VentanaAlumno extends JFrame{
 	protected static JLabel labelCalificacion;
 	
 	// ELEMENTOS CURSOS
-	protected static JPanel panelTablaCursos;
 	protected static JPanel panelCampos;
-	protected static JTable tablaCursos;
 	protected static JButton botonCargarFoto;
-	
-	// ELEMENTOS NOTAS
-	protected static JTable tablaNotas;
-	protected static JLabel botonExpediente;
 	
 	// ELEMENTOS HORARIO
 	protected static JTable tablaHorario;
@@ -133,12 +127,20 @@ public class VentanaAlumno extends JFrame{
 		panelInformacionPersonal.add(labelCalificacion);
 		
 		// ELEMENTOS DE CURSOS
-		panelTablaCursos = new JPanel();
-		panelTablaCursos.setOpaque(false);
 		panelCampos = new JPanel();
 		panelCampos.setOpaque(false);
 		
+	
+		//panel.add(menuAlumno, BorderLayout.NORTH);
+		//panel.add(panelC, BorderLayout.CENTER);
 		
+		ImageIcon icono = new ImageIcon("/imagenes/icono1.png");
+		this.setIconImage(icono.getImage());
+		
+		// ELEMENTOS DE NOTAS
+		
+		// ELEMENTOS DE HORARIO
+		tablaHorario = tabla.tablaHorarioAlumno();
 		//JFILECHOOSER PARA QUE EL ALUMNO ELIJA LA FOTO
 		
 		JLabel etiquetaFoto = new JLabel();
