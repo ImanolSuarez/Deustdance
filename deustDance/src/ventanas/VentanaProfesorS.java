@@ -2,8 +2,6 @@ package ventanas;
 
 import java.awt.Color;
 import java.awt.Font;
-import java.awt.Graphics;
-import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.sql.Connection;
@@ -18,7 +16,6 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JList;
 import javax.swing.JOptionPane;
-import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JSpinner;
 import javax.swing.JTextField;
@@ -29,6 +26,11 @@ import deustDance.Profesor;
 
 public class VentanaProfesorS extends JFrame{
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
 	Connection con = BaseDatos.initBD("DeustDance.db");
 	
 	private JLabel labelNombre;
@@ -436,14 +438,7 @@ public class VentanaProfesorS extends JFrame{
 		String patron = "[A-Z][a-z]{3,15}";
 		return Pattern.matches(patron, domicilio);
 	}
-	private boolean baileCorrecto(String baileAsig) {
-		try {
-			int num = Integer.parseInt(baileAsig);
-			return num >=1 && num <= 9;
-		}catch (NumberFormatException | NullPointerException e) {
-			return false;
-		}
-	}
+	
 	private boolean grupoCorrecto(String grupo) {
 		try {
 			int num = Integer.parseInt(grupo);
@@ -452,25 +447,6 @@ public class VentanaProfesorS extends JFrame{
 			return false;
 		}
 	}
-	private boolean profeCorrecto(String profeAsig) {
-		try {
-			int num = Integer.parseInt(profeAsig);
-			return num >=1 && num <= 9;
-		}catch (NumberFormatException | NullPointerException e) {
-			return false;
-		}
-	}
-	private boolean claseCorrecto(String claseAsig) {
-		try {
-			int num = Integer.parseInt(claseAsig);
-			return num >=1 && num <= 9;
-		}catch (NumberFormatException | NullPointerException e) {
-			return false;
-		}
-	}
-	
-	public static void main(String[] args) {
-		new VentanaProfesorS();
-	}
+
 
 }

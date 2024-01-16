@@ -26,6 +26,11 @@ import deustDance.BaseDatos;
 
 public class VentanaAlumnoS extends JFrame{
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
 	Connection con = BaseDatos.initBD("DeustDance.db");
 	
 	private JLabel labelNombre;
@@ -270,7 +275,7 @@ public class VentanaAlumnoS extends JFrame{
 		
 		botonAnyadir.addActionListener(new ActionListener() {
 			
-			@SuppressWarnings("static-access")
+			
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				
@@ -298,7 +303,7 @@ public class VentanaAlumnoS extends JFrame{
 						int grup = Integer.parseInt(grupo);
 						double califi = Double.parseDouble(calificacion);
 						if(nombreCorrecto(nombre) && apellidoCorrecto(apellidos) && usuarioCorrecto(usuario) && contraCorrecto(contrasenia) && tfCorrecto(telefono) && domicilioCorrecto(domicilio)
-								&& baileCorrecto(baileAsignado) && profeCorrecto(profesorAsignado) && claseCorrecto(claseAsignada)) {
+								&& baileCorrecto(baileAsignado) && profeCorrecto(profesorAsignado) && claseCorrecto(claseAsignada) && dineroCorrecto(dinero)) {
 								Alumno a = new Alumno(nombre, apellidos, usuario, contrasenia, tel, domicilio, baile, profesor, clase, din, grup, califi);
 								if(BaseDatos.buscarAlumno(con, usuario) == null) {
 									Academia.anyadirAlumno(a);
@@ -396,10 +401,22 @@ public class VentanaAlumnoS extends JFrame{
 						int grup = Integer.parseInt(grupo);
 						double califi = Double.parseDouble(calificacion);
 						if(nombreCorrecto(nombre) && apellidoCorrecto(apellidos) && usuarioCorrecto(usuario) && contraCorrecto(contrasenia) && tfCorrecto(telefono) && domicilioCorrecto(domicilio)
-								&& baileCorrecto(baileAsignado) && profeCorrecto(profesorAsignado) && claseCorrecto(claseAsignada)) {
+								&& baileCorrecto(baileAsignado) && profeCorrecto(profesorAsignado) && claseCorrecto(claseAsignada) && grupoCorrecto(grupo) && dineroCorrecto(dinero)) {
 							if(BaseDatos.buscarAlumno(con, usuario) != null) {
 								BaseDatos.modificarAlumno(con, nombre, apellidos, contrasenia, tel, domicilio, baile, profesor, clase, din, grup, califi, usuario);
 								JOptionPane.showMessageDialog(null, "USUARIO MODIFICADO CON EXITO");
+								txtNombre.setText("");
+								txtApellidos.setText("");
+								txtUsuario.setText("");
+								txtContrasenya.setText("");
+								txtTelefono.setText("");
+								txtDomicilio.setText("");
+								txtBaileAsignado.setText("");
+								txtProfesorAsignado.setText("");
+								txtClaseAsignada.setText("");
+								spinnerDinero.setValue(0);
+								spinnerGrupo.setValue(0);
+								spinnerCalificacion.setValue(0);
 								logger.info("el usuario a sido modificado con exito");
 								List<Alumno> listaAlumnos = BaseDatos.obtenerAlumnos(con);
 								Academia.borrarTodosLosAlumnos();
@@ -435,6 +452,7 @@ public class VentanaAlumnoS extends JFrame{
 				try {
 					if(BaseDatos.buscarAlumno(con, usuario) != null) {
 						BaseDatos.eliminarAlumno(con, usuario);
+						JOptionPane.showMessageDialog(null, "USUARIO ELIMINADO CON EXITO");
 						logger.info("Eliminando a un alumno");
 						List<Alumno> listaAlumnos = BaseDatos.obtenerAlumnos(con);
 						Academia.borrarTodosLosAlumnos();
@@ -527,7 +545,7 @@ public class VentanaAlumnoS extends JFrame{
 		return Pattern.matches(patron, contra);
 	}
 	private boolean tfCorrecto(String tf) {
-		String patron = "[6][0-9]{8,9}";
+		String patron = "[6-7][0-9]{8,9}";
 		return Pattern.matches(patron, tf);
 	}
 	private boolean domicilioCorrecto(String domicilio) {
@@ -566,8 +584,13 @@ public class VentanaAlumnoS extends JFrame{
 			return false;
 		}
 	}
-	public static void main(String[] args) {
-		new VentanaAlumnoS();
+	private boolean dineroCorrecto(String dinero) {
+		try {
+			int num = Integer.parseInt(dinero);
+			return num >=0 && num <= 10000000;
+		}catch (NumberFormatException | NullPointerException e) {
+			return false;
+		}
 	}
 
 }

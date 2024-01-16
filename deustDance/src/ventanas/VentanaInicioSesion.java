@@ -41,7 +41,6 @@ public class VentanaInicioSesion extends JFrame{
 	private Logger logger = Logger.getLogger(VentanaInicioSesion.class.getName());
 	private ArrayList<String> listaImagenes;
 	private JLabel labelFoto;
-	private JLabel labelLogo;
 	private JLabel condiciones;
 	private JCheckBox checkCondiciones;
 	private JProgressBar barraProgreso;
@@ -158,7 +157,8 @@ public class VentanaInicioSesion extends JFrame{
 	            }
 		});
 		time.addActionListener(new ActionListener() {
-		    @Override
+		    @SuppressWarnings("deprecation")
+			@Override
 		    public void actionPerformed(ActionEvent e) {
 		        if (barraProgreso.getValue() >= 95) {
 		        	logger.info("Barra progreso ha llegado a 100. Se habilita el boton");
@@ -280,10 +280,5 @@ public class VentanaInicioSesion extends JFrame{
 		Image imagenEscalada= iconoImagen.getImage().getScaledInstance(240, 125, java.awt.Image.SCALE_SMOOTH);
 		labelFoto.setIcon(new ImageIcon(imagenEscalada));
 	}
-	
-	public static void main(String[] args) {
-		new VentanaInicioSesion();
-	}
-	
 
 }

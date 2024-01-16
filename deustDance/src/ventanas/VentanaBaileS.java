@@ -2,37 +2,35 @@ package ventanas;
 
 import java.awt.Color;
 import java.awt.Font;
-import java.awt.GraphicsEnvironment;
-import java.awt.ScrollPane;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.sql.Connection;
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.logging.Logger;
-
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
-import javax.swing.JOptionPane;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.JTextArea;
 import javax.swing.table.DefaultTableModel;
-
 import deustDance.Academia;
 import deustDance.Alumno;
 import deustDance.Baile;
 import deustDance.BaseDatos;
 import deustDance.Profesor;
 import deustDance.Tipo;
-import ventanas.VentanaTablaInfoS.ModeloTabla;
 
 public class VentanaBaileS extends JFrame{
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
 	Connection con = BaseDatos.initBD("DeustDance.db");
 	
 	private JComboBox<Tipo> comboBaile;
@@ -167,6 +165,10 @@ public class VentanaBaileS extends JFrame{
 	
 	class ModeloTabla extends DefaultTableModel{
 		
+		/**
+		 * 
+		 */
+		private static final long serialVersionUID = 1L;
 		private List<Alumno> listaAlumno;
 		private List<String> titulos = Arrays.asList("NOMBRE","APELLIDO","USUARIO","CONTRASEÑA","DOMICILIO","TELEFONO");
 		

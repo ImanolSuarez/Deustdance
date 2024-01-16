@@ -5,18 +5,20 @@ import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.logging.Logger;
-
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
-
 import deustDance.Academia;
-import deustDance.Main;
+
 
 public class VentanaInicial extends JFrame{
 	
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private JButton botonAlumno;
 	private JButton botonProfesor;
 	private JButton botonHorario;
@@ -111,12 +113,9 @@ public class VentanaInicial extends JFrame{
 			}
 		});
 		
-		
-		
 		setVisible(true);
-		
-		
-		
 	}
+	
+		
 
 }

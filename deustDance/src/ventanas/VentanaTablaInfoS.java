@@ -7,42 +7,38 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
 import java.awt.event.MouseMotionAdapter;
-import java.awt.event.MouseMotionListener;
 import java.sql.Connection;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.logging.Logger;
-
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
-import javax.swing.JTextField;
 import javax.swing.JTree;
-import javax.swing.event.DocumentEvent;
-import javax.swing.event.DocumentListener;
 import javax.swing.event.TreeSelectionEvent;
 import javax.swing.event.TreeSelectionListener;
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
-import javax.swing.table.TableCellRenderer;
 import javax.swing.tree.DefaultMutableTreeNode;
 import javax.swing.tree.DefaultTreeModel;
 import javax.swing.tree.TreePath;
-
 import deustDance.Academia;
 import deustDance.Alumno;
 import deustDance.BaseDatos;
-import deustDance.Profesor;
 
 
 public class VentanaTablaInfoS extends JFrame{
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
 	Connection con = BaseDatos.initBD("DeustDance.db");
 	
 	private DefaultTreeModel modeloArbol;
@@ -52,8 +48,7 @@ public class VentanaTablaInfoS extends JFrame{
 	private JTable tabla;
 	private JScrollPane scrollTabla;
 	
-	private JLabel labelBusqueda;
-	private JTextField txtBusqueda;
+	private JLabel txtBusqueda;
 	
 	private JButton botonSalir;
 	private JButton botonA;
@@ -66,6 +61,8 @@ public class VentanaTablaInfoS extends JFrame{
 	
 	private Logger logger = Logger.getLogger(VentanaProfesorS.class.getName());
 	
+	
+	
 	public VentanaTablaInfoS() {
 		
 		this.setTitle("Ventana horario secretaria");
@@ -77,8 +74,8 @@ public class VentanaTablaInfoS extends JFrame{
 		ImageIcon imagenLogo = (new ImageIcon(getClass().getResource("/imagenes/imagenLogo.png")));
 		setIconImage(imagenLogo.getImage());
 		
-		labelBusqueda = new JLabel("Introduzca el nombre de la persona: ");
-		txtBusqueda = new JTextField(20);
+		txtBusqueda = new JLabel("Tabla de alumnos de cada profesor: ");
+		
 		
 		botonSalir = new JButton("Salir");
 		botonA = new JButton("Alumno");
@@ -88,6 +85,8 @@ public class VentanaTablaInfoS extends JFrame{
 		
 		fila = -1;
 		columna = -1;
+		
+		
 		
 		/*CREACION DE LA JTree*/
 		
@@ -111,10 +110,7 @@ public class VentanaTablaInfoS extends JFrame{
 		scrollTabla.setBounds(250, 45, 600, 300);
 		add(scrollTabla);
 		
-		labelBusqueda.setBounds(300, -30, 300, 100);
-		add(labelBusqueda);
-		
-		txtBusqueda.setBounds(520, 10, 150, 30);
+		txtBusqueda.setBounds(300, 10, 250, 30);
 		add(txtBusqueda);
 		
 		botonSalir.setBounds(120, 360, 150, 30);
@@ -201,10 +197,16 @@ public class VentanaTablaInfoS extends JFrame{
 			}
 		});
 		
+		
 		/*RENDER DE LA TABLA*/
 		
 		tabla.setDefaultRenderer(Object.class, new DefaultTableCellRenderer(){
 			
+			/**
+			 * 
+			 */
+			private static final long serialVersionUID = 1L;
+
 			@Override
 			public Component getTableCellRendererComponent(JTable table, Object value, boolean isSelected, boolean hasFocus,
 					int row, int column) {
@@ -244,29 +246,6 @@ public class VentanaTablaInfoS extends JFrame{
 			}
 		});
 		
-		/*OTRO RENDER*/		
-		
-		txtBusqueda.getDocument().addDocumentListener(new DocumentListener() {
-			
-			@Override
-			public void removeUpdate(DocumentEvent e) {
-				
-				
-			}
-			
-			@Override
-			public void insertUpdate(DocumentEvent e) {
-				
-				
-			}
-			
-			@Override
-			public void changedUpdate(DocumentEvent e) {
-				
-				
-			}
-		});
-		
 		botonI.addActionListener(new ActionListener() {
 			
 			@Override
@@ -277,6 +256,7 @@ public class VentanaTablaInfoS extends JFrame{
 				
 			}
 		});
+		
 		
 		setVisible(true);
 	}
@@ -290,9 +270,12 @@ public class VentanaTablaInfoS extends JFrame{
 		}
 	}
 	
-	
 		class ModeloTabla extends DefaultTableModel{
 			
+			/**
+			 * 
+			 */
+			private static final long serialVersionUID = 1L;
 			private List<Alumno> listaAlumno = new ArrayList<>();
 			private List<String> titulos = Arrays.asList("NOMBRE","APELLIDO","USUARIO","CONTRASEÑA","DOMICILIO","TELEFONO","CALIFICACION");
 			
@@ -337,7 +320,5 @@ public class VentanaTablaInfoS extends JFrame{
 				}
 			}
 		}
-		
-			
-		}
+	}
 	
