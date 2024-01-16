@@ -5,6 +5,8 @@ import java.awt.*;
 import java.awt.event.*;
 import java.io.File;
 import java.text.SimpleDateFormat;
+import java.util.Arrays;
+
 import javax.swing.*;
 import javax.swing.border.*;
 
@@ -29,12 +31,12 @@ public class VentanaAlumno extends JFrame{
 	
 	// MENU
 	protected static JMenuBar menuAlumno;
-	protected static JMenu calificaciones;
 	protected static JMenu horario;
+	protected static JMenu calificaciones;
 	
 	protected static JMenuItem cerrarSesion;
-	protected static JMenuItem consultarCalificaciones;
 	protected static JMenuItem consultarHorario;
+	protected static JMenuItem consultarCalificaciones;
 	
 	// DATOS PERSONALES
 	protected static JLabel labelFoto;
@@ -171,6 +173,46 @@ public class VentanaAlumno extends JFrame{
 		});
 		
 		
+		// LISTENERS DEL MENU
+		consultarHorario.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				tablaHorario = tabla.tablaHorarioAlumno();
+				panelC.removeAll();
+				panelC.revalidate();
+				panelC.repaint();
+				panelC.setLayout(new GridBagLayout());
+				GridBagConstraints posicionTablaHorario = nuevaPosicion(0,0,1,1,100,100,150,100);
+				posicionTablaHorario.weightx = 0.5;
+				posicionTablaHorario.weighty = 0.2;
+				
+				for (int i = 0 ; i < tablaHorario.getRowCount(); i++) {
+					if(Arrays.asList(1,3,5).contains(i)) {
+						tablaHorario.setRowHeight(i,20);
+					}else {
+						tablaHorario.setRowHeight(i,81);
+					}
+				}
+				tablaHorario.getTableHeader().setPreferredSize(new Dimension(tablaHorario.getWidth(),40));
+				tablaHorario.getTableHeader().setBackground(new Color(146,180,255));
+				panelC.add(new JScrollPane(tablaHorario), posicionTablaHorario);
+				tablaHorario.revalidate();
+				panelC.revalidate();
+				panelC.repaint();
+			}
+
+			public static GridBagConstraints nuevaPosicion(int fila, int columna, int numFilas, int numColumnas, int top, int left, int bottom, int right) {
+				GridBagConstraints constraint = new GridBagConstraints();
+				constraint.gridx = columna;
+				constraint.gridy = fila;
+				constraint.gridwidth = numColumnas;
+				constraint.gridheight = numFilas;
+				constraint.insets = new Insets(top,left,bottom,right);
+				constraint.fill = GridBagConstraints.BOTH;
+				return constraint;
+			}
+		});
 		// WINDOW LISTENER
 		
 		this.addWindowListener(new WindowAdapter() {
@@ -225,6 +267,9 @@ public class VentanaAlumno extends JFrame{
 		setExtendedState(MAXIMIZED_BOTH);
 		setResizable(false);
 		this.setVisible(true);
+		
+		
+		
 	}
 	
 	public static void main(String[] args) {
