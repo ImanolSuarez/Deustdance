@@ -1,11 +1,12 @@
 package deustDance;
 
 import java.util.Objects;
+import java.util.HashMap;
 
 public class Alumno extends Persona implements Comparable<Alumno>{
 	
 	
-
+	private HashMap<Integer, Grupo> mapaGrupos = new HashMap<Integer, Grupo>();
 	private static int contador = 1;
 	private int id;
 	private int baileAsignado;
@@ -41,9 +42,13 @@ public class Alumno extends Persona implements Comparable<Alumno>{
 		this.calificacion = 0;
 	}
 
+	public HashMap<Integer, Grupo> getMapaGrupos(){
+		return mapaGrupos;
+	}
 	
-	
-
+	public void setMapaGrupo(HashMap<Integer, Grupo> mapaGrupos) {
+		this.mapaGrupos = mapaGrupos;
+	}
 	public int getId() {
 		return id;
 	}
