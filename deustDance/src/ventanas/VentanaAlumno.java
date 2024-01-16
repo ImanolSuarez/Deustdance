@@ -76,6 +76,7 @@ public class VentanaAlumno extends JFrame{
 	protected JTextField textoCalificacion;
 
 	
+	
 	public VentanaAlumno() {
 		//AQUI CARGAR BASE DE DATOS Y LOGGER
 		
@@ -88,6 +89,11 @@ public class VentanaAlumno extends JFrame{
 		
 		// TABLAS
 		tabla = new Tablas();
+		
+		/*A*/
+		String usuario = VentanaInicioSesion.textUsuario.toString();
+		Alumno a = BaseDatos.obtenerAlumno(null, usuario);
+				
 		
 		// MENU
 		menuAlumno = new JMenuBar();

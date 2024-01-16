@@ -33,7 +33,7 @@ public class VentanaInicioSesion extends JFrame{
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-	private JTextField textUsuario;
+	public static JTextField textUsuario;
 	private JPasswordField textContrasenia;
 	private JLabel usuario;
 	private JLabel contrasenia;
