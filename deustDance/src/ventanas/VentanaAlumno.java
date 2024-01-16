@@ -22,8 +22,6 @@ public class VentanaAlumno extends JFrame{
 	
 	SimpleDateFormat formatoFecha = new SimpleDateFormat("dd-MM-yyyy");
 	
-	ImagenPanel panel = new ImagenPanel ( new ImageIcon("/imagenes/fondoAlumno.jpg").getImage());
-	
 	
 	// PANEL PRINCIPAL
 	protected static JPanel panelC;
@@ -136,8 +134,8 @@ public class VentanaAlumno extends JFrame{
 		panelCampos.setOpaque(false);
 		
 	
-		panel.add(menuAlumno, BorderLayout.NORTH);
-		panel.add(panelC, BorderLayout.CENTER);
+		panelC.add(menuAlumno, BorderLayout.NORTH);
+		
 		
 		ImageIcon icono = new ImageIcon("/imagenes/icono1.png");
 		this.setIconImage(icono.getImage());
@@ -227,7 +225,7 @@ public class VentanaAlumno extends JFrame{
 		
 		});
 		
-		this.getContentPane().add(panel);
+		this.getContentPane().add(panelC);
 		
 		this.addWindowListener(new WindowAdapter() {
 			
