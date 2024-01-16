@@ -20,6 +20,7 @@ public class VentanaAlumno extends JFrame{
 	
 	SimpleDateFormat formatoFecha = new SimpleDateFormat("dd-MM-yyyy");
 	
+	ImagenPanel panel = new ImagenPanel ( new ImageIcon("/imagenes/fondoAlumno.jpg").getImage());
 	// PANEL PRINCIPAL
 	protected static JPanel panelC;
 	
@@ -131,8 +132,8 @@ public class VentanaAlumno extends JFrame{
 		panelCampos.setOpaque(false);
 		
 	
-		//panel.add(menuAlumno, BorderLayout.NORTH);
-		//panel.add(panelC, BorderLayout.CENTER);
+		panel.add(menuAlumno, BorderLayout.NORTH);
+		panel.add(panelC, BorderLayout.CENTER);
 		
 		ImageIcon icono = new ImageIcon("/imagenes/icono1.png");
 		this.setIconImage(icono.getImage());
@@ -169,6 +170,30 @@ public class VentanaAlumno extends JFrame{
 			}
 		});
 		
+		
+		// WINDOW LISTENER
+		
+		this.addWindowListener(new WindowAdapter() {
+			
+			@Override
+			public void windowClosed(WindowEvent e) {
+				BaseDatos.closeBD(null);
+				
+			}
+		
+		});
+		
+		this.getContentPane().add(panel);
+		
+		this.addWindowListener(new WindowAdapter() {
+			
+			@Override
+			public void windowOpened(WindowEvent e) {
+				BaseDatos.initBD("BaseDeDatosAcademia");
+				BaseDatos.bd.logger();
+			}
+			
+		});
 		JLabel labelFoto = new JLabel();
 		labelFoto.setIcon(new ImageIcon(getClass().getResource("")));
 		
