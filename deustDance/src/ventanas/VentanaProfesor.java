@@ -219,9 +219,5 @@ public class VentanaProfesor extends JFrame {
 		this.setTitle("VentanaProfesor");
 		this.setVisible(true);
 	}
-	public static void main(String[] args) {
-		//Ejemplos de prueba
-		//Profesor p1 = new Profesor("Juan", "Pérez", "juanperez", "contrasenia1", 123456789, "Dirección1", null, 1, null, null);
-		//new VentanaProfesor(p1);
-	}
+	
 }

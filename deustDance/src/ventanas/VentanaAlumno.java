@@ -75,7 +75,8 @@ public class VentanaAlumno extends JFrame{
 	protected JTextField textoDinero;
 	protected JTextField textoGrupo;
 	protected JTextField textoCalificacion;
-
+	
+	protected Alumno a;
 	
 	
 	public VentanaAlumno() {
@@ -93,8 +94,8 @@ public class VentanaAlumno extends JFrame{
 		
 		/*A*/
 		String usuario = VentanaInicioSesion.textUsuario.toString();
-		Alumno a = BaseDatos.obtenerAlumno(con, usuario);
-				
+		a = BaseDatos.obtenerAlumno(con, usuario);
+		System.out.println(a);
 		
 		// MENU
 		menuAlumno = new JMenuBar();
@@ -136,6 +137,7 @@ public class VentanaAlumno extends JFrame{
 		botonCargarFoto = new JButton("Cargar foto");
 		
 		textoNombre = new JTextField(20);
+		textoNombre.setText(a.getNombre());
 		textoApellido = new JTextField(20);
 		textoUsuario = new JTextField(20);
 		textoContraseña = new JTextField(20);
