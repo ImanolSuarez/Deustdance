@@ -38,7 +38,6 @@ public class VentanaAlumno extends JFrame{
 	// DATOS PERSONALES
 	protected static JLabel labelFoto;
 	protected static JPanel panelDatos;
-	protected static JLabel botonEditar;
 	protected static JLabel labelNombre;
 	protected static JLabel labelApellido;
 	protected static JLabel labelUsuario;
@@ -53,10 +52,7 @@ public class VentanaAlumno extends JFrame{
 	// ELEMENTOS CURSOS
 	protected static JPanel panelTablaCursos;
 	protected static JPanel panelCampos;
-	protected static JLabel añadir;
-	protected static JLabel eliminar;
-	protected static JLabel buscar;
-	protected static JTextField textoBuscar;
+	protected static JTable tablaCursos;
 	protected static JButton botonCargarFoto;
 	
 	// ELEMENTOS NOTAS
@@ -142,23 +138,7 @@ public class VentanaAlumno extends JFrame{
 		panelCampos = new JPanel();
 		panelCampos.setOpaque(false);
 		
-		añadir = new JLabel();
-		ImageIcon icono1 = new ImageIcon("/imagenes/añadir.jpg");
-		Image imagen1 = icono1.getImage();
-		Image imagenFinal1 = imagen1.getScaledInstance(30, 30, java.awt.Image.SCALE_SMOOTH);
-		añadir.setIcon(new ImageIcon(imagenFinal1));
 		
-		eliminar = new JLabel();
-		ImageIcon icono2 = new ImageIcon("/imagenes/eliminar.png");
-		Image imagen2 = icono2.getImage();
-		Image imagenFinal2 = imagen2.getScaledInstance(30, 30, java.awt.Image.SCALE_SMOOTH);
-		eliminar.setIcon(new ImageIcon(imagenFinal2));
-		
-		buscar = new JLabel();
-		ImageIcon icono3 = new ImageIcon("/imagenes/lupa.jpeg");
-		Image imagen3 = icono3.getImage();
-		Image imagenFinal3 = imagen3.getScaledInstance(30, 30, java.awt.Image.SCALE_SMOOTH);
-		buscar.setIcon(new ImageIcon(imagenFinal3));
 		//JFILECHOOSER PARA QUE EL ALUMNO ELIJA LA FOTO
 		
 		JLabel etiquetaFoto = new JLabel();
