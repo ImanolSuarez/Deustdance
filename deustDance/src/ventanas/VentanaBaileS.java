@@ -129,7 +129,7 @@ public class VentanaBaileS extends JFrame{
 					
 					int id = Academia.cargarMapaTipoProfesor().get(b.getIdBaile());
 					Profesor p = BaseDatos.obtenerProfesorId(con, id);
-					String texto = p.getNombre() + " " + p.getApellidos();
+					String texto = p.getNombre() + " " + p.getApellidos() + "\n";
 					textoArea.append(texto);
 					
 			}
