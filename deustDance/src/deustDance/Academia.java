@@ -28,6 +28,7 @@ public class Academia {
 	private static List<Profesor> listaProfesores = new ArrayList<>();
 	private static List<Clase> listaClases = new ArrayList<>();
 	private static List<Secretaria> listaSecretaria = new ArrayList<>();
+	private static ArrayList<Horario> listaHorarios = new ArrayList<>();
 	
 	
 	private static Map<Integer, List<Alumno>> mapaProfesorAlumno = new HashMap<>();
@@ -54,7 +55,9 @@ public class Academia {
 		return listaSecretaria;
 	}
 	
-	
+	public static ArrayList<Horario> getListaHorarios(){
+		return listaHorarios;
+	}
 	/*METODO PARA AÑADIR ALUMNOS*/
 	
 	
