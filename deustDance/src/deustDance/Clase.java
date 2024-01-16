@@ -1,7 +1,7 @@
 package deustDance;
 
 
-import java.util.List;
+
 
 public class Clase {
 	
@@ -15,7 +15,6 @@ public class Clase {
 		super();
 		num = contador;
 		contador++;
-		this.num = num;
 		this.nombre = nombre;
 		this.idProfesor = idProfesor;
 		

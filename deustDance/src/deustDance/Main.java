@@ -17,25 +17,25 @@ public class Main {
 
 	public static void main(String[] args) {
 		
+		@SuppressWarnings("unused")
 		Logger logger = java.util.logging.Logger.getLogger("Logger");
 		
 		try {
 			FileInputStream fis = new FileInputStream("conf/logger.properties");
 			LogManager.getLogManager().readConfiguration(fis);
 		} catch (FileNotFoundException e) {
-			// TODO Auto-generated catch block
+			
 			e.printStackTrace();
 		} catch (SecurityException e) {
-			// TODO Auto-generated catch block
+			
 			e.printStackTrace();
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
+			
 			e.printStackTrace();
 		}
 		
 		Connection con = BaseDatos.initBD("DeustDance.db");
 		BaseDatos.crearTabla(con);
-		Academia.ver();
 		Academia.cargarDatosAlumno(con, "resources/alumnos.csv");	
 		Academia.cargarDatosProfesor(con, "resources/profesores.csv");
 		Academia.cargarDatosSecretaria(con, "resources/secretarias.csv");
@@ -52,6 +52,7 @@ public class Main {
 		
 		
 		
+		@SuppressWarnings("unused")
 		VentanaInicioSesion v = new VentanaInicioSesion();
 		
 			

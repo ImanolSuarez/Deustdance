@@ -1,12 +1,9 @@
 package deustDance;
-import java.util.Map.Entry;
 
-import java.io.BufferedReader;
-import java.io.File;
+
+
 import java.io.FileNotFoundException;
 import java.io.FileReader;
-import java.io.FileWriter;
-import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.Connection;
 import java.util.ArrayList;
@@ -14,25 +11,21 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Scanner;
-import java.util.Set;
-import java.util.TreeSet;
-
-import javax.swing.JOptionPane;
 
 public class Academia {
 	
 	static Connection con = BaseDatos.initBD("DeustDance.db");
 	
-	private static List<Baile> listaBailes = new ArrayList<Baile>();
+	//private static List<Baile> listaBailes = new ArrayList<Baile>();
 	private static List<Alumno> listaAlumnos = new ArrayList<>();
 	private static List<Profesor> listaProfesores = new ArrayList<>();
-	private static List<Clase> listaClases = new ArrayList<>();
+	//private static List<Clase> listaClases = new ArrayList<>();
 	private static List<Secretaria> listaSecretaria = new ArrayList<>();
 	private static ArrayList<Horario> listaHorarios = new ArrayList<>();
 	
 	
 	private static Map<Integer, List<Alumno>> mapaProfesorAlumno = new HashMap<>();
-	private static Map<Integer, List<Alumno>> mapaBaileAlumno = new HashMap<>();
+	//private static Map<Integer, List<Alumno>> mapaBaileAlumno = new HashMap<>();
 	
 	
 	
@@ -96,29 +89,17 @@ public class Academia {
 		
 	}
 	
-	public static void ver() {
-		for(Entry<Integer, Integer> e : cargarMapaTipoProfesor().entrySet()) {
-			System.out.println("Mapa: ");
-			System.out.println(e.getKey() + ", "+e.getValue());
-		}
-	}
-	
 	/*CARGAR EL MAPA 1*/
 	
 	public static Map<Integer, List<Alumno>> cargarMapa() {
 	    Map<Integer, List<Alumno>> mapa = new HashMap<>();
 	    List<Alumno> listaAlum = BaseDatos.obtenerAlumnos(con);
-	    System.out.println(listaAlum.size());
 	    for (Alumno a : listaAlum) {
 	        if (!mapa.containsKey(a.getId_profesorAsignado())) {
 	            mapa.put(a.getId_profesorAsignado(), new ArrayList<>());
 	        }
 	        mapa.get(a.getId_profesorAsignado()).add(a);
 	        
-	    }
-	    
-	    for(Entry<Integer, List<Alumno>> e : mapa.entrySet()) {
-	    	System.out.println(e.getKey());
 	    }
 	    return mapa;
 	}
@@ -348,6 +329,7 @@ public class Academia {
 		
 		try {
 			Scanner sc = new Scanner(new FileReader(file));
+			@SuppressWarnings("unused")
 			String titulo = sc.nextLine();
 			while(sc.hasNext()) {
 				String linea = sc.nextLine();
@@ -372,6 +354,7 @@ public class Academia {
 		
 		try {
 			Scanner sc = new Scanner(new FileReader(file));
+			@SuppressWarnings("unused")
 			String titulo = sc.nextLine();
 			while(sc.hasNext()) {
 				String linea = sc.nextLine();
@@ -396,6 +379,7 @@ public class Academia {
 		
 		try {
 			Scanner sc = new Scanner(new FileReader(file));
+			@SuppressWarnings("unused")
 			String titulo = sc.nextLine();
 			while(sc.hasNext()) {
 				String linea = sc.nextLine();
