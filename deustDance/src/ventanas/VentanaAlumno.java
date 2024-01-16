@@ -4,10 +4,9 @@ import java.awt.*;
 
 import java.awt.event.*;
 import java.io.File;
-import java.sql.Connection;
 import java.text.SimpleDateFormat;
 import java.util.Arrays;
-
+import java.sql.Connection;
 import javax.swing.*;
 import javax.swing.border.*;
 
@@ -17,6 +16,7 @@ import deustDance.BaseDatos;
 
 public class VentanaAlumno extends JFrame{
 	private static final long serialVersionUID = 1L;
+	
 	Connection con = BaseDatos.initBD("DeustDance.db");
 	// COMPONENETES DE LA VENTANA ALUMNO QUE HA INICIADO SESION
 	public static Alumno alumno;
@@ -64,7 +64,6 @@ public class VentanaAlumno extends JFrame{
 	protected static JPanel panelInformacionPersonal;
 	protected static JPanel panelInformacionAcademica;
 	
-
 	protected JTextField textoNombre;
 	protected JTextField textoApellido;
 	protected JTextField textoUsuario;
@@ -75,9 +74,11 @@ public class VentanaAlumno extends JFrame{
 	protected JTextField textoDinero;
 	protected JTextField textoGrupo;
 	protected JTextField textoCalificacion;
+
 	
 	protected Alumno a;
 	
+
 	
 	public VentanaAlumno() {
 		//AQUI CARGAR BASE DE DATOS Y LOGGER
@@ -94,8 +95,12 @@ public class VentanaAlumno extends JFrame{
 		
 		/*A*/
 		String usuario = VentanaInicioSesion.textUsuario.toString();
+
 		a = BaseDatos.obtenerAlumno(con, usuario);
-		System.out.println(a);
+		
+
+		Alumno a = BaseDatos.obtenerAlumno(con, usuario);
+
 		
 		// MENU
 		menuAlumno = new JMenuBar();
@@ -114,7 +119,8 @@ public class VentanaAlumno extends JFrame{
 		menuAlumno.add(horario);
 		
 		//ELEMENTOS DATOS PERSONALES
-		panelInformacionPersonal.setLayout(new BorderLayout());
+		panelInformacionPersonal.setLayout(new GridBagLayout());
+		panelInformacionAcademica.setLayout(new BorderLayout());
 		
 		Border bordeInformacionPersonal = BorderFactory.createTitledBorder("Información personal");
 		panelInformacionPersonal.setBorder(bordeInformacionPersonal);
@@ -148,65 +154,75 @@ public class VentanaAlumno extends JFrame{
 		textoGrupo = new JTextField(20);
 		textoCalificacion = new JTextField(20);
 		
-		labelNombre.setBounds(60, 10, 100, 130);
+		labelNombre.setBounds(20, 10, 50, 50);
 		add(labelNombre);
 		
-		textoNombre.setBounds(60, 90, 140, 30);
+		textoNombre.setBounds(20, 10, 50, 50);
 		add(textoNombre);
+		textoNombre.setEditable(false);
 		
-		labelApellido.setBounds(60, 80, 100, 130);
+		labelApellido.setBounds(20, 10, 50, 50);
 		add(labelApellido);
 		
-		textoApellido.setBounds(60, 160, 140, 30);
+		textoApellido.setBounds(20, 10, 50, 50);
 		add(textoApellido);
+		textoApellido.setEditable(false);
 		
-		labelUsuario.setBounds(60, 190, 140, 30);
+		labelUsuario.setBounds(20, 10, 50, 50);
 		add(labelUsuario);
 		
-		textoUsuario.setBounds(60, 220, 140, 30);
+		textoUsuario.setBounds(20, 10, 50, 50);
 		add(textoUsuario);
+		textoUsuario.setEditable(false);
 		
-		labelContraseña.setBounds(60, 250, 140, 30);
+		labelContraseña.setBounds(20, 10, 50, 50);
 		add(labelContraseña);
 		
-		textoContraseña.setBounds(60, 280, 140, 30);
+		textoContraseña.setBounds(20, 10, 50, 50);
 		add(textoContraseña);
+		textoContraseña.setEditable(false);
 		
-		labelDomicilio.setBounds(320,60, 140, 30);
+		labelDomicilio.setBounds(20, 10, 50, 50);
 		add(labelDomicilio);
 		
-		textoDomicilio.setBounds(320,90, 140, 30);
+		textoDomicilio.setBounds(20, 10, 50, 50);
 		add(textoDomicilio);
+		textoDomicilio.setEditable(false);
 		
-		labelProfesorAsignado.setBounds(60,80,100,130);
+		labelProfesorAsignado.setBounds(20, 10, 50, 50);
 		add(labelProfesorAsignado);
 		
-		textoProfesorAsignado.setBounds(60,90,100,30);
+		textoProfesorAsignado.setBounds(20, 10, 50, 50);
 		add(textoProfesorAsignado);
+		textoProfesorAsignado.setEditable(false);
 		
-		labelClaseAsignada.setBounds(60,80,100,130);
+		labelClaseAsignada.setBounds(20, 10, 50, 50);
 		add(labelClaseAsignada);
 		
-		textoClaseAsignada.setBounds(60,90,110,30);
+		textoClaseAsignada.setBounds(20, 10, 50, 50);
 		add(textoClaseAsignada);
+		textoClaseAsignada.setEditable(false);
 		
-		labelDinero.setBounds(60,80,100,30);
+		labelDinero.setBounds(20, 10, 50, 50);
 		add(labelDinero);
 		
-		textoDinero.setBounds(60,90,110,30);
+		textoDinero.setBounds(20, 10, 50, 50);
 		add(textoDinero);
+		textoDinero.setEditable(false);
 		
-		labelGrupo.setBounds(60,80,100,30);
+		labelGrupo.setBounds(20, 10, 50, 50);
 		add(labelGrupo);
 		
-		textoGrupo.setBounds(60,90,110,30);
+		textoGrupo.setBounds(20, 10, 50, 50);
 		add(textoGrupo);
+		textoGrupo.setEditable(false);
 		
-		labelCalificacion.setBounds(60,80,100,30);
+		labelCalificacion.setBounds(20, 10, 50, 50);
 		add(labelCalificacion);
 		
-		textoCalificacion.setBounds(60,90,110,30);
+		textoCalificacion.setBounds(20, 10, 50, 50);
 		add(textoCalificacion);
+		textoCalificacion.setEditable(false);
 		
 		panelInformacionPersonal.add(labelNombre);
 		panelInformacionPersonal.add(labelApellido);
@@ -216,9 +232,7 @@ public class VentanaAlumno extends JFrame{
 		panelInformacionPersonal.add(labelProfesorAsignado);
 		panelInformacionPersonal.add(labelClaseAsignada);
 		panelInformacionPersonal.add(labelDinero);
-		panelInformacionPersonal.add(labelGrupo);
-		panelInformacionPersonal.add(labelCalificacion);
-		panelInformacionPersonal.add(botonCargarFoto);
+		
 		// ELEMENTOS DE CURSOS
 		panelCampos = new JPanel();
 		panelCampos.setOpaque(false);
@@ -343,7 +357,8 @@ public class VentanaAlumno extends JFrame{
 		panelInformacionAcademica.add(panelBotonesAcademico, BorderLayout.SOUTH);
 		
 		this.add(panelInformacionPersonal, BorderLayout.WEST);
-		this.add(panelBotonesAcademico, BorderLayout.EAST);
+		this.add(panelInformacionAcademica, BorderLayout.EAST);
+		
 		
 		
 		this.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
