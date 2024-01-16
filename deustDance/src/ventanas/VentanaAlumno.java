@@ -63,7 +63,18 @@ public class VentanaAlumno extends JFrame{
 	protected static JPanel panelInformacionPersonal;
 	protected static JPanel panelInformacionAcademica;
 	
-	
+
+	protected JTextField textoNombre;
+	protected JTextField textoApellido;
+	protected JTextField textoUsuario;
+	protected JTextField textoContraseña;
+	protected JTextField textoDomicilio;
+	protected JTextField textoProfesorAsignado;
+	protected JTextField textoClaseAsignada;
+	protected JTextField textoDinero;
+	protected JTextField textoGrupo;
+	protected JTextField textoCalificacion;
+
 	
 	public VentanaAlumno() {
 		//AQUI CARGAR BASE DE DATOS Y LOGGER
@@ -77,7 +88,6 @@ public class VentanaAlumno extends JFrame{
 		
 		// TABLAS
 		tabla = new Tablas();
-		
 		
 		// MENU
 		menuAlumno = new JMenuBar();
@@ -96,8 +106,7 @@ public class VentanaAlumno extends JFrame{
 		menuAlumno.add(horario);
 		
 		//ELEMENTOS DATOS PERSONALES
-		panelInformacionPersonal.setLayout(new GridBagLayout());
-		panelInformacionAcademica.setLayout(new BorderLayout());
+		panelInformacionPersonal.setLayout(new BorderLayout());
 		
 		Border bordeInformacionPersonal = BorderFactory.createTitledBorder("Información personal");
 		panelInformacionPersonal.setBorder(bordeInformacionPersonal);
@@ -107,18 +116,88 @@ public class VentanaAlumno extends JFrame{
 		
 		panelInformacionPersonal.setLayout(new GridLayout(7,2));
 		
-		labelNombre = new JLabel("Nombre:		" + alumno.getNombre());
-		labelApellido = new JLabel("Apellido:		" + alumno.getApellidos());
-		labelUsuario = new JLabel("Usuario:		" + alumno.getUsuario());
-		labelContraseña = new JLabel("Contraseña:		" + alumno.getContrasenia());
-		labelDomicilio = new JLabel("Domicilio:		" + alumno.getDomicilio());
-		labelProfesorAsignado = new JLabel("Profesor asignado		" + alumno.getProfesorAsignado());
-		labelClaseAsignada = new JLabel("Clase asignada		" + alumno.getClaseAsignada());
-		labelDinero = new JLabel("Dinero		" +  alumno.getDinero());
-		labelGrupo = new JLabel("Grupo:		" +  alumno.getGrupo());
-		labelCalificacion = new JLabel("Calificación:		" + alumno.getCalificacion());
+		labelNombre = new JLabel("Nombre: ");
+		labelApellido = new JLabel("Apellido: ");
+		labelUsuario = new JLabel("Usuario: ");
+		labelContraseña = new JLabel("Contraseña: ");
+		labelDomicilio = new JLabel("Domicilio: ");
+		labelProfesorAsignado = new JLabel("Profesor asignado: ");
+		labelClaseAsignada = new JLabel("Clase asignada: ");
+		labelDinero = new JLabel("Dinero: ");
+		labelGrupo = new JLabel("Grupo: ");
+		labelCalificacion = new JLabel("Calificación: ");
 		botonCargarFoto = new JButton("Cargar foto");
 		
+		textoNombre = new JTextField(20);
+		textoApellido = new JTextField(20);
+		textoUsuario = new JTextField(20);
+		textoContraseña = new JTextField(20);
+		textoDomicilio = new JTextField(20);
+		textoProfesorAsignado = new JTextField(20);
+		textoClaseAsignada = new JTextField(20);
+		textoDinero = new JTextField(20);
+		textoGrupo = new JTextField(20);
+		textoCalificacion = new JTextField(20);
+		
+		labelNombre.setBounds(60, 10, 100, 130);
+		add(labelNombre);
+		
+		textoNombre.setBounds(60, 90, 140, 30);
+		add(textoNombre);
+		
+		labelApellido.setBounds(60, 80, 100, 130);
+		add(labelApellido);
+		
+		textoApellido.setBounds(60, 160, 140, 30);
+		add(textoApellido);
+		
+		labelUsuario.setBounds(60, 190, 140, 30);
+		add(labelUsuario);
+		
+		textoUsuario.setBounds(60, 220, 140, 30);
+		add(textoUsuario);
+		
+		labelContraseña.setBounds(60, 250, 140, 30);
+		add(labelContraseña);
+		
+		textoContraseña.setBounds(60, 280, 140, 30);
+		add(textoContraseña);
+		
+		labelDomicilio.setBounds(320,60, 140, 30);
+		add(labelDomicilio);
+		
+		textoDomicilio.setBounds(320,90, 140, 30);
+		add(textoDomicilio);
+		
+		labelProfesorAsignado.setBounds(60,80,100,130);
+		add(labelProfesorAsignado);
+		
+		textoProfesorAsignado.setBounds(60,90,100,30);
+		add(textoProfesorAsignado);
+		
+		labelClaseAsignada.setBounds(60,80,100,130);
+		add(labelClaseAsignada);
+		
+		textoClaseAsignada.setBounds(60,90,110,30);
+		add(textoClaseAsignada);
+		
+		labelDinero.setBounds(60,80,100,30);
+		add(labelDinero);
+		
+		textoDinero.setBounds(60,90,110,30);
+		add(textoDinero);
+		
+		labelGrupo.setBounds(60,80,100,30);
+		add(labelGrupo);
+		
+		textoGrupo.setBounds(60,90,110,30);
+		add(textoGrupo);
+		
+		labelCalificacion.setBounds(60,80,100,30);
+		add(labelCalificacion);
+		
+		textoCalificacion.setBounds(60,90,110,30);
+		add(textoCalificacion);
 		
 		panelInformacionPersonal.add(labelNombre);
 		panelInformacionPersonal.add(labelApellido);
@@ -130,7 +209,7 @@ public class VentanaAlumno extends JFrame{
 		panelInformacionPersonal.add(labelDinero);
 		panelInformacionPersonal.add(labelGrupo);
 		panelInformacionPersonal.add(labelCalificacion);
-		
+		panelInformacionPersonal.add(botonCargarFoto);
 		// ELEMENTOS DE CURSOS
 		panelCampos = new JPanel();
 		panelCampos.setOpaque(false);
@@ -141,8 +220,6 @@ public class VentanaAlumno extends JFrame{
 		
 		ImageIcon icono = new ImageIcon("/imagenes/icono1.png");
 		this.setIconImage(icono.getImage());
-		
-		// ELEMENTOS DE NOTAS
 		
 		// ELEMENTOS DE HORARIO
 		tablaHorario = tabla.tablaHorarioAlumno();
@@ -257,8 +334,7 @@ public class VentanaAlumno extends JFrame{
 		panelInformacionAcademica.add(panelBotonesAcademico, BorderLayout.SOUTH);
 		
 		this.add(panelInformacionPersonal, BorderLayout.WEST);
-		this.add(panelInformacionAcademica, BorderLayout.EAST);
-		
+		this.add(panelBotonesAcademico, BorderLayout.EAST);
 		
 		
 		this.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
