@@ -2,6 +2,7 @@ package ventanas;
 
 import javax.swing.JLabel;
 import javax.swing.JTable;
+import javax.swing.SwingConstants;
 
 import java.awt.Color;
 import java.awt.Component;
@@ -12,7 +13,6 @@ import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 
 import deustDance.Academia;
-import deustDance.BaseDatos;
 import deustDance.Dias;
 import deustDance.Horario;
 
@@ -99,6 +99,20 @@ public class Tablas {
 		modeloCursosAlumno.removeRow(modeloCursosAlumno.getRowCount() - 1);
 		
 		tabla = new JTable(modeloCursosAlumno);
+		
+		tabla.setDefaultRenderer(Object.class, new DefaultTableCellRenderer() {
+			private static final long serialVersionUID = 1L;
+			
+			@Override
+			public Component getTableCellRendererComponent(JTable table, Object value, boolean isSelected, boolean hasFocus, int row, int column) {
+				setHorizontalAlignment(SwingConstants.CENTER);
+				Component c = super.getTableCellRendererComponent(table, value, isSelected, hasFocus, row, column);
+				((JLabel) c).setHorizontalAlignment(JLabel.CENTER);
+				
+				return c;
+				
+			}
+		});
 		tabla.setModel(modeloCursosAlumno);
 		tabla.getTableHeader().setReorderingAllowed(false);
 		return tabla;
